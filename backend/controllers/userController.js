@@ -111,12 +111,3 @@ exports.deleteUser = async (req, res) => {
         });
     }
 };
-
-exports.loginUser = async (req, res) => {
-    res.json({mssg: 'login user'})
-}
-
-exports.signupUser = async (req, res) => {
-    res.json({mssg: 'signup user'})
-}
-
