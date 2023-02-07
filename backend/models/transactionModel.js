@@ -16,7 +16,8 @@ const TransactionSchema = new Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum: ['food & drink', 'transport', 'entertainment', 'shopping', 'Other']
     },
     user: {
         type: Schema.Types.ObjectId,
