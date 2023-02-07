@@ -1,5 +1,13 @@
 const User = require('../models/userModel');
 
+exports.loginUser = async (req, res) => {
+    res.json({msgg: 'login user'})
+}
+
+exports.signupUser = async (req, res) => {
+    res.json({msgg: 'signup user'})
+}
+
 // @route   POST /api/users
 // @desc    Create a user
 exports.createUser = async (req, res) => {

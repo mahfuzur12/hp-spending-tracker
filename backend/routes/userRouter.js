@@ -4,8 +4,15 @@ const { createUser,
     getUsers,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    signupUser,
+    loginUser
 } = require('../controllers/userController');
+
+router.post('/login', loginUser)
+
+router.post('/signup', signupUser)
+
 
 router.route('/')
     .post(createUser)

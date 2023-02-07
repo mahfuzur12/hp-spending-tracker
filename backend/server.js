@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/transactions', transactionsRouter);
-app.use('/api/users', userRouter);
+app.use('/api/user', userRouter);
 
 
 
