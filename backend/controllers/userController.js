@@ -5,7 +5,16 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.signupUser = async (req, res) => {
-    res.json({msgg: 'signup user'})
+
+    const {name, email, password} = req.body
+
+    try {
+        const user = await User.signup(name, email, password)
+
+        res.status(200).json({email, user})
+    } catch (error) {
+        res.status(400).json({error : error.message})
+    }
 }
 
 // @route   POST /api/users
