@@ -1,19 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Navbar from "./components/Navbar"; 
 // pages + components
 import Overview from "./pages/Overview";
 
 function App() {
+  let component
+  switch (window.location.pathname) {
+    case "/":
+      component = <Overview/>
+      break
+  
+    
+    
+  }
   return (
-    <div className="App">
-      <BrowserRouter>
-        <div className="pages">
-          <Routes>
-            <Route path="/" element={<Overview />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+    <>
+    <Navbar/>
+    <div className=" container">
+    {component} 
     </div>
+    </>
   );
 }
 
