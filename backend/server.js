@@ -1,20 +1,15 @@
-require('dotenv').config()
-
 const express = require('express')
 const mongoose = require('mongoose')
-const trackerRoutes = require('./routes/trackerRoutes.js')
-
+const dotenv = require('dotenv');
 const app = express();
 
-app.use(express.json())
-app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    next()
-})
+const transactionsRouter = require('./routes/transactionRouter');
+const userRouter = require('./routes/userRouter');
 
-app.use('/api/tracker', trackerRoutes)
+// Load environment variables from .env file
+dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log('connected to db, listening on port ' + process.env.PORT)
@@ -23,4 +18,16 @@ mongoose.connect(process.env.MONGO_URI)
     .catch((error => {
         console.log(error)
     }))
+
+app.use(express.json())
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    req.user = { id: "63e208865bf1447790d7e32b" };
+    next()
+})
+
+app.use('/api/transactions', transactionsRouter);
+app.use('/api/users', userRouter);
+
+
 
