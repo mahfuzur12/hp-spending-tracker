@@ -1,1 +1,1 @@
-# hp-spending-tracker
+# Hitgub Pocilot Personal Spending Tracker
