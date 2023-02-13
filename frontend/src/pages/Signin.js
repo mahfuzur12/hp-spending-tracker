@@ -17,6 +17,13 @@ const Signin = () => {
         }).then(res=>res.json())
         .then(data=>{
             console.log(data)
+            if(data.error){
+                throw new Error("Error!");
+            }
+            else{
+                localStorage.setItem("jwt",data.token)
+                localStorage.setItem("user",JSON.stringify(data.user))
+            }
         }).catch(err=>{
             console.log(err)
         })
