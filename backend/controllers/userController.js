@@ -6,6 +6,12 @@ exports.createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
 }
 
+exports.createAccessToken = {
+    activation: (payload)=>{
+        return jwt.sign(payload, process.env.SECRET, {expiresIn: "5m"})
+    }
+}
+
 exports.loginUser = async (req, res) => {
 
     const {email, password} = req.body 
@@ -35,6 +41,25 @@ exports.signupUser = async (req, res) => {
         res.status(200).json({email, token})
     } catch (error) {
         res.status(400).json({error : error.message})
+    }
+}
+
+exports.forgotPassword = async (req, res) => {
+
+    try {
+
+        const {email} = req.body
+
+        const user = await User.findOne({email})
+        if (!user) return res.status(400).json({msg: "This email is not registered!"})
+
+        const accessToken = this.createToken.access({id: user.id})
+
+        
+
+    } catch (error) {
+        
+        res.status(500).json({error: error.message})
     }
 }
 
