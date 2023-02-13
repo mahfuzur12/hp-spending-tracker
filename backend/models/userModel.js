@@ -1,4 +1,3 @@
-const createAccessToken = require('../userController/createAccessToken')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt')
@@ -49,7 +48,6 @@ UserSchema.statics.signup = async function (name, email, password) {
     const hash = await bcrypt.hash(password, salt)
 
     const user = await this.create({ name, email, password: hash })
-    const activationToken = createAccessToken.activation(user)
 
     return user
 
