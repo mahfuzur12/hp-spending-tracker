@@ -1,27 +1,23 @@
-/*
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        app.listen(process.env.PORT, () => {
-            console.log('connected to db, listening on port ' + process.env.PORT)
-        })
-    })
-    .catch((error => {
-        console.log(error)
-    }))
-
-app.use(express.json())
-app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    req.user = { id: "63e208865bf1447790d7e32b" };
-    next()
-})
-*/
-
-const { response } = require("express");
+const mongoose = require('mongoose');
 const express = require("express");
+const dotenv = require('dotenv');
+const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const { Configuration, PlaidApi, PlaidEnvironments } = require('plaid');
+
+const transactionRouter = require('./routes/transactionRouter');
+const userRouter = require('./routes/userRouter');
+
+dotenv.config();
+
+app.use(cors());
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.path, req.method)
+  req.user = { id: "63e208865bf1447790d7e32b" };
+  next()
+})
 
 const configuration = new Configuration({
   basePath: PlaidEnvironments.sandbox,
@@ -35,49 +31,44 @@ const configuration = new Configuration({
 
 const plaidClient = new PlaidApi(configuration);
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-
 app.post("/hello", (request, response) => {
-    response.json({ message: "Hello " + request.body.name });
+  response.json({ message: "Hello " + request.body.name });
 });
 
 app.post('/create_link_token', async function (request, response) {
-    // Get the client_user_id by searching for the current user
-    const plaidRequest = {
-      user: {
-        // This should correspond to a unique id for the current user.
-        client_user_id: 'user',
-      },
-      client_name: 'Plaid Test App',
-      products: ['auth'],
-      language: 'en',
-      redirect_uri: 'http://localhost:3000',
-      country_codes: ['GB'],
-    };
-    try {
-      const createTokenResponse = await plaidClient.linkTokenCreate(plaidRequest);
-      response.json(createTokenResponse.data);
-    } catch (error) {
-        response.status(500).send("failure");
-      // handle error
-    }
-  });
-
-app.post('/auth', async function(request, response) {
-    try {
-        const access_token = request.body.access_token;
-        const plaidRequest = {
-          access_token: access_token,
-        };
-        const plaidResponse = await plaidClient.authGet(plaidRequest);
-        response.json(plaidResponse.data);     
-    } catch(e) {
-        response.status(500).send("failure");
-    }
+  // Get the client_user_id by searching for the current user
+  const plaidRequest = {
+    user: {
+      // This should correspond to a unique id for the current user.
+      client_user_id: 'user',
+    },
+    client_name: 'Plaid Test App',
+    products: ['auth'],
+    language: 'en',
+    redirect_uri: 'http://localhost:3000',
+    country_codes: ['GB'],
+  };
+  try {
+    const createTokenResponse = await plaidClient.linkTokenCreate(plaidRequest);
+    response.json(createTokenResponse.data);
+  } catch (error) {
+    response.status(500).send("failure");
+    // handle error
+  }
 });
 
+app.post('/auth', async function (request, response) {
+  try {
+    const access_token = request.body.access_token;
+    const plaidRequest = {
+      access_token: access_token,
+    };
+    const plaidResponse = await plaidClient.authGet(plaidRequest);
+    response.json(plaidResponse.data);
+  } catch (e) {
+    response.status(500).send("failure");
+  }
+});
 
 app.post('/exchange_public_token', async function (
   request,
@@ -96,15 +87,27 @@ app.post('/exchange_public_token', async function (
 
     response.json({ accessToken });
   } catch (error) {
-      response.status(500).send("failure");
+    response.status(500).send("failure");
     // handle error
   }
 });
 
 
-app.listen(8000, () => {
-    console.log("server has started");
-});
 
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log('connected to db, listening on port ' + process.env.PORT)
+    })
+  })
+  .catch((error => {
+    console.log(error)
+  }))
+
+
+
+app.use('/api/transactions', transactionRouter);
+app.use('/api/users', userRouter);
 
 

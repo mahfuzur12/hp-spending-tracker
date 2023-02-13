@@ -7,22 +7,22 @@ import { usePlaidLink } from 'react-plaid-link';
 
 axios.default.baseUrl = "http://localhost:8000"
 
-function PlaidAuth({publicToken}) {
+function PlaidAuth({ publicToken }) {
   const [account, setAccount] = useState();
   const [balance, setBalance] = useState();
 
   useEffect(() => {
     async function fetch() {
-        let accessToken = await axios.post("http://localhost:8000/exchange_public_token", {public_token: publicToken});
-        console.log("accessToken", accessToken.data);
-        const auth = await axios.post("http://localhost:8000/auth", {access_token: accessToken.data.accessToken});
-        console.log("auth", auth.data);
-        setAccount(auth.data.numbers.bacs[0]);
-        setBalance(auth.data.accounts[0].balances);
-    } 
+      let accessToken = await axios.post("http://localhost:8000/exchange_public_token", { public_token: publicToken });
+      console.log("accessToken", accessToken.data);
+      const auth = await axios.post("http://localhost:8000/auth", { access_token: accessToken.data.accessToken });
+      console.log("auth", auth.data);
+      setAccount(auth.data.numbers.bacs[0]);
+      setBalance(auth.data.accounts[0].balances);
+    }
     fetch();
   }, []);
-  return account && balance &&(
+  return account && balance && (
     <>
       <p>Account Number: {account.account}</p>
       <p>Sort Code: {account.sort_code}</p>
@@ -38,8 +38,8 @@ function Overview() {
   useEffect(() => {
 
     async function fetch() {
-        const response = await axios.post("http://localhost:8000/create_link_token")
-        setLinkToken(response.data.link_token);
+      const response = await axios.post("http://localhost:8000/create_link_token")
+      setLinkToken(response.data.link_token);
     }
     fetch();
   }, []);
@@ -52,7 +52,7 @@ function Overview() {
       // send public_token to server
     },
   });
-  
+
   return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
     <button onClick={() => open()} disabled={!ready}>
       Connect a bank account
