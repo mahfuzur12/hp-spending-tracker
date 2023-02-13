@@ -1,6 +1,8 @@
 import React,{useState} from "react";
+import { Link, useHistory } from "react-router-dom";
 
 const Signup = () => {
+    const history = useHistory()
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
@@ -17,7 +19,12 @@ const Signup = () => {
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
+            if(data.error){
+                throw new Error("Error");
+            }
+            else{
+                history.push('/signin')
+            }
         }).catch(err=>{
             console.log(err)
         })
