@@ -6,9 +6,6 @@ const app = express();
 const transactionsRouter = require('./routes/transactionRouter');
 const userRouter = require('./routes/userRouter');
 
-require('./models/userModel')
-app.use(userRouter)
-
 // Load environment variables from .env file
 dotenv.config();
 
@@ -22,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
         console.log(error)
     }))
 
+require('./models/userModel')    
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
@@ -31,6 +29,6 @@ app.use((req, res, next) => {
 
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/user', userRouter);
-
+app.use(userRouter)
 
 

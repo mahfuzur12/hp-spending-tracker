@@ -3,7 +3,7 @@ import React from "react";
 // pages + components
 import Navbar from "./components/Navbar";
 //import Overview from "./pages/Overview";
-import Login from "./pages/Login";
+import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
               path="/"
               element={<Navbar />} />
             <Route
-              path="/login"
-              element={<Login />} />
+              path="/signin"
+              element={<Signin />} />
             <Route
               path="/signup"
               element={<Signup />} />

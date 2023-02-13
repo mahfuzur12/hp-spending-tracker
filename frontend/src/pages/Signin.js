@@ -1,17 +1,16 @@
 import React,{useState} from "react";
 
-const Signup = () => {
-    const [name,setName] = useState("")
+const Signin = () => {
+
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const PostData = ()=>{
-        fetch("/signup", {
+        fetch("/signin", {
             method="post",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                name,
                 email,
                 password
             })
@@ -24,14 +23,8 @@ const Signup = () => {
     }
 
     return (
-        <div className="signup">
-            <h1>Signup</h1>
-            <input
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={(e)=>setName(e.target.value)}
-            />
+        <div className="signin">
+            <h1>Signin</h1>
             <input
             type="text"
             placeholder="email"
@@ -44,9 +37,9 @@ const Signup = () => {
             value={password}
             onChange={(e)=>setPassword(e.target.value)}
             />
-            <button onClick={()=>PostData()}>Signup</button>
+            <button onClick={()=>PostData()}>Signin</button>
         </div>
     );
 }
 
-export default Signup;
+export default Signin;
