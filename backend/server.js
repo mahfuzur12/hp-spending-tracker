@@ -6,6 +6,9 @@ const app = express();
 const transactionsRouter = require('./routes/transactionRouter');
 const userRouter = require('./routes/userRouter');
 
+require('./models/userModel')
+app.use(userRouter)
+
 // Load environment variables from .env file
 dotenv.config();
 

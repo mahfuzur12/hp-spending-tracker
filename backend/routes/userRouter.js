@@ -11,7 +11,9 @@ const { createUser,
 
 router.post('/login', loginUser)
 
-router.post('/signup', signupUser)
+router.post('/signup',(req,res)=>{
+    console.log(req.body.name)
+})
 
 
 router.route('/')
