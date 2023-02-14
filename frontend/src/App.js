@@ -18,7 +18,6 @@ const Routing = ()=>{
     const user = JSON.parse(localStorage.getItem("user"))
     if(user){
       dispatch({type:"USER",payload:user})
-      navigate('/')
     }else{
       navigate('/signin')
     }
@@ -27,7 +26,7 @@ const Routing = ()=>{
     <Routes>
         <Route
           path="/"
-          element={<Navbar />} />
+          element={<></>} />
         <Route
           path="/signin"
           element={<Signin />} />
@@ -46,6 +45,7 @@ function App() {
   return (
     <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
+      <Navbar />
       <Routing />
       
     </BrowserRouter>

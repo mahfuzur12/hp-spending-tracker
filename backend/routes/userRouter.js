@@ -5,6 +5,7 @@ const User = mongoose.model("User")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const requireLogin = require('../middleware/requireAuth')
+const validator = require('validator')
 
 const { createUser,
     getUsers,
@@ -18,6 +19,13 @@ router.post('/signup',(req,res)=>{
     if(!email || !password || !name){
        return res.status(422).json({error:"please add all the fields"})
     }
+    if (!validator.isEmail(email)) {
+        throw Error('Email is not valid')
+    }
+    if(!validator.isStrongPassword(password)) {
+        throw Error('Password is not strong enough')
+    }
+
     User.findOne({email:email})
     .then((savedUser)=>{
         if(savedUser){
