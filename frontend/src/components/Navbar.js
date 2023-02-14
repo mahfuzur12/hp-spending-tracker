@@ -28,7 +28,7 @@ const Navbar = () => {
     return (
         <header>
             <div className="container">
-                <Link to={state?"/":"/signin"}>
+                <Link to={"/"}>
                     <h1>Spending tracker</h1>
                 </Link>
                 <nav>
