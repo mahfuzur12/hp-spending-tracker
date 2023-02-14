@@ -1,55 +1,21 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import React,{useEffect,createContext, useReducer, useContext} from "react";
-// pages + components
-import Navbar from "./components/Navbar";
-//import Overview from "./pages/Overview";
-import Signin from "./pages/Signin";
-import Signup from "./pages/Signup";
-import {reducer,initialState} from "./reducers/userReducer"
-import Overview from "./pages/Overview";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import AuthLayout from './Layouts/AuthLayout/AuthLayout'
+import ProfileLayout from "./Layouts/ProfileLayout/ProfileLayout";
 
-export const UserContext = createContext()
+function App() {
+  const isLoggedIn = false;
 
-
-const Routing = ()=>{
-  const navigate = useNavigate()
-  const {dispatch} = useContext(UserContext)
-  useEffect(()=>{
-    const user = JSON.parse(localStorage.getItem("user"))
-    if(user){
-      dispatch({type:"USER",payload:user})
-    }else{
-      navigate('/signin')
-    }
-  },[])
-  return(
-    <Routes>
+  return (
+    <Router>
+      <Routes>
         <Route
           path="/"
-          element={<></>} />
-        <Route
-          path="/signin"
-          element={<Signin />} />
-        <Route
-          path="/signup"
-          element={<Signup />} />
-        <Route
-          path="/overview"
-          element={<Overview />} />
-
-    </Routes>
-  )
-}
-function App() {
-  const [state,dispatch] = useReducer(reducer,initialState)
-  return (
-    <UserContext.Provider value={{state,dispatch}}>
-    <BrowserRouter>
-      <Navbar />
-      <Routing />
-      
-    </BrowserRouter>
-    </UserContext.Provider>
+          exact
+          element={isLoggedIn ? <ProfileLayout/> : <AuthLayout/>}
+        />
+      </Routes>
+    </Router>
   );
 }
 
