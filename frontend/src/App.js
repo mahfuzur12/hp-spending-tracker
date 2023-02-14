@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import {reducer,initialState} from "./reducers/userReducer"
+import Overview from "./pages/Overview";
 
 export const UserContext = createContext()
 
@@ -19,18 +20,23 @@ const Routing = ()=>{
       dispatch({type:"USER",payload:user})
       navigate('/')
     }else{
-      navigate('/')
+      navigate('/signin')
     }
   },[])
   return(
     <Routes>
-
+        <Route
+          path="/"
+          element={<Navbar />} />
         <Route
           path="/signin"
           element={<Signin />} />
         <Route
           path="/signup"
           element={<Signup />} />
+        <Route
+          path="/overview"
+          element={<Overview />} />
 
     </Routes>
   )
@@ -40,7 +46,6 @@ function App() {
   return (
     <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
-      <Navbar />
       <Routing />
       
     </BrowserRouter>
