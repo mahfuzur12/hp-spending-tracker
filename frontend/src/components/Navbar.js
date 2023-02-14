@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Navbar() {
     const path = window.location.pathname
     return (
