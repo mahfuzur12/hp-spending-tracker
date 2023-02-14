@@ -162,6 +162,27 @@ exports.resetPassword = async (req, res) => {
     }
 };
 
+exports.getInfo = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        res.status(200).json({ user });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.updateInfo = async (req, res) => {
+    try {
+        const { name, email } = req.body;
+
+        await User.findOneAndUpdate({ _id: req.user.id }, { name, email });
+
+        res.status(200).json({ msg: "Update success." });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body);

@@ -23,6 +23,8 @@ router.post("/signin", userController.signinUser);
 router.post("/access", userController.access);
 router.post("/forgot_pass", userController.forgotPassword);
 router.post("/reset_pass", auth, userController.resetPassword);
+router.get("/user", auth, userController.getInfo);
+router.patch("/update_user", auth, userController.updateInfo);
 
 router.route('/')
     .post(createUser)
