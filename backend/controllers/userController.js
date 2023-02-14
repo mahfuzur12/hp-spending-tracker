@@ -1,12 +1,53 @@
 const User = require('../models/userModel');
-const jwt = require('jsonwebtoken')
 const sendMail = require("../helpers/sendMail");
 const createToken = require("../helpers/createToken");
 const { activation } = require("../helpers/createToken");
 const { create } = require('../models/userModel');
+const bcrypt = require("bcryptjs");
+const validator = require('validator')
 
 // @route   POST /api/users
 // @desc    Create a user
+
+exports.signupUser = async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+
+        if (!name || !email || !password)
+            return res.status(400).json({ msg: "Please fill in all fields." });
+
+        if (!validator.isEmail(email))
+            return res
+                .status(400)
+                .json({ msg: "Please enter a valid email address." });
+
+        const user = await User.findOne({ email });
+        if (user)
+            return res
+                .status(400)
+                .json({ msg: "This email is already registered in our system." });
+
+        if (!validator.isStrongPassword(password))
+            return res
+                .status(400)
+                .json({ msg: "Password is not strong enough." });
+
+        const salt = await bcrypt.genSalt();
+        const hashPassword = await bcrypt.hash(password, salt);
+
+        const newUser = { name, email, password: hashPassword };
+        const activation_token = createToken.activation(newUser);
+
+        const url = `http://localhost:3000/api/auth/activate/${activation_token}`;
+        sendMail.sendEmailRegister(email, url, "Verify your email");
+
+        res.status(200).json({ msg: "Welcome! Please check your email." });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
+
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body);
@@ -120,19 +161,19 @@ exports.deleteUser = async (req, res) => {
 exports.forgotPassword = async (req, res) => {
     try {
 
-        const {email} = req.body
-        const user = await User.findOne({email})
-        if(!user) return res.status(400).json({msg: "This email is not registered"})
+        const { email } = req.body
+        const user = await User.findOne({ email })
+        if (!user) return res.status(400).json({ msg: "This email is not registered" })
 
-        const ac_token = createToken.access({id: user.id})
+        const ac_token = createToken.access({ id: user.id })
 
         const url = `http://localhost:3000/reset-password/${ac_token}`
         const name = user.name
         sendMail.sendEmailReset(email, url, "Reset your password", name)
 
-        res.status(200).json({msg: "Re-send the password, please check your email"});
+        res.status(200).json({ msg: "Re-send the password, please check your email" });
 
     } catch (err) {
-        res.status(500).json({msg: err.message})
+        res.status(500).json({ msg: err.message })
     }
 }
