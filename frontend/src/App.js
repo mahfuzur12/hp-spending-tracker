@@ -25,10 +25,6 @@ const Routing = ()=>{
   return(
     <Routes>
 
-        <Route 
-          exact path="/"
-          element={<></>} 
-          />
         <Route
           path="/signin"
           element={<Signin />} />
