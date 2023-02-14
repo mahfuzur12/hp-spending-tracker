@@ -4,7 +4,7 @@ export default function Navbar() {
     const path = window.location.pathname
     return (
         <nav className="nav ">
-            <a href="/" className="site-title"> Pociclot Tracker</a>
+            <a href="/" className="site-title"> Pocilot Tracker</a>
             <div className="div1">
             <ul className="firstlist">
                 <li>

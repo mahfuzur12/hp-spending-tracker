@@ -6,10 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.seclist{
-  display: inline-block;
-  vertical-align: middle;
-}
+
 .container{
   margin:1rem;
   text-align: center;
@@ -21,37 +18,38 @@ code {
 .overview{
   color:#5B5E70;
   font-family: bold;
-  
 }
+
 *{
   box-sizing:border-box;
 }
 .site-title{
   font-size:2rem;
   vertical-align: top;
-  display: inline-block;
+  
 }
 .nav {
   background-color: #5CCC74;
   color: white;
   display: flex;
   
-  text-align: center;
+  text-align: left;
   gap: 2rem;
   padding: 0 1rem;
 }
 .div1{
   display: inline-flex;
   justify-content: space-between;
-  height:-content;
-  width: 100%;
+  width: 85%;
 }
 
 
-
+.firstlist{
+  font-size: 1.5rem;
+}
 
 .nav ul{
-  margin: 1px;
+  margin: 0px;
   padding: 0%;
   
   list-style: none;
