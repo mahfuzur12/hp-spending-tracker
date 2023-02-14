@@ -120,6 +120,30 @@ exports.access = async (req, res) => {
     }
 };
 
+exports.forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        const user = await User.findOne({ email });
+        if (!user)
+            return res
+                .status(400)
+                .json({ msg: "This email is not registered in our system." });
+
+        const ac_token = createToken.access({ id: user.id });
+
+        const url = `http://localhost:3000/auth/reset-password/${ac_token}`;
+        const name = user.name;
+        sendMail.sendEmailReset(email, url, "Reset your password", name);
+
+        res
+            .status(200)
+            .json({ msg: "Re-send the password, please check your email." });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body);
@@ -229,23 +253,3 @@ exports.deleteUser = async (req, res) => {
         });
     }
 };
-
-exports.forgotPassword = async (req, res) => {
-    try {
-
-        const { email } = req.body
-        const user = await User.findOne({ email })
-        if (!user) return res.status(400).json({ msg: "This email is not registered" })
-
-        const ac_token = createToken.access({ id: user.id })
-
-        const url = `http://localhost:3000/reset-password/${ac_token}`
-        const name = user.name
-        sendMail.sendEmailReset(email, url, "Reset your password", name)
-
-        res.status(200).json({ msg: "Re-send the password, please check your email" });
-
-    } catch (err) {
-        res.status(500).json({ msg: err.message })
-    }
-}

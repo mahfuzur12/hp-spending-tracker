@@ -13,15 +13,14 @@ const { createUser,
     getUser,
     updateUser,
     deleteUser,
-    forgotPassword
+    
 } = require('../controllers/userController');
 
 router.post("/signup", userController.signupUser);
 router.post("/activation", userController.activateUser);
 router.post("/signin", userController.signinUser);
 router.post("/access", userController.access);
-
-router.post('/forgot_pass', forgotPassword);
+router.post("/forgot_pass", userController.forgotPassword);
 
 router.route('/')
     .post(createUser)
