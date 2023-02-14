@@ -11,7 +11,8 @@ const { createUser,
     getUsers,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    forgotPassword
 } = require('../controllers/userController');
 
 router.post('/signup',(req,res)=>{
@@ -82,7 +83,7 @@ router.post('/signin',(req,res)=>{
     })
 })
 
-
+router.post('/forgot_pass', forgotPassword);
 
 router.route('/')
     .post(createUser)
