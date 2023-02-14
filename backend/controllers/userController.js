@@ -144,6 +144,24 @@ exports.forgotPassword = async (req, res) => {
     }
 };
 
+exports.resetPassword = async (req, res) => {
+    try {
+        const { password } = req.body;
+
+        const salt = await bcrypt.genSalt();
+        const hashPassword = await bcrypt.hash(password, salt);
+
+        await User.findOneAndUpdate(
+            { _id: req.user.id },
+            { password: hashPassword }
+        );
+
+        res.status(200).json({ msg: "Password was updated successfully." });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body);
