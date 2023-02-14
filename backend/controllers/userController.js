@@ -183,6 +183,16 @@ exports.updateInfo = async (req, res) => {
     }
 };
 
+exports.signoutUser = async (req, res) => {
+    try {
+        res.clearCookie("_apprftoken", { path: "/access" });
+
+        return res.status(200).json({ msg: "Signout success." });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body);
