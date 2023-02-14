@@ -4,6 +4,7 @@ const createToken = require("../helpers/createToken");
 const { activation } = require("../helpers/createToken");
 const { create } = require('../models/userModel');
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const validator = require('validator')
 
 // @route   POST /api/users
@@ -46,6 +47,35 @@ exports.signupUser = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
+
+exports.activateUser = async (req, res) => {
+    try {
+        const { activation_token } = req.body;
+
+        const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN);
+        const { name, email, password } = user;
+
+        const check = await User.findOne({ email });
+        if (check)
+            return res
+                .status(400)
+                .json({ msg: "This email is already registered." });
+
+        const newUser = new User({
+            name,
+            email,
+            password,
+        });
+        await newUser.save();
+
+        res
+            .status(200)
+            .json({ msg: "Your account has been activated, you can now sign in." });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
+
 
 
 exports.createUser = async (req, res) => {

@@ -17,6 +17,7 @@ const { createUser,
 } = require('../controllers/userController');
 
 router.post("/signup", userController.signupUser);
+router.post("/activation", userController.activateUser);
 
 router.post('/signin',(req,res)=>{
     const {email,password} = req.body
