@@ -1,14 +1,16 @@
 import React,{useState} from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Signup = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const PostData = ()=>{
         fetch("/signup", {
-            method="post",
+            method : "post",
             headers:{
                 "Content-Type":"application/json"
             },
@@ -23,7 +25,7 @@ const Signup = () => {
                 throw new Error("Error");
             }
             else{
-                history.push('/signin')
+                navigate('/signin')
             }
         }).catch(err=>{
             console.log(err)

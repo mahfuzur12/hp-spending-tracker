@@ -1,15 +1,15 @@
 import React,{useState,useContext} from "react";
-import { Link, useHistory } from "react-router-dom";
-import {userContext} from '../App'
+import { useNavigate } from "react-router-dom";
+import {UserContext} from '../App'
 
 const Signin = () => {
-    const {state,dispatch} = useContext(userContext)
-    const history = useHistory()
+    const {dispatch} = useContext(UserContext)
+    const navigate = useNavigate()
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const PostData = ()=>{
         fetch("/signin", {
-            method="post",
+            method : "post",
             headers:{
                 "Content-Type":"application/json"
             },
@@ -27,7 +27,7 @@ const Signin = () => {
                 localStorage.setItem("jwt",data.token)
                 localStorage.setItem("user",JSON.stringify(data.user))
                 dispatch({type:"USER",payload:data.user})
-                history.push('/')
+                navigate('/')
             }
         }).catch(err=>{
             console.log(err)

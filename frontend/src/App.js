@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Switch, useHistory } from "react-router-dom";
-import React,{useEffect,createContext, createRef, useReducer, useContext} from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import React,{useEffect,createContext, useReducer, useContext} from "react";
 // pages + components
 import Navbar from "./components/Navbar";
 //import Overview from "./pages/Overview";
@@ -7,49 +7,48 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import {reducer,initialState} from "./reducers/userReducer"
 
-export const userContext = createContext()
+export const UserContext = createContext()
+
 
 const Routing = ()=>{
-  const history = useHistory()
-  const {state,dispatch} = useContext(userContext)
+  const navigate = useNavigate()
+  const {dispatch} = useContext(UserContext)
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("user"))
     if(user){
       dispatch({type:"USER",payload:user})
-      history.push('/')
+      navigate('/')
     }else{
-      history.push('/signin')
+      navigate('/')
     }
   },[])
   return(
-    <Switch>
-      <div className="pages">
-          <Routes>
-            <Route
-              path="/"
-              element={<Navbar />} />
-            <Route
-              path="/signin"
-              element={<Signin />} />
-            <Route
-              path="/signup"
-              element={<Signup />} />
-          </Routes>
-        </div>
-    </Switch>
+    <Routes>
+
+        <Route 
+          exact path="/"
+          element={<></>} 
+          />
+        <Route
+          path="/signin"
+          element={<Signin />} />
+        <Route
+          path="/signup"
+          element={<Signup />} />
+
+    </Routes>
   )
 }
-
 function App() {
   const [state,dispatch] = useReducer(reducer,initialState)
   return (
-    <userContext.Provider value={{state,dispatch}}>
-      <div className="App">
-        <BrowserRouter>
-          <Routing />
-        </BrowserRouter>
-      </div>
-    </userContext.Provider>
+    <UserContext.Provider value={{state,dispatch}}>
+    <BrowserRouter>
+      <Navbar />
+      <Routing />
+      
+    </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
