@@ -18,6 +18,7 @@ const { createUser,
 
 router.post("/signup", userController.signupUser);
 router.post("/activation", userController.activateUser);
+router.post("/signin", userController.signinUser);
 
 router.post('/signin',(req,res)=>{
     const {email,password} = req.body

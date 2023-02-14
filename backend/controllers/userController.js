@@ -76,7 +76,32 @@ exports.activateUser = async (req, res) => {
     }
 };
 
+exports.signinUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
+        const user = await User.findOne({ email });
+        if (!user)
+            return res
+                .status(400)
+                .json({ msg: "This email is not registered in our system." });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch)
+            return res.status(400).json({ msg: "This password is incorrect." });
+
+        const rf_token = createToken.refresh({ id: user._id });
+        res.cookie("_apprftoken", rf_token, {
+            httpOnly: true,
+            path: "/access",
+            maxAage: 24 * 60 * 60 * 1000, 
+        });
+
+        res.status(200).json({ msg: "Signin success" });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
 
 exports.createUser = async (req, res) => {
     try {
