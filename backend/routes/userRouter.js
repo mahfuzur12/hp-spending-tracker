@@ -19,34 +19,7 @@ const { createUser,
 router.post("/signup", userController.signupUser);
 router.post("/activation", userController.activateUser);
 router.post("/signin", userController.signinUser);
-
-router.post('/signin',(req,res)=>{
-    const {email,password} = req.body
-    if(!email || !password){
-       return res.status(422).json({error:"please add email or password"})
-    }
-    User.findOne({email:email})
-    .then(savedUser=>{
-        if(!savedUser){
-           return res.status(422).json({error:"Invalid Email or password"})
-        }
-        bcrypt.compare(password,savedUser.password)
-        .then(doMatch=>{
-            if(doMatch){
-                // res.json({message:"successfully signed in"})
-               const token = jwt.sign({_id:savedUser._id},process.env.SECRET)
-               const {_id,name,email} = savedUser
-               res.json({token,user:{_id,name,email}})
-            }
-            else{
-                return res.status(422).json({error:"Invalid Email or password"})
-            }
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    })
-})
+router.post("/access", userController.access);
 
 router.post('/forgot_pass', forgotPassword);
 

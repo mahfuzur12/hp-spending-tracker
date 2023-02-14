@@ -94,12 +94,29 @@ exports.signinUser = async (req, res) => {
         res.cookie("_apprftoken", rf_token, {
             httpOnly: true,
             path: "/access",
-            maxAage: 24 * 60 * 60 * 1000, 
+            maxAage: 24 * 60 * 60 * 1000,
         });
 
         res.status(200).json({ msg: "Signin success" });
     } catch (err) {
         res.status(500).json({ msg: err.message });
+    }
+};
+
+exports.access = async (req, res) => {
+    try {
+        const rf_token = req.cookies._apprftoken;
+        if (!rf_token) return res.status(400).json({ msg: "Please sign in." });
+
+        jwt.verify(rf_token, process.env.REFRESH_TOKEN, (err, user) => {
+            if (err) return res.status(400).json({ msg: "Please sign in again." });
+
+            const ac_token = createToken.access({ id: user.id });
+
+            return res.status(200).json({ ac_token });
+        });
+    } catch (err) {
+        return res.status(500).json({ msg: err.message });
     }
 };
 
