@@ -1,9 +1,15 @@
 import React from "react";
+import Signin from "../../pages/Signin";
 
 const AuthLayout = () => {
     return (
       <div>
-        <p>AuthLayout</p>
+        <Signin />
+
+        <div>
+          <p>Signup?</p>
+          <p>Signin?</p>
+        </div>
       </div>
     );
   };
