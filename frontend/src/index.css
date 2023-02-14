@@ -6,7 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.seclist{
+  display: inline-block;
+  vertical-align: middle;
+}
 .container{
   margin:1rem;
   text-align: center;
@@ -24,23 +27,31 @@ code {
   box-sizing:border-box;
 }
 .site-title{
-  font-size:3rem;
-  vertical-align: bottom;
-  display: inline-flex;
+  font-size:2rem;
+  vertical-align: top;
+  display: inline-block;
 }
 .nav {
   background-color: #5CCC74;
   color: white;
   display: flex;
-  justify-content: space-between;
-
+  
   text-align: center;
   gap: 2rem;
   padding: 0 1rem;
 }
+.div1{
+  display: inline-flex;
+  justify-content: space-between;
+  height:-content;
+  width: 100%;
+}
+
+
+
 
 .nav ul{
-  margin: 0px;
+  margin: 1px;
   padding: 0%;
   
   list-style: none;
@@ -54,7 +65,7 @@ code {
   text-decoration: none;
   height: 100%;
   display: inline-flex;
-  vertical-align: bottom;
+  
   align-items: center;
   padding: .25rem;
   
@@ -68,3 +79,4 @@ code {
   
   
 }
+

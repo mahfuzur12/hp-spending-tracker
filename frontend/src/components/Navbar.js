@@ -5,7 +5,15 @@ export default function Navbar() {
     return (
         <nav className="nav ">
             <a href="/" className="site-title"> Pociclot Tracker</a>
-            <ul>
+            <div className="div1">
+            <ul className="firstlist">
+                <li>
+                    <a href="/">Charts</a>
+                </li>
+                
+                </ul>
+                
+                <ul className="seclist">
                 <li>
                     <h1>Welcome (user)!</h1>
                 </li>
@@ -13,6 +21,7 @@ export default function Navbar() {
                     <a href="/" className="logout">Log out</a>
                 </li>
             </ul>
+            </div>
         </nav>
     );
 }
