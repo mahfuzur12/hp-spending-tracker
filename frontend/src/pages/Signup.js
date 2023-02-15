@@ -1,61 +1,18 @@
-import React,{useState} from "react";
-import { useNavigate } from "react-router-dom";
-
-
+import React from "react";
+import Input from "../components/Input/Input";
 
 const Signup = () => {
-    const navigate = useNavigate()
-    const [name,setName] = useState("")
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
-    const PostData = ()=>{
-        fetch("/signup", {
-            method : "post",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                name,
-                email,
-                password
-            })
-        }).then(res=>res.json())
-        .then(data=>{
-            if(data.error){
-                throw new Error("Error");
-            }
-            else{
-                navigate('/signin')
-            }
-        }).catch(err=>{
-            console.log(err)
-        })
-    }
-
-    return (
-        <div className="signup">
-            <h1>Signup</h1>
-            <input
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={(e)=>setName(e.target.value)}
-            />
-            <input
-            type="text"
-            placeholder="email"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
-            />
-            <input
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={(e)=>setPassword(e.target.value)}
-            />
-            <button onClick={()=>PostData()}>Signup</button>
-        </div>
-    );
-}
+  return (
+    <form>
+      <Input type="text" text="Name" />
+      <Input type="text" text="Email" />
+      <Input type="password" text="Password" />
+      <Input type="password" text="Confirm Password" />
+      <div>
+        <button>Signup</button>
+      </div>
+    </form>
+  );
+};
 
 export default Signup;
