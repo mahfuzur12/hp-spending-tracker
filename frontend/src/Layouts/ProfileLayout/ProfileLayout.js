@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Overview from "../../pages/Overview";
 
 const ProfileLayout = () => {
     return (
@@ -8,6 +9,8 @@ const ProfileLayout = () => {
         <Navbar />
 
         <Sidebar />
+
+        <Overview />
       </div>
     );
   };
