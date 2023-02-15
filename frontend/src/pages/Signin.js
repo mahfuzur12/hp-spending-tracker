@@ -1,10 +1,15 @@
 import React from "react";
+import Input from "../components/Input/Input";
 
 const Signin = () => {
     return (
-      <div className="signin">
-        <p>Signin</p>
-      </div>
+      <form>
+        <Input type="email" text="email" />
+        <Input type="password" text="password" />
+        <div>
+            <button>Signin</button>
+        </div>
+      </form>
     );
   };
   
