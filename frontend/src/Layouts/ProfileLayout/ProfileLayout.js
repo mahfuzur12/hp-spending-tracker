@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../components/Navbar";
 
 const ProfileLayout = () => {
     return (
       <div>
-        <p>ProfileLayout</p>
+        <Navbar />
       </div>
     );
   };

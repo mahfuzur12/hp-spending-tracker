@@ -1,44 +1,15 @@
-import React,{useContext} from 'react';
-import { Link , useNavigate } from 'react-router-dom'
-import { UserContext } from '../App';
+import React from "react";
 
 const Navbar = () => {
-    const {state,dispatch} = useContext(UserContext)
-    const navigate = useNavigate()
-    const renderList = ()=>{
-        if(state){
-            return [
-                <li>
-                    <button onClick={()=>{
-                        localStorage.clear()
-                        dispatch({type:"CLEAR"})
-                        navigate('/signin')
-                    }}>Sign out</button>
-                </li>
-            ]
-        }
-        else{
-            return [
-                <li><Link to="/signin">Signin</Link></li>,
-                <li><Link to="/signup">Signup</Link></li>
-            ]
-        }
-    }
-
     return (
-        <header>
-            <div className="container">
-                <Link to={"/"}>
-                    <h1>Spending tracker</h1>
-                </Link>
-                <nav>
-                    <div>
-                        {renderList()}
-                    </div>
-                </nav>
+        <div>
+            <div>
+                <div>
+                    <p>This should show if logged in</p>
+                </div>
             </div>
-        </header>
+        </div>
     );
-}
+};
 
-export default Navbar
+export default Navbar;
