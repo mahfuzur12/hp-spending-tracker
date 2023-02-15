@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Reset from "../../components/Reset/Reset";
 
-const ResetLayout = () => {
+const ActivateLayout = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -11,12 +10,11 @@ const ResetLayout = () => {
 
     return (
         <div>
-            <Reset />
-            <button onClick={handleClick}>
-                Signin
-            </button>
+            <p>
+                Ready to signin? 👉🏻 <button onClick={handleClick}>Here</button>
+            </p>
         </div>
     );
 };
 
-export default ResetLayout;
+export default ActivateLayout;
