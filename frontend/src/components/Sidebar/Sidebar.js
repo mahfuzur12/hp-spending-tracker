@@ -10,7 +10,7 @@ const Sidebar = () => {
         <ul>
           <li>
             <AiFillHome />
-            <button>Home</button>
+            <button>Overview</button>
           </li>
           <li>
             <BiUserCircle />
