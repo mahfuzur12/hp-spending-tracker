@@ -11,7 +11,7 @@ const ActivateLayout = () => {
     return (
         <div>
             <p>
-                Ready to signin? 👉🏻 <button onClick={handleClick}>Here</button>
+                Ready to signin? <button onClick={handleClick}>Here</button>
             </p>
         </div>
     );
