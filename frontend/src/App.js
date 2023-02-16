@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ActivateLayout from "./Layouts/ActivateLayout/ActivateLayout";
 import AuthLayout from './Layouts/AuthLayout/AuthLayout'
 import ProfileLayout from "./Layouts/ProfileLayout/ProfileLayout";
 import ResetLayout from "./Layouts/ResetLayout/ResetLayout";
+import { AuthContext } from "./context/AuthContext";
+
 
 function App() {
-  const isLoggedIn = false;
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <Router>
