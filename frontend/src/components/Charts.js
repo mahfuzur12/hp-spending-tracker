@@ -1,12 +1,13 @@
-import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
+import {Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
 import {Doughnut} from 'react-chartjs-2';
 import {Bar} from 'react-chartjs-2';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 export default function Charts(){
-    const data ={
+    const pieData ={
         labels: ['Category1', 'Category2', 'Category3'],
         datasets: [
             {
@@ -16,25 +17,46 @@ export default function Charts(){
         ]
     }
 
-    const options = {
+    const pieOptions = {
 
     }
+
+    const barData = {
+        labels: ["week1", "week2", "week3", "week4", "week5" ],
+        datasets: [
+            {
+                label: 'Weekly Spending',
+                data: [40, 50, 100, 250, 150],
+                backgroundColor: '#ed335f',
+                borderColor: 'black'
+            }
+        ]
+    }
+
+    const barOptions = {
+        scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+    }
+
     return (
         <div classname = "Charts">
             <h1 id= "chartTitle">Display charts here</h1>
-            <div classname = "pieChart" style= {
-                {
-                    padding: '20px',
-                    width: '45%'
-                    
-                }
-            }>
+            <div id = "pieChart">
                 <Doughnut
-                    data = {data}
-                    options = {options}
+                    data = {pieData}
+                    options = {pieOptions}
                 >
-                    
                 </Doughnut>
+            </div>
+
+            <div id = "barChart">
+                <Bar
+                    data = {barData}
+                    options = {barOptions}>
+                </Bar>
             </div>
         </div>
     )
