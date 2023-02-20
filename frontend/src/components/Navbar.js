@@ -4,15 +4,18 @@ export default function Navbar() {
     const path = window.location.pathname
     return (
         <nav className="nav ">
+            <div>
             <a href="/" className="site-title"> Pociclot Tracker</a>
-            <ul>
-                <li>
-                    <h1>Welcome (user)!</h1>
-                </li>
-                <li>
+            </div>
+            <div className="ultest">
+            
+               <a href="/">Transactions</a>
+                  
+            </div> 
+            <div className="testdiv"> 
                     <a href="/" className="logout">Log out</a>
-                </li>
-            </ul>
+                
+            </div>
         </nav>
     );
 }
