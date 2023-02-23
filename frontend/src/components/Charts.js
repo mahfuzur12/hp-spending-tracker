@@ -1,10 +1,10 @@
-import {Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
-import {Doughnut} from 'react-chartjs-2';
-import {Bar} from 'react-chartjs-2';
+import {Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale, LineElement, PointElement} from 'chart.js';
+import {Doughnut, Bar, Line} from 'react-chartjs-2';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
 export default function Charts(){
     const pieData ={
@@ -41,6 +41,23 @@ export default function Charts(){
           }
     }
 
+    const lineData = {
+        labels: ["January", "February", "March", "April", "May", "June" ],
+        datasets: [
+            {
+                label: 'Monthly Spending',
+                data: [700, 900, 1000, 1200, 1100, 850],
+                backgroundColor: '#6b9bd1',
+                borderColor: '#6b9bd1',
+                tension: 0.3
+            }
+        ]
+    }
+
+    const lineOptions = {
+        
+    }
+
     return (
         <div classname = "Charts">
             <h1 id= "chartTitle">Display charts here</h1>
@@ -57,6 +74,12 @@ export default function Charts(){
                     data = {barData}
                     options = {barOptions}>
                 </Bar>
+            </div>
+            <div id = "lineChart">
+                <Line
+                    data = {lineData}
+                    options = {lineOptions}>
+                </Line>
             </div>
         </div>
     )

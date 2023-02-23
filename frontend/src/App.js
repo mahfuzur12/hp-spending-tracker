@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Overview from "./pages/Overview";
 import Navbar from "./components/Navbar";
 import Charts from "./components/Charts"
+import Spending from "./components/Spending"
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Navbar />
         <div classname="pages">
           <Routes>
-            <Route path="/charts" element={<Charts />}/>
+            <Route path="/spending" element={<Spending />}/>
+            <Route path="/charts" element={<Charts/>}/>
           </Routes>
         </div>
       </BrowserRouter>

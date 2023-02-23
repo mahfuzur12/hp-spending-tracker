@@ -8,7 +8,7 @@ export default function Navbar() {
             <div className="div1">
             <ul className="firstlist">
                 <li>
-                    <a href="/charts">Charts</a>
+                    <a href="/spending">Spending</a>
                 </li> 
             </ul>
                 
