@@ -24,10 +24,7 @@ export default function Navbar() {
     const path = window.location.pathname
     return (
         <nav className="nav ">
-            <div>
             <a href="/" className="site-title"> Pociclot Tracker</a>
-
-
             <ul>
                 <li>
                     <h1>Welcome {user.name}!</h1>
@@ -36,7 +33,6 @@ export default function Navbar() {
                     <button onClick={handleClick} className="logout">Log out</button>
                 </li>
             </ul>
-            </div>
         </nav>
     )
 };
