@@ -54,9 +54,12 @@ function Overview() {
   });
 
   return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
-    <button onClick={() => open()} disabled={!ready}>
+    <div>
+      <br/>
+    <button class = 'btns' onClick={() => open()} disabled={!ready}>
       Connect a bank account
     </button>
+    </div>
   );
 
 }
