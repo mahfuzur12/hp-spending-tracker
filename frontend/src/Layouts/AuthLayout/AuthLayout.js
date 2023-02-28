@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Forgot from "../../components/Forgot/Forgot";
 import Signin from "../../pages/Signin";
 import Signup from "../../pages/Signup";
+import img from "../../images/landing1.png"
+import "./AuthLayout.css";
 
 const AuthLayout = () => {
   const [signin, setSignin] = useState(true)
@@ -25,16 +27,40 @@ const AuthLayout = () => {
   };
 
   return (
-    <div>
-      {signin && <Signin />}
-      {signup && <Signup />}
-      {forgot && <Forgot />}
 
-      <div>
-        <button onClick={signin ? handleSignup : handleSignin}>{signin ? "Signup?" : "Signin?"}</button>
-        <button onClick={handleForgot}>Forgot?</button>
-      </div>
-    </div>
+    <body>
+      <nav class= "navbar">
+       
+        <ul>
+			  <li><a href="#">Home</a></li>
+			  <li><a href="#">About</a></li>
+			  <li><a href="#">Services</a></li>
+			  <li><a href="#">Contact</a></li>
+		    </ul>
+        
+      </nav>
+      <main>
+        <div class = 'content'>     
+         <h1>Your Personal <br/> Spending Tracker</h1>
+         <p>Join us to track your spending and save more money!</p>
+         
+         <br/>
+
+        {signin && <Signin />}
+        {signup && <Signup />}
+        {forgot && <Forgot />}
+
+        <button class = 'btns' onClick={signin ? handleSignup : handleSignin}>{signin ? "Sign up" : "Log In"}</button>
+        <button class = 'btns' onClick={handleForgot}>Forgot Password</button>
+
+        </div>  
+
+        <div>
+        <img  src= {img} alt="No" />
+        </div>
+      </main>
+
+  </body>
   );
 };
 
