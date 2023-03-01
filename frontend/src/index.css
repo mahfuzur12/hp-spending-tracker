@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #242423;
 }
 
 .testdiv{
@@ -66,4 +67,17 @@ body {
   font-size: 1.1rem;
   
   
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #242423;
+}
+
+.dashboard-content {
+  min-height: 500px;
+  width: 80%;
 }
