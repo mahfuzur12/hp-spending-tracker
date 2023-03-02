@@ -3,6 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import "../index.css"
 
+
 const initialState = {
     name: "",
 };
@@ -31,6 +32,7 @@ export default function Navbar() {
             <ul>
                 <li>
                     <h1>Welcome {user.name}!</h1>
+                   
                 </li>
                 <li>
                     <button class = 'btns' onClick={handleClick}>Log out</button>
