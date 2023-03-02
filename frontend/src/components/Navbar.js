@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 
+
 const initialState = {
     name: "",
 };
@@ -28,6 +29,7 @@ export default function Navbar() {
             <ul>
                 <li>
                     <h1>Welcome {user.name}!</h1>
+                   
                 </li>
                 <li>
                     <button onClick={handleClick} className="logout">Log out</button>

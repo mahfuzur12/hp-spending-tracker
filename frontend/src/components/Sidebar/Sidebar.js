@@ -5,9 +5,13 @@ import { BiLogOut } from "react-icons/bi";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import { renderMatches } from "react-router-dom";
+
 
 const Sidebar = () => {
   const { dispatch } = useContext(AuthContext);
+
+  
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -29,6 +33,9 @@ const Sidebar = () => {
             <button>Overview</button>
           </li>
           <li>
+            <button>Transactions</button>
+          </li>
+          <li>
             <BiUserCircle />
             <button>Profile</button>
           </li>
@@ -40,6 +47,8 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
+}
+
+
 
 export default Sidebar;
