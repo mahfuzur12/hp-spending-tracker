@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import "../index.css"
 
 
 const initialState = {
@@ -24,7 +25,9 @@ export default function Navbar() {
 
     const path = window.location.pathname
     return (
-        <nav className="nav ">
+
+    
+        <nav className="navbar ">
             <a href="/" className="site-title"> Pociclot Tracker</a>
             <ul>
                 <li>
@@ -32,7 +35,7 @@ export default function Navbar() {
                    
                 </li>
                 <li>
-                    <button onClick={handleClick} className="logout">Log out</button>
+                    <button class = 'btns' onClick={handleClick}>Log out</button>
                 </li>
             </ul>
         </nav>

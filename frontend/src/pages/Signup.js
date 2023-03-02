@@ -85,26 +85,31 @@ const Signup = () => {
     <>
       <ToastContainer />
       <form onSubmit={signup}>
-        <Input type="text" text="Name" name="name" handleChange={handleChange} />
-        <Input type="text" text="Email" name="email" handleChange={handleChange} />
+        <label>Name</label>
+        <Input type="text" name="name"  handleChange={handleChange} />
+        <label>Email</label>
+        <Input type="text" name="email" class = "signup-text-input" handleChange={handleChange} />
+        <label>Password</label>
         <Input
           name="password"
           type={visible ? "text" : "password"}
           icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-          text="Password"
           handleClick={handleClick}
           handleChange={handleChange}
         />
+
+        <label>Confirm Password</label>
+
         <Input
           name="cf_password"
           type={visible ? "text" : "password"}
           icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-          text="Confirm Password"
           handleClick={handleClick}
           handleChange={handleChange}
         />
         <div>
-          <button type="submit">Signup</button>
+          <br/>
+          <button class = "signup-text-input" type="submit">Sign up</button>
         </div>
       </form>
     </>

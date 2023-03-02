@@ -6,6 +6,7 @@ import ProfileLayout from "./Layouts/ProfileLayout/ProfileLayout";
 import ResetLayout from "./Layouts/ResetLayout/ResetLayout";
 import { AuthContext } from "./context/AuthContext";
 import axios from "axios";
+import Overview from "./pages/Overview";
 
 function App() {
   const { dispatch, token, isLoggedIn } = useContext(AuthContext);
@@ -54,6 +55,8 @@ function App() {
       </Routes>
     </Router>
   );
+  
+  //return (<Overview />);
 }
 
 export default App;

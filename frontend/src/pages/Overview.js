@@ -10,6 +10,7 @@ axios.default.baseUrl = "http://localhost:8000"
 function PlaidAuth({ publicToken }) {
   const [account, setAccount] = useState();
   const [balance, setBalance] = useState();
+  const [transactions, setTransactions] = useState();
 
   useEffect(() => {
     async function fetch() {
@@ -17,8 +18,11 @@ function PlaidAuth({ publicToken }) {
       console.log("accessToken", accessToken.data);
       const auth = await axios.post("http://localhost:8000/auth", { access_token: accessToken.data.accessToken });
       console.log("auth", auth.data);
+      const transactions = await axios.post("http://localhost:8000/transactions", { access_token: accessToken.data.accessToken });
+      console.log("transactions", transactions.data);
       setAccount(auth.data.numbers.bacs[0]);
       setBalance(auth.data.accounts[0].balances);
+      setTransactions(transactions.data.transactions);
     }
     fetch();
   }, []);
@@ -27,6 +31,7 @@ function PlaidAuth({ publicToken }) {
       <p>Account Number: {account.account}</p>
       <p>Sort Code: {account.sort_code}</p>
       <p>Balance: {balance.current}</p>
+      <p>Transactions: {transactions.map((transaction) => (<p>{transaction.name} = £{transaction.amount}</p>))} </p>
     </>
   );
 }
@@ -54,9 +59,12 @@ function Overview() {
   });
 
   return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
-    <button onClick={() => open()} disabled={!ready}>
+    <div>
+      <br/>
+    <button class = 'btns' onClick={() => open()} disabled={!ready}>
       Connect a bank account
     </button>
+    </div>
   );
 
 }

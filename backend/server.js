@@ -46,7 +46,7 @@ app.post('/create_link_token', async function (request, response) {
             client_user_id: 'user',
         },
         client_name: 'Plaid Test App',
-        products: ['auth'],
+        products: ['auth', 'transactions'],
         language: 'en',
         redirect_uri: 'http://localhost:3000',
         country_codes: ['GB'],
@@ -67,6 +67,29 @@ app.post('/auth', async function (request, response) {
         access_token: access_token,
       };
       const plaidResponse = await plaidClient.authGet(plaidRequest);
+      response.json(plaidResponse.data);
+    } catch (e) {
+      response.status(500).send("failure");
+    }
+  });
+
+  app.post('/transactions', async function (request, response) {
+    try {
+      //using the access token from the request body, get the transactions using the plaid api
+      //return the transactions to the frontend
+      const access_token = request.body.access_token;
+      //make a variable for the start date being 30 days ago frmo today
+  
+      const plaidRequest = {
+        access_token: access_token,
+        start_date: '2018-01-01',
+        end_date: '2022-01-31',
+        options: {
+          count: 250,
+          offset: 0,
+        },
+      };
+      const plaidResponse = await plaidClient.transactionsGet(plaidRequest);
       response.json(plaidResponse.data);
     } catch (e) {
       response.status(500).send("failure");

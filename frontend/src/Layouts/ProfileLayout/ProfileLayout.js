@@ -20,9 +20,7 @@ const ProfileLayout = () => {
         <Overview />
         </div>
 
-        <div>
-          <Profile />
-        </div>
+      
         
       </div>
     );
