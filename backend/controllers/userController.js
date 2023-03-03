@@ -173,9 +173,9 @@ exports.getInfo = async (req, res) => {
 
 exports.updateInfo = async (req, res) => {
     try {
-        const { name, email } = req.body;
+        const { name, email , accessToken} = req.body;
 
-        await User.findOneAndUpdate({ _id: req.user.id }, { name, email });
+        await User.findOneAndUpdate({ _id: req.user.id }, { name, email , accessToken});
 
         res.status(200).json({ msg: "Update success." });
     } catch (err) {

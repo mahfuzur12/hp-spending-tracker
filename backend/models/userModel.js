@@ -15,6 +15,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    accessToken: {
+        type: String,
+        required: false
+    },
     transactions: [
         {
             type: Schema.Types.ObjectId,

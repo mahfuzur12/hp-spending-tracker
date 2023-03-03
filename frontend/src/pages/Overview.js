@@ -63,7 +63,8 @@ function Overview() {
       <br/>
     <button class = 'btns' onClick={() => open()} disabled={!ready}>
       Connect a bank account
-    </button>
+      </button>
+      <h1>Overview</h1>
     </div>
   );
 
