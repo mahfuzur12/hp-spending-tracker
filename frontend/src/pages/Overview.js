@@ -1,8 +1,10 @@
 //import logo from './logo.svg';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import 'regenerator-runtime/runtime';
 import axios from 'axios';
 import { usePlaidLink } from 'react-plaid-link';
+import { AuthContext } from "../context/AuthContext";
+import ConnectBank from "./ConnectBank";
 //import './App.css';
 
 axios.default.baseUrl = "http://localhost:8000"
@@ -39,6 +41,31 @@ function PlaidAuth({ publicToken }) {
 function Overview() {
   const [linkToken, setLinkToken] = useState();
   const [publicToken, setPublicToken] = useState();
+  let hasCard = false;
+  function F () {
+    // return if user has non empty accessToken string
+    
+    const { user } = useContext(AuthContext);
+      useEffect(() => {
+        async function HasCard () {
+          
+          console.log("checking if user has card")
+          
+          console.log(user._id);
+          let currUser = await axios.get("http://localhost:8000/api/user/" + user._id);
+          console.log(currUser);
+          hasCard = (currUser.data.accessToken !== "")
+          if (currUser.data.accessToken !== "") {
+            console.log("user has card")
+            hasCard = true;
+          } else {
+            console.log("user does not have card")
+          }
+        }
+        HasCard();
+      }, []);
+    //return true;
+  }
 
   useEffect(() => {
 
@@ -58,15 +85,11 @@ function Overview() {
     },
   });
 
-  return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
+  return F() ? (
     <div>
-      <br/>
-    <button class = 'btns' onClick={() => open()} disabled={!ready}>
-      Connect a bank account
-      </button>
       <h1>Overview</h1>
     </div>
-  );
+  ) : (<ConnectBank />);
 
 }
 

@@ -8,58 +8,52 @@ import { AuthContext } from "../context/AuthContext";
 
 
 
+
 axios.default.baseUrl = "http://localhost:8000"
 
 function PlaidAuth({ publicToken }) {
     const [account, setAccount] = useState();
     const [balance, setBalance] = useState();
     const [transactions, setTransactions] = useState();
-
+    const { user } = useContext(AuthContext);
     useEffect(() => {
         async function fetch() {
+            
+            console.log(user._id);
             let accessToken = await axios.post("http://localhost:8000/exchange_public_token", { public_token: publicToken });
-            console.log("accessToken", accessToken.data);
+            console.log("accessToken", accessToken.data.accessToken);
             const auth = await axios.post("http://localhost:8000/auth", { access_token: accessToken.data.accessToken });
-            console.log("auth", auth.data);
+            //console.log("auth", auth.data);
             const transactions = await axios.post("http://localhost:8000/transactions", { access_token: accessToken.data.accessToken });
             console.log("transactions", transactions.data);
-            setAccount(auth.data.numbers.bacs[0]);
-            setBalance(auth.data.accounts[0].balances);
-            setTransactions(transactions.data.transactions);
+            //setAccount(auth.data.numbers.bacs[0]);
+            //setBalance(auth.data.accounts[0].balances);
+            //setTransactions(transactions.data.transactions);
+
+            await axios.patch("/" + user._id, { accessToken: accessToken.data.accessToken }
+            );
+            let transactionsArray = transactions.data.transactions
+            // for each transaction in the array, send it to the database
+            // { date, description, amount, category, userId }
+            // POST /api/transactions
+            transactionsArray.forEach(async (transaction) => {
+                await axios.post("/api/transactions", {
+                    date: transaction.date,
+                    description: transaction.name,
+                    amount: transaction.amount,
+                    category: transaction.category[0],
+                    userId: user._id
+                });
+            });
+
         }
         fetch();
     }, []);
-    return account && balance && (
+    return  (
         <>
-            <p>Account Number: {account.account}</p>
-            <p>Sort Code: {account.sort_code}</p>
-            <p>Balance: {balance.current}</p>
-            <p>Transactions: {transactions.map((transaction) => (<p>{transaction.name} = £{transaction.amount}</p>))} </p>
+            
         </>
     );
-}
-
-function SetUserAccessToken({ publicToken }) {
-    useEffect(() => {
-        async function Fetch() {
-            const { token } = useContext(AuthContext);
-            console.log(axios.get("/user", {
-            headers: { Authorization: token },
-            })
-            );
-            const plaidToken = await axios.post("http://localhost:8000/exchange_public_token", { public_token: publicToken })
-            console.log("accessToken", plaidToken.data);
-            axios.patch("/user", { accessToken: plaidToken }, {
-                headers: { Authorization: token },
-            });
-            console.log(axios.get("/user", {
-                headers: { Authorization: token },
-            })
-            );
-        }
-        Fetch()
-    }, []);
-    
 }
 
 function Overview() {
@@ -84,7 +78,7 @@ function Overview() {
         },
     });
 
-    return publicToken ? (<SetUserAccessToken publicToken={publicToken} />) : (
+    return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
         <div>
             <br />
             <button class='btns' onClick={() => open()} disabled={!ready}>

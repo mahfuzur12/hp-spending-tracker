@@ -13,27 +13,8 @@ import { useContext, useEffect, useState } from "react";
 
 const ProfileLayout = () => {
   //const [hasCard, setHasCard] = useState(false);
-  function F () {
-  useEffect(() => {
-  async function HasCard () {
-    const { token } = useContext(AuthContext);
-    const res = await axios.get("/user", {
-      headers: { Authorization: token },
-    })
-      .then((res) => {
-        if (res.data.accessToken) {
-          console.log("has card")
-          return true;
-        }
-      })
-      .catch((err) => {
-        console.log("no card")
-        return false;
-      });
-    }
-    HasCard();
-  }, []);
-  }
+
+      
 
   
   
@@ -48,13 +29,15 @@ const ProfileLayout = () => {
         </div>
 
         <div>
-        element = {F() ? <Overview /> : <ConnectBank />}
+        <Overview />
         </div>
 
       
         
       </div>
     );
-  };
+
+}
+  
   
   export default ProfileLayout;
