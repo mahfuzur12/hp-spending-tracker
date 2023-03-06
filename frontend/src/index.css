@@ -91,14 +91,14 @@ code {
 
 #barChart{
   padding: 20px;
-  width: 50%;
+  width: 45%;
   float: right;
-  ;
+
 }
 
 #lineChart{
   padding: 20px;
-  width: 50%;
+  width: 45%;
   float: right;
 }
 

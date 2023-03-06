@@ -24,7 +24,7 @@ export default function Spending(){
         <div className="budgetSetter" >
             <h1>Set up your monthly budget </h1>
             <button onClick={decBudget} className="budgetButton"> - </button>
-            <span>£</span><span id ="budget">100</span>
+            <span>£</span><span id ="budget">500</span>
             <button onClick={incBudget} className="budgetButton"> + </button>
             <div>
                 <button onClick={() => {navigate("/charts")}} className="budgetButton"> Done </button>
