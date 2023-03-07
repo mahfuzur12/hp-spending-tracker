@@ -7,6 +7,8 @@ import ResetLayout from "./Layouts/ResetLayout/ResetLayout";
 import { AuthContext } from "./context/AuthContext";
 import axios from "axios";
 import Overview from "./pages/Overview";
+import Charts from "./pages/Charts";
+import Saver from "./pages/Saver";
 
 function App() {
   const { dispatch, token, isLoggedIn } = useContext(AuthContext);
@@ -51,6 +53,8 @@ function App() {
         <Route
           path="/api/auth/activate/:activation_token"
           exact element={<ActivateLayout />} />
+        <Route path="/saver" element={<Saver />}/> 
+        <Route path="/charts" element={<Charts/>}/>
           
       </Routes>
     </Router>

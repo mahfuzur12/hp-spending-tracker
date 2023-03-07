@@ -1,21 +1,70 @@
 import {Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale, LineElement, PointElement} from 'chart.js';
 import {Doughnut, Bar, Line} from 'react-chartjs-2';
-
+import React,{useEffect, useState} from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
-export default function Charts(){
-    const pieData ={
-        labels: ['Category1', 'Category2', 'Category3'],
-        datasets: [
-            {
-                data: [3, 6, 9],
-                backgroundColor: ['#283350', '#f93800', '#ffb500'] 
+function Charts(){
+    const [pieData, setPieData] = useState({
+        datasets: [{
+            data: [10, 20, 30],
+            backgroundColor: ['#ac92eb', '#4fc1e8', '#a0d568', '#ffce54', '#ed5564'] 
+        }],
+        labels: ["Other", "Transport", "Entertainment", "Food & Drink", "Shopping" ]
+    });
+    
+    useEffect(() => {
+       const fetchData = () => {
+        fetch("http://localhost:8000/api/transactions").then((data) => {
+            const res = data.json();
+            return res
+        }).then((res) => {
+            console.log("resss", res)
+            const pieData = [];
+            const pieLabel = [];
+            var other = 0;
+            var transport = 0;
+            var entertainment = 0;
+            var food = 0;
+            var shopping = 0;
+            for (var i of res){
+                if(!pieLabel.includes(i.category)){
+                    pieLabel.push(i.category)
+                }
+                if(i.category === "Other"){
+                    other += i.amount;
+                }
+                else if(i.category === "transport"){
+                    transport += i.amount;
+                }
+                else if(i.category === "entertainment"){
+                    entertainment += i.amount;
+                }
+                else if(i.category === "food & drink"){
+                    food += i.amount;
+                }
+                else if(i.category === "shopping"){
+                    shopping += i.amount
+                }
             }
-        ]
-    }
+            pieData.push(other, transport, entertainment, food, shopping)
+            setPieData(
+                {
+                    datasets: [{
+                        data: pieData,
+                        
+                    }],
+                    labels: pieLabel
+                }
+            )
+        }).catch(e => {
+            console.log("error", e)
+        })
+    } 
+    fetchData();
+    },  [])
 
     const pieOptions = {
 
@@ -59,7 +108,7 @@ export default function Charts(){
     }
 
     return (
-        <div classname = "Charts">
+        <div className = "Charts">
             <h1 id= "chartTitle">Display charts here</h1>
             <div id = "pieChart">
                 <Doughnut
@@ -85,3 +134,5 @@ export default function Charts(){
     )
 
 }
+
+export default Charts;
