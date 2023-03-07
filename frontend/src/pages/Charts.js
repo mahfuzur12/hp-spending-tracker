@@ -13,7 +13,18 @@ function Charts(){
             backgroundColor: ['#ac92eb', '#4fc1e8', '#a0d568', '#ffce54', '#ed5564'] 
         }],
         labels: ["Other", "Transport", "Entertainment", "Food & Drink", "Shopping" ]
-    });
+    })
+
+    const [lineData, setLineData] = useState({
+        labels: ["March"],
+        datasets: [{
+            data:[10, 20, 30],
+            backgroundColor: '#6b9bd1',
+            borderColor: '#6b9bd1',
+            tension: 0.3
+
+        }]
+    })
     
     useEffect(() => {
        const fetchData = () => {
@@ -24,31 +35,40 @@ function Charts(){
             console.log("resss", res)
             const pieData = [];
             const pieLabel = [];
+            const lineData = [];
+            const lineLabel = [];
+            var today = new Date();
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+            var yyyy = today.getFullYear();
+            today = yyyy + "-" + mm
             var other = 0;
             var transport = 0;
             var entertainment = 0;
             var food = 0;
             var shopping = 0;
             for (var i of res){
-                if(!pieLabel.includes(i.category)){
-                    pieLabel.push(i.category)
-                }
-                if(i.category === "Other"){
-                    other += i.amount;
-                }
-                else if(i.category === "transport"){
-                    transport += i.amount;
-                }
-                else if(i.category === "entertainment"){
-                    entertainment += i.amount;
-                }
-                else if(i.category === "food & drink"){
-                    food += i.amount;
-                }
-                else if(i.category === "shopping"){
-                    shopping += i.amount
+                if(i.date.toString().substring(0,7) === today){
+                    if(!pieLabel.includes(i.category)){
+                        pieLabel.push(i.category)
+                    }
+                    if(i.category === "Other"){
+                        other += i.amount;
+                    }
+                    else if(i.category === "transport"){
+                        transport += i.amount;
+                    }
+                    else if(i.category === "entertainment"){
+                        entertainment += i.amount;
+                    }
+                    else if(i.category === "food & drink"){
+                        food += i.amount;
+                    }
+                    else if(i.category === "shopping"){
+                        shopping += i.amount
+                    }
                 }
             }
+            
             pieData.push(other, transport, entertainment, food, shopping)
             setPieData(
                 {
@@ -90,7 +110,7 @@ function Charts(){
           }
     }
 
-    const lineData = {
+    const lineData2 = {
         labels: ["January", "February", "March", "April", "May", "June" ],
         datasets: [
             {
@@ -126,7 +146,7 @@ function Charts(){
             </div>
             <div id = "lineChart">
                 <Line
-                    data = {lineData}
+                    data = {lineData2}
                     options = {lineOptions}>
                 </Line>
             </div>
