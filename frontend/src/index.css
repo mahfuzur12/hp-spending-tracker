@@ -113,3 +113,49 @@ img.hover{
 	transition: 3s;
 	cursor: pointer;
 }
+
+#chartTitle{
+	text-align: center;
+  }
+  
+  #pieChart{
+	padding: 20px;
+	width: 45%;
+	float:left;
+	
+  }
+  
+  #barChart{
+	padding: 20px;
+	width: 45%;
+	float: right;
+  
+  }
+  
+  #lineChart{
+	padding: 20px;
+	width: 45%;
+	float: right;
+  }
+  
+  .budgetSetter{
+	text-align: center;
+	
+  
+  }
+  
+  .budgetButton{
+	padding: 14px 40px;
+	margin: 4px 2px;
+	background-color: #5CCC74;
+	border: none;
+	color: white;
+	font-size: 24px;
+	border-radius: 4px;
+  }
+  
+  #budget{
+	font-size: 40px;
+	margin: 4px 2px;
+  }
+  
