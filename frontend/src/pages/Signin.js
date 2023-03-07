@@ -39,7 +39,7 @@ const Signin = () => {
       });
     // check email
     if (!isEmail(email))
-      return toast("Please enter a valid email addresss.", {
+      return toast("Please enter a valid email address.", {
         className: "toast-failed",
         bodyClassName: "toast-failed",
       });
