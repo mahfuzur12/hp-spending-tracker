@@ -83,7 +83,7 @@ app.post('/auth', async function (request, response) {
       const plaidRequest = {
         access_token: access_token,
         start_date: '2018-01-01',
-        end_date: '2022-01-31',
+        end_date: new Date().toISOString().slice(0, 10),
         options: {
           count: 250,
           offset: 0,

@@ -4,6 +4,7 @@ import 'regenerator-runtime/runtime';
 import axios from 'axios';
 import { usePlaidLink } from 'react-plaid-link';
 import { AuthContext } from "../context/AuthContext";
+import Overview from "./Overview";
 //import './App.css';
 
 
@@ -12,9 +13,9 @@ import { AuthContext } from "../context/AuthContext";
 axios.default.baseUrl = "http://localhost:8000"
 
 function PlaidAuth({ publicToken }) {
-    const [account, setAccount] = useState();
-    const [balance, setBalance] = useState();
-    const [transactions, setTransactions] = useState();
+    //const [account, setAccount] = useState();
+    //const [balance, setBalance] = useState();
+    //const [transactions, setTransactions] = useState();
     const { user } = useContext(AuthContext);
     useEffect(() => {
         async function fetch() {
@@ -23,7 +24,7 @@ function PlaidAuth({ publicToken }) {
             let accessToken = await axios.post("http://localhost:8000/exchange_public_token", { public_token: publicToken });
             console.log("accessToken", accessToken.data.accessToken);
             const auth = await axios.post("http://localhost:8000/auth", { access_token: accessToken.data.accessToken });
-            //console.log("auth", auth.data);
+            console.log("auth", auth.data);
             const transactions = await axios.post("http://localhost:8000/transactions", { access_token: accessToken.data.accessToken });
             console.log("transactions", transactions.data);
             //setAccount(auth.data.numbers.bacs[0]);
@@ -35,7 +36,19 @@ function PlaidAuth({ publicToken }) {
             let transactionsArray = transactions.data.transactions
             // for each transaction in the array, send it to the database
             // { date, description, amount, category, userId }
-            // POST /api/transactions
+            // POST /api/
+
+            //delete all transactions from the database
+            let curUser = await axios.get("/" + user._id);
+            //make array with all transactions from that user
+            let userTransactions = curUser.data.data.transactions;
+            //delete all transactions from that user
+            userTransactions.forEach(async (transaction) => {
+                await axios.delete("/api/transactions/" + transaction._id);
+            });
+
+            await axios.patch("/" + user._id, { transactions: [] })
+            
             transactionsArray.forEach(async (transaction) => {
                 await axios.post("/api/transactions", {
                     date: transaction.date,
@@ -51,14 +64,16 @@ function PlaidAuth({ publicToken }) {
     }, []);
     return  (
         <>
-            
+            Refresh page to see your transactions      
         </>
     );
 }
 
-function Overview() {
+function ConnectBank() {
     const [linkToken, setLinkToken] = useState();
     const [publicToken, setPublicToken] = useState();
+    const [accessToken, setAccessToken] = useState();
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
 
@@ -69,16 +84,28 @@ function Overview() {
         fetch();
     }, []);
 
+    useEffect(() => {
+        async function Fetch() {
+            const response = await axios.get("http://localhost:8000/" + user._id);
+            setAccessToken(response.data.data.accessToken);
+        }
+        Fetch();
+    }, []);
+
+
     const { open, ready } = usePlaidLink({
         token: linkToken,
         onSuccess: (public_token, metadata) => {
             setPublicToken(public_token);
             console.log("success", public_token, metadata);
+            //redirect to overview
+            
+
             // send public_token to server
         },
     });
 
-    return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
+    return publicToken ? (<PlaidAuth publicToken={publicToken} /> ) : (
         <div>
             <br />
             <button class='btns' onClick={() => open()} disabled={!ready}>
@@ -89,4 +116,4 @@ function Overview() {
     );
 }
 
-export default Overview;
+export default ConnectBank;
