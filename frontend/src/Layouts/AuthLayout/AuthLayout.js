@@ -46,6 +46,10 @@ const AuthLayout = () => {
          
          <br/>
 
+       
+        </div>  
+
+        <div class = 'signup-form'>
         {signin && <Signin />}
         {signup && <Signup />}
         {forgot && <Forgot />}
@@ -53,10 +57,6 @@ const AuthLayout = () => {
         <button class = 'btns' onClick={signin ? handleSignup : handleSignin}>{signin ? "Sign up" : "Log In"}</button>
         <button class = 'btns' onClick={handleForgot}>Forgot Password</button>
 
-        </div>  
-
-        <div>
-        <img  src= {img} alt="No" />
         </div>
       </main>
 

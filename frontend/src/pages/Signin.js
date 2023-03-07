@@ -8,8 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Input from "../components/Input/Input";
 import { AuthContext } from "../context/AuthContext";
-import './Signup.css'
-
+import "../index.css"
 const initialState = {
   name: '',
   password: ''
@@ -59,7 +58,7 @@ const Signin = () => {
   return (
     <>
     <ToastContainer />
-    <form onSubmit={signin}>
+    <form class = 'signup-form' onSubmit={signin}>
 
       <label>Email</label>
       <Input type="email"  name="email" handleChange={handleChange}/>
@@ -76,9 +75,9 @@ const Signin = () => {
       <br/>
       <br/>
 
-      <div>
+     
         <button class ='btns' type="submit">Log In</button>
-      </div>
+     
     </form>
     </>
   )

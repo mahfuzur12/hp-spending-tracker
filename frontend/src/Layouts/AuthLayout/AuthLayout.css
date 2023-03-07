@@ -64,14 +64,22 @@
 
 body{
 	background-color: #000;
+    float: left;
+    margin-right: 5px;
 	
 }
 
 .content{
+    flex-direction: column;
+    text-align: left;
+    float:left;
+    margin-right:5px;
+    display: flex;    
 	font-family: 'Karla';
 	color: #d8d8d8;
 	margin-top: 10%;
 	margin-left:90px;
+    background-color: #000;
 }
 
 h1{
@@ -79,24 +87,23 @@ h1{
 }
 
 p{
-	margin-top: 10px;
 }
 
 .main{
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+    float:left; 
+    
 }
 
 .btns{
+    width: auto;
 	margin-top: 10px;
-	background: #d8d8d8;
+	background: white;
 	cursor:pointer;
 	color: #191919;
 	padding: 12px 20px;
 	float: left;
 	border: 0;
 	border-radius:20px;
-	margin-left: 10px;
 }
 
 .btns hover{
@@ -113,3 +120,13 @@ img.hover{
 	transition: 3s;
 	cursor: pointer;
 }
+.signup-form{
+    float:left;
+    position: relative;
+    width: 50%;
+    background-color: #000;
+    text-align: left;
+    color: white;
+
+}
+
