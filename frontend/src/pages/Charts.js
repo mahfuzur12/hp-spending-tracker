@@ -17,14 +17,22 @@ function Charts(){
 
     const [lineData, setLineData] = useState({
         labels: ["March"],
-        datasets: [{
-            data:[10, 20, 30],
-            backgroundColor: '#6b9bd1',
-            borderColor: '#6b9bd1',
-            tension: 0.3,
-            label: "Spending this month"
-
-        }]
+        datasets: [
+            {
+                data:[10, 20, 30],
+                backgroundColor: '#6b9bd1',
+                borderColor: '#6b9bd1',
+                tension: 0.3,
+                label: "Spending this month"
+            },
+            {
+                label: "Spending last month",
+                data:[10, 20, 30],
+                backgroundColor: 'red',
+                borderColor: 'red',
+                tension: 0.3
+            }
+        ]
     })
     
     useEffect(() => {
@@ -38,10 +46,14 @@ function Charts(){
             const pieLabel = [];
             const lineData = [];
             const lineLabel = [];
+            const lineData2 = [];
+            const lineLabel2 = [];
             var today = new Date();
             var mm = String(today.getMonth() ).padStart(2, '0'); 
             var yyyy = today.getFullYear();
             today = yyyy + "-" + mm
+            var prev = (mm - 1).toString().padStart(2, "0");
+            var lastMonth = yyyy + "-" + prev
             var other = 0;
             var transport = 0;
             var entertainment = 0;
@@ -49,7 +61,7 @@ function Charts(){
             var shopping = 0;
             for (var i of res){
                 if(i.date.toString().substring(0,7) === today){
-                    lineData.push(i.amount);  
+                    lineData.push(i.amount)
                     lineLabel.push(i.date.toString().substring(5,10))
                     if(!pieLabel.includes(i.category)){
                         pieLabel.push(i.category)
@@ -70,8 +82,13 @@ function Charts(){
                         shopping += i.amount
                     }    
                 }
-                
+                else if(i.date.toString().substring(0,7) === lastMonth){
+                    lineData2.push(i.amount)
+                    lineLabel2.push(i.date.toString().substring(5,10))
+                }
             }
+            lineData2.reverse()
+            lineLabel2.sort()
             lineData.reverse()
             lineLabel.sort()
             pieData.push(other, transport, entertainment, food, shopping)
@@ -86,11 +103,21 @@ function Charts(){
             )
             setLineData(
                 {
-                    datasets: [{
-                        data: lineData,
-                        label: "Spending this month"
-                    }],
-                    labels: lineLabel
+                    datasets: [
+                        {
+                            data: lineData,
+                            label: "Spending this month"
+                        },
+
+                        {
+                            label: "Spending last month",
+                            data: lineData2
+
+                        }
+                    ],
+                    labels: lineLabel2
+                    
+                    
                 }
             )
         }).catch(e => {
