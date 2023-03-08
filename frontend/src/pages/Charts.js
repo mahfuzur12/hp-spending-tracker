@@ -21,7 +21,8 @@ function Charts(){
             data:[10, 20, 30],
             backgroundColor: '#6b9bd1',
             borderColor: '#6b9bd1',
-            tension: 0.3
+            tension: 0.3,
+            label: "Spending this month"
 
         }]
     })
@@ -38,7 +39,7 @@ function Charts(){
             const lineData = [];
             const lineLabel = [];
             var today = new Date();
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+            var mm = String(today.getMonth() ).padStart(2, '0'); 
             var yyyy = today.getFullYear();
             today = yyyy + "-" + mm
             var other = 0;
@@ -48,6 +49,8 @@ function Charts(){
             var shopping = 0;
             for (var i of res){
                 if(i.date.toString().substring(0,7) === today){
+                    lineData.push(i.amount);  
+                    lineLabel.push(i.date.toString().substring(5,10))
                     if(!pieLabel.includes(i.category)){
                         pieLabel.push(i.category)
                     }
@@ -65,10 +68,12 @@ function Charts(){
                     }
                     else if(i.category === "shopping"){
                         shopping += i.amount
-                    }
+                    }    
                 }
+                
             }
-            
+            lineData.reverse()
+            lineLabel.sort()
             pieData.push(other, transport, entertainment, food, shopping)
             setPieData(
                 {
@@ -77,6 +82,15 @@ function Charts(){
                         
                     }],
                     labels: pieLabel
+                }
+            )
+            setLineData(
+                {
+                    datasets: [{
+                        data: lineData,
+                        label: "Spending this month"
+                    }],
+                    labels: lineLabel
                 }
             )
         }).catch(e => {
@@ -110,21 +124,12 @@ function Charts(){
           }
     }
 
-    const lineData2 = {
-        labels: ["January", "February", "March", "April", "May", "June" ],
-        datasets: [
-            {
-                label: 'Monthly Spending',
-                data: [700, 900, 1000, 1200, 1100, 850],
-                backgroundColor: '#6b9bd1',
-                borderColor: '#6b9bd1',
-                tension: 0.3
-            }
-        ]
-    }
-
     const lineOptions = {
-        
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
     }
 
     return (
@@ -146,7 +151,7 @@ function Charts(){
             </div>
             <div id = "lineChart">
                 <Line
-                    data = {lineData2}
+                    data = {lineData}
                     options = {lineOptions}>
                 </Line>
             </div>
