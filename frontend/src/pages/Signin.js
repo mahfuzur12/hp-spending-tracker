@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Input from "../components/Input/Input";
 import { AuthContext } from "../context/AuthContext";
-import "../index.css"
 const initialState = {
   name: '',
   password: ''

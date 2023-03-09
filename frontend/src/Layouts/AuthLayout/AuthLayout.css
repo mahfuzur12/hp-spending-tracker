@@ -11,7 +11,6 @@
     background: linear-gradient(to right, #2ed573, #f9ca24);
     overflow-x: hidden;
     color: #d8d8d8;
-    border-bottom: 0.5px solid gray;
     width: 100%;
     line-height: 80px;
     height: 80px;
@@ -63,21 +62,29 @@
   }
   
   body {
+    width: 100%;
     background: linear-gradient(to right, #2ed573, #f9ca24);
     overflow-x: hidden;
   }
   
   .content {
+    background-color: inherit;
     font-family: 'Karla';
-    text-align: center;
-    margin-top: 80px; /* added to give space below the fixed navbar */
+    text-align: left;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+   
+    justify-content: left;
+    align-items: left;
     height: calc(100vh - 80px);
-    padding-top: 80px;
     box-sizing: border-box;
+    width: 70%;
+  }
+
+  .landing-form{
+    text-align: left;
+    background-color: inherit;
+    flex-direction: column;
+    width: 40%
   }
   
   h1 {
@@ -89,9 +96,10 @@
   }
   
   main {
+    width: 100%;
+    height: 100vh;
     display: flex;
-    justify-content: left;
-    align-items: left;
+    flex-direction: row;
   }
   
   .btns {
@@ -104,16 +112,35 @@
     border-radius: 20px;
     margin-left: 10px;
     margin-right: 10px;
+    width: 50%;
   }
   
   .btns hover {
     background: #ffffff;
   }
-  
-  img {
-    margin-left: 150px;
-    width: 400px;
+
+  .btns-position{
+    display: inline;
+    flex-direction: row;
   }
+
+
+.image-container{
+    background-attachment: fixed;
+    background-color: inherit;
+    margin-top: 10%;
+    margin-right: 10%;
+    width: 75%;
+    overflow: hidden;
+  }
+
+  .image-container img{
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    object-fit: contain;
+  }
+
   
   img.hover {
     filter: grayscale(0);
