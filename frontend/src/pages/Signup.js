@@ -84,7 +84,7 @@ const Signup = () => {
   return (
     <>
       <ToastContainer />
-      <form class = 'signup-form'onSubmit={signup}>
+      <form onSubmit={signup}>
         <label>Name</label>
         <Input type="text" name="name"  handleChange={handleChange} />
         <label>Email</label>

@@ -27,41 +27,34 @@ const AuthLayout = () => {
   };
 
   return (
-
     <body>
-      <nav class= "navbar">
-       
+      <nav class="navbar">
+        <a class="nav-logo">Piciclot Tracker</a>
         <ul>
-			  <li><a href="#">Home</a></li>
-			  <li><a href="#">About</a></li>
-			  <li><a href="#">Services</a></li>
-			  <li><a href="#">Contact</a></li>
-		    </ul>
-        
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
       </nav>
       <main>
-        <div class = 'content'>     
-         <h1>Your Personal <br/> Spending Tracker</h1>
-         <p>Join us to track your spending and save more money!</p>
-         
-         <br/>
+        <div class='content'>
+          <h1>Your Personal <br/> Spending Tracker</h1>
+          <p>Join us to track your spending and save more money :-)</p>
+          {signin && <Signin />}
+          {signup && <Signup />}
+          {forgot && <Forgot />}
 
-       
-        </div>  
+          <button class='btns' onClick={signin ? handleSignup : handleSignin}>{signin ? "Sign up" : "Log In"}</button>
+          <button class='btns' onClick={handleForgot}>Forgot Password</button>
 
-        <div class = 'signup-form'>
-        {signin && <Signin />}
-        {signup && <Signup />}
-        {forgot && <Forgot />}
-
-        <button class = 'btns' onClick={signin ? handleSignup : handleSignin}>{signin ? "Sign up" : "Log In"}</button>
-        <button class = 'btns' onClick={handleForgot}>Forgot Password</button>
+          <img src={img} alt="No" />
 
         </div>
       </main>
-
-  </body>
+    </body>
   );
 };
 
 export default AuthLayout;
+

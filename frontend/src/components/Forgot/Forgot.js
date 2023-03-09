@@ -54,7 +54,7 @@ const Forgot = () => {
   return (
     <>
     <ToastContainer />
-    <form class = 'signup-form' onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Input type="text" text="Email" name="email" handleChange={handleChange}/>
         <button class = 'btns' type="submit">Send</button>
     </form>

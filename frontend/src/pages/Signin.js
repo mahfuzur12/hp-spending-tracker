@@ -58,7 +58,7 @@ const Signin = () => {
   return (
     <>
     <ToastContainer />
-    <form class = 'signup-form' onSubmit={signin}>
+    <form onSubmit={signin}>
 
       <label>Email</label>
       <Input type="email"  name="email" handleChange={handleChange}/>
@@ -75,7 +75,6 @@ const Signin = () => {
       <br/>
       <br/>
 
-     
         <button class ='btns' type="submit">Log In</button>
      
     </form>
