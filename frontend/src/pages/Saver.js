@@ -1,6 +1,6 @@
 import React from "react";
 import {useNavigate } from "react-router-dom";
-
+import Navbar from "../components/Navbar";
 export default function Spending(){
     function incBudget(){
         const budget = document.getElementById("budget");
@@ -21,15 +21,22 @@ export default function Spending(){
     const navigate = useNavigate();
     
     return(
-        <div className="budgetSetter" >
-            <h1>Set up your monthly budget </h1>
-            <button onClick={decBudget} className="budgetButton"> - </button>
-            <span>£</span><span id ="budget">500</span>
-            <button onClick={incBudget} className="budgetButton"> + </button>
-            <div>
-                <button onClick={() => {navigate("/charts")}} className="budgetButton"> Done </button>
-            </div>
-        </div>
+        
+            <div class = 'content'>
+                <div>
+                <Navbar />
+                </div>
+                <div className="budgetSetter">
+                    <h1>Set up your monthly budget </h1>
+                    <button onClick={decBudget} className="budgetButton"> - </button>
+                    <span>£</span><span id ="budget">500</span>
+                    <button onClick={incBudget} className="budgetButton"> + </button>
+                    <div>
+                        <button onClick={() => {navigate("/charts")}} className="budgetButton"> Done </button>
+                     </div>
+                </div>
 
+            </div>
+            
     )
 }
