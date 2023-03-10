@@ -131,11 +131,11 @@
     margin-top: 10%;
     margin-right: 10%;
     width: 75%;
-    overflow: hidden;
+   
   }
 
   .image-container img{
-    top: -20%;
+    top: -10%;
     right: -10%;
     width: 60%;
     object-fit: contain;
