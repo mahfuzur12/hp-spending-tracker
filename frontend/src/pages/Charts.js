@@ -16,7 +16,7 @@ function Charts(){
     })
 
     const [lineData, setLineData] = useState({
-        labels: ["March"],
+        labels: ["This Month"],
         datasets: [
             {
                 data:[10, 20, 30],
@@ -34,6 +34,43 @@ function Charts(){
             }
         ]
     })
+
+    const[barData, setBarData] = useState({
+        labels: ["Week1", "Week2", "Week3", "Week4", "Week5"],
+        datasets: [
+            {
+                label: 'Weekly Spending',
+                data: [40, 50, 100, 250, 150],
+                backgroundColor: '#ed335f'
+
+            }
+        ]
+    })
+
+    function getWeeksInMonth(year, month) {
+        const weeks = [],
+          firstDate = new Date(year, month - 1, 1),
+          lastDate = new Date(year, month + 1, 0),
+          numDays = lastDate.getDate();
+      
+        let dayOfWeekCounter = firstDate.getDay();
+      
+        for (let date = 1; date <= numDays; date++) {
+          if (dayOfWeekCounter === 0 || weeks.length === 0) {
+            weeks.push([]);
+          }
+          weeks[weeks.length - 1].push(date);
+          dayOfWeekCounter = (dayOfWeekCounter + 1) % 7;
+        }
+      
+        return weeks
+          .filter((w) => !!w.length)
+          .map((w) => ({
+            start: w[0],
+            end: w[w.length - 1],
+            dates: w,
+          }));
+      }
     
     useEffect(() => {
        const fetchData = () => {
@@ -46,21 +83,33 @@ function Charts(){
             const pieLabel = [];
             const lineData = [];
             const lineLabel = [];
-            const lineData2 = [];
-            const lineLabel2 = [];
+            const barData = [];
+            const barLabel = [];
             var today = new Date();
-            var mm = String(today.getMonth() ).padStart(2, '0'); 
+            var mm = String(today.getMonth() + 1 ).padStart(2, '0'); 
             var yyyy = today.getFullYear();
             today = yyyy + "-" + mm
-            var prev = (mm - 1).toString().padStart(2, "0");
-            var lastMonth = yyyy + "-" + prev
+            const d = new Date(yyyy, mm - 1, 10);  
+            const month = d.toLocaleString('en-us', { month: 'long' });
             var other = 0;
             var transport = 0;
             var entertainment = 0;
             var food = 0;
             var shopping = 0;
+            var weeksInMonth = getWeeksInMonth(yyyy, mm);
+            for(var j=0; j < weeksInMonth.length; j++){
+                var interval = weeksInMonth[j].start + "-" + weeksInMonth[j].end
+                barLabel.push(interval)
+                barData.push(0)
+            }
             for (var i of res){
                 if(i.date.toString().substring(0,7) === today){
+                    var date = parseInt(i.date.toString().substring(8,10))
+                    for(var k=0; k < weeksInMonth.length; k++){
+                        if(weeksInMonth[k].dates.includes(date)){
+                            barData[k] += i.amount
+                        }
+                    }
                     lineData.push(i.amount)
                     lineLabel.push(i.date.toString().substring(5,10))
                     if(!pieLabel.includes(i.category)){
@@ -82,13 +131,7 @@ function Charts(){
                         shopping += i.amount
                     }    
                 }
-                else if(i.date.toString().substring(0,7) === lastMonth){
-                    lineData2.push(i.amount)
-                    lineLabel2.push(i.date.toString().substring(5,10))
-                }
             }
-            lineData2.reverse()
-            lineLabel2.sort()
             lineData.reverse()
             lineLabel.sort()
             pieData.push(other, transport, entertainment, food, shopping)
@@ -108,16 +151,22 @@ function Charts(){
                             data: lineData,
                             label: "Spending this month"
                         },
-
+                    ],
+                    labels: lineLabel
+                    
+                    
+                }
+            )
+            setBarData(
+                {
+                    datasets: [
                         {
-                            label: "Spending last month",
-                            data: lineData2
-
+                            data: barData,
+                            label: "Spending in " + month + " " + yyyy,
+                            backgroundColor: '#ed335f',
                         }
                     ],
-                    labels: lineLabel2
-                    
-                    
+                    labels: barLabel
                 }
             )
         }).catch(e => {
@@ -129,18 +178,6 @@ function Charts(){
 
     const pieOptions = {
 
-    }
-
-    const barData = {
-        labels: ["week1", "week2", "week3", "week4", "week5" ],
-        datasets: [
-            {
-                label: 'Weekly Spending',
-                data: [40, 50, 100, 250, 150],
-                backgroundColor: '#ed335f',
-                borderColor: 'black'
-            }
-        ]
     }
 
     const barOptions = {
@@ -161,7 +198,7 @@ function Charts(){
 
     return (
         <div className = "Charts">
-            <h1 id= "chartTitle">Display charts here</h1>
+            <h1 id= "chartTitle">Spending Trends for this month</h1>
             <div id = "pieChart">
                 <Doughnut
                     data = {pieData}
