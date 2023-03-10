@@ -9,6 +9,7 @@ import axios from "axios";
 import Overview from "./pages/Overview";
 import Charts from "./pages/Charts";
 import Saver from "./pages/Saver";
+import Transactions from "./pages/Transactions"
 
 function App() {
   const { dispatch, token, isLoggedIn } = useContext(AuthContext);
@@ -55,6 +56,7 @@ function App() {
           exact element={<ActivateLayout />} />
         <Route path="/saver" element={<Saver />}/> 
         <Route path="/charts" element={<Charts/>}/>
+        <Route path="/transactions" element = {<Transactions/>}/>
           
       </Routes>
     </Router>

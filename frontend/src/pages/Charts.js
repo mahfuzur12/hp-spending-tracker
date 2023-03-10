@@ -1,6 +1,8 @@
 import {Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale, LineElement, PointElement} from 'chart.js';
 import {Doughnut, Bar, Line} from 'react-chartjs-2';
 import React,{useEffect, useState} from "react";
+import Navbar from "../components/Navbar"; 
+
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
@@ -108,28 +110,34 @@ function Charts(){
     }
 
     return (
-        <div className = "Charts">
-            <h1 id= "chartTitle">Display charts here</h1>
+    <div className = "content">
+        <div>
+        <Navbar />
+        </div>
+        
+        <div className='charts'>
+        <h1 id= "chartTitle">Display charts here</h1>
             <div id = "pieChart">
                 <Doughnut
-                    data = {pieData}
-                    options = {pieOptions}
+                data = {pieData}
+                options = {pieOptions}
                 >
                 </Doughnut>
             </div>
-
             <div id = "barChart">
                 <Bar
-                    data = {barData}
-                    options = {barOptions}>
+                data = {barData}
+                options = {barOptions}>
                 </Bar>
             </div>
             <div id = "lineChart">
                 <Line
-                    data = {lineData}
-                    options = {lineOptions}>
+                data = {lineData}
+                options = {lineOptions}>
                 </Line>
             </div>
+        </div>
+        
         </div>
     )
 

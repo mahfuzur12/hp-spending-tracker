@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React,{useEffect, useState} from "react";
 import "../transactions.css"
+import Navbar from '../components/Navbar';
 
 function Transactions() {
     const [transactions, setTransactions] = useState([]);
@@ -21,6 +22,9 @@ function Transactions() {
 
 return(
     <div>
+        <div>
+        <Navbar />
+        </div>
     <table> 
         <thead>
             <tr>

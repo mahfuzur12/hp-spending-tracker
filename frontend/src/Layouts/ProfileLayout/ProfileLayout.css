@@ -36,6 +36,7 @@
 	font-family: 'Karla';
 	color: #d8d8d8;
 	font-weight: bold;
+    flex-direction: row;
 }
 
 .navbar ul{
@@ -104,6 +105,7 @@ p{
 	float: left;
 	border: 0;
 	border-radius:20px;
+    width: auto;
 }
 
 .btns hover{
