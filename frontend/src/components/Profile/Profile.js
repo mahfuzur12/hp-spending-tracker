@@ -12,6 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../Navbar";
 import "./Profile.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const initialState = {
   name: "",
@@ -118,41 +120,54 @@ const Profile = () => {
 
   return (
     <>
-      <ToastContainer />
-      <div className="content">
+      <body className="profile-body">
+        <ToastContainer />
         <div>
-          <Navbar/>
-        </div>
-        <div>
-        <form onSubmit={handleSubmit}>
-        <div>
-          <Input type="text" text="Name" defaultValue={user.name} name="name" handleChange={handleChange}/>
-          <Input type="text" text="Email" defaultValue={user.email} disabled name="email" handleChange={handleChange}/>
-          <Input
-            name="password"
-            type={visible ? "text" : "password"}
-            icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-            text="Password"
-            handleClick={handleClick}
-            handleChange={handleChange}
-          />
-          <Input
-            name="cf_password"
-            type={visible ? "text" : "password"}
-            icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-            text="Confirm Password"
-            handleClick={handleClick}
-            handleChange={handleChange}
-          />
-          <div>
-            <button type="submit">Update</button>
+          <div className="profile-nav">
+            <Navbar />
           </div>
+          <div className="profile-container">
+            <form className="profile-form" onSubmit={handleSubmit}>
+              <div class="profile-form-leftbox">
+                <nav>
+                  <a>
+                    <FontAwesomeIcon icon={faUser} className="fa-lg fa-user-my" />
+                  </a>
+                </nav>
+              </div>
+
+              <div class="profile-form-rightbox">
+                <h1>Personal Info</h1>
+                <Input type="text" text="Name" defaultValue={user.name} name="name" handleChange={handleChange} />
+                <Input type="text" text="Email" defaultValue={user.email} disabled name="email" handleChange={handleChange} />
+                <Input
+                  name="password"
+                  type={visible ? "text" : "password"}
+                  icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
+                  text="Password"
+                  handleClick={handleClick}
+                  handleChange={handleChange}
+                />
+                <Input
+                  name="cf_password"
+                  type={visible ? "text" : "password"}
+                  icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
+                  text="Confirm Password"
+                  handleClick={handleClick}
+                  handleChange={handleChange}
+                />
+
+                <div>
+                  <button className="profile-form-btn" type="submit">Update</button>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+
         </div>
-      </form>
-        </div>
-      
-      </div>
-      
+      </body>
     </>
   );
 };

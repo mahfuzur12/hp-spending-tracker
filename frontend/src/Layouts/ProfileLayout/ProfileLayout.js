@@ -15,37 +15,31 @@ import Streaks from "../../pages/Streaks";
 const ProfileLayout = () => {
   //const [hasCard, setHasCard] = useState(false);
 
-      
-
-  
-  
-  
-    return (
-      <div class = 'content'>
+  return (
 
 
-
-        <div>
-        <Charts />
-        </div>
-
-        <div>
-        <Budget />
-        </div>
-      
-        <div class = "content">
-        <Overview />
-        </div>
-
-        <div>
-          <Streaks/>
-        </div>
-
-        
+    <div class='profile-content'>
+      <div>
+        <Navbar />
       </div>
-    );
+
+      <div>
+        <Charts />
+      </div>
+
+      <div>
+        <Budget />
+      </div>
+
+      <div>
+        <Overview />
+      </div>
+
+
+    </div>
+  );
 
 }
-  
-  
-  export default ProfileLayout;
+
+
+export default ProfileLayout;

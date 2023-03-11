@@ -1,0 +1,53 @@
+.budget-container {
+    margin: 0px auto;
+    text-align: center;
+    height: 100vh;
+    background: linear-gradient(to right, #2ed573, #f9ca24);
+}
+
+.budget-navbar {
+    width: 100%;
+    height: 100px;
+}
+
+.budget-title {
+    font-size: 60px;
+    margin: 50px auto;
+}
+
+.budget-signal {
+    font-size: 50px;
+}
+
+.budget-num {
+    font-size: 40px;
+    margin: 4px 2px;
+}
+
+.budget-btn {
+    padding: 13px 40px;
+    margin: 30px 20px;
+    background-color: #5CCC74;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 4px;
+}
+
+.budget-btn:hover {
+    background-color: aquamarine;
+}
+
+.budget-done {
+    padding: 14px 40px;
+    margin: 4px 2px;
+    background-color: #5CCC74;
+    border: none;
+    color: white;
+    font-size: 24px;
+    border-radius: 4px;
+}
+
+.budget-done:hover {
+    background-color: aquamarine;
+}

@@ -4,27 +4,26 @@
   box-sizing: border-box;
 }
 
-.navbar {
+.auth-navbar {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
   background: linear-gradient(to right, #2ed573, #f9ca24);
   overflow-x: hidden;
-  /* color: #d8d8d8; */
   width: 100%;
   line-height: 80px;
-  height: 80px;
   font-size: 18px;
   padding: 0 30px;
   font-family: 'Karla';
 }
 
-.navbar a {
+.auth-navbar a {
   text-decoration: none;
   color: #ffffff;
 }
 
-.navbar a.nav-logo {
+.auth-nav-logo {
   float: left;
   height: inherit;
   line-height: inherit;
@@ -37,7 +36,7 @@
   font-weight: bold;
 }
 
-.navbar ul {
+.auth-navbar ul {
   float: right;
   color: white;
   list-style: none;
@@ -46,131 +45,197 @@
   padding: 0 50px;
 }
 
-.navbar ul li {
+.auth-navbar ul li {
   display: inline-block;
 }
 
-.navbar ul li a {
+.auth-navbar ul li a {
   display: block;
   text-align: center;
   min-width: 120px;
   padding: 0 30px;
 }
 
-.navbar ul li a:hover {
+.auth-navbar ul li a:hover {
   background-color: #83D475;
 }
 
-body {
+#auth-body-id {
   width: 100%;
   background: linear-gradient(to right, #2ed573, #f9ca24);
   overflow-x: hidden;
+  scroll-behavior: auto;
 }
 
-.content {
+.auth-content {
   background-color: inherit;
-  font-family: 'Karla';
-  text-align: left;
   display: flex;
-  justify-content: left;
-  align-items: left;
+  text-align: left;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Karla';
+  align-items: flex-start;
   height: calc(100vh - 80px);
   box-sizing: border-box;
-  width: 70%;
-  color:white;
+  width: 100%;
+  margin-left: 8%;
+  margin-top: 2%;
+  color: white;
 }
 
-.landing-form{
+.auth-title-content {
+  width: 80%;
+  font-size: 80px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.auth-landing-form {
   text-align: left;
   background-color: inherit;
-  flex-direction: column;
-  width: 40%
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
 }
 
-h1 {
-  font-size: 70px;
-}
 
-p {
-  margin-top: 10px;
-}
-
-main {
+.auth-main {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: row;
 }
 
-.btns {
+.auth-btns {
   margin-top: 20px;
   background: #ffffff;
   cursor: pointer;
-  color: #d8d8d8;
+  color: #191919;
   padding: 12px 20px;
   border: 0;
   border-radius: 20px;
-  margin-left: 10px;
   margin-right: 10px;
-  width: 50%;
 }
 
-.btns hover {
-  background: #ffffff;
+.auth-btns:hover {
+  background-color: #2ed573;
+  color: #ffffff;
 }
 
-.btns-position{
-  display: inline;
+.auth-btns-position {
+  display: flex;
   flex-direction: row;
 }
 
 
-.image-container{
+.auth-image-container {
   background-attachment: fixed;
   background-color: inherit;
-  margin-top: 10%;
-  margin-right: 10%;
+  margin-top: 15%;
+  margin-right: 0%;
   width: 75%;
- 
 }
 
-.image-container img{
+.auth-image {
   top: -10%;
   right: -10%;
-  width: 60%;
+  width: 70%;
   object-fit: contain;
 }
 
 
-img.hover {
+.auth-image:hover {
   filter: grayscale(0);
   transition: 3s;
   cursor: pointer;
 }
 
-.test{
-  height:100vh;
+.auth-about-container {
+  height: 100vh;
   text-align: center;
-  display:flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  width: 70vw;
+  margin: auto;
+}
+
+.auth-about-content {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.auth-services-container {
+  width: 70vw;
+  margin: auto;
+  height: 100vh;
+  text-align: center;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: inherit;
 }
 
-.test1{
-  height:100vh;
+.auth-services-content {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.auth-contact-container {
+  height: 100vh;
   text-align: center;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: inherit;
 }
 
-.test2{
-  height:100vh;
-  text-align: center;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  background-color: inherit;
+.auth-contact-content {
+  width: 30vw;
+  background-color: #f8f8f8;
+  padding: 50px 0;
+}
+
+.auth-contact-input,
+.auth-contact-textarea-message {
+  width: 80%;
+  margin-left: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+
+}
+
+.auth-contact-form {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  background-color: #f8f8f8;
+}
+
+
+.auth-contact-submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+
+}
+
+.auth-contact-label {
+
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+
+
 }

@@ -1,49 +1,27 @@
-
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto");
-
-body {
+.profile-body {
     background: linear-gradient(to right, #2ed573, #f9ca24);
-    overflow-x: hidden;
 }
 
-.SettingsPage {
+.profile-nav {
+    width: 100%;
+    height: 100px;
+}
+
+.profile-container {
+    height: 89vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-right: 45px;
-
+    justify-content: center;
 }
 
-.goback {
-    align-self: flex-end;
-    margin: 45px;
-
-}
-
-.gobackbtn{
-    font-family: "roboto", sans-serif;
-    text-transform: uppercase;
-    font-size: 15px;
-    border: 0;
-    color: #fff;
-    background: #7ed386;
-    padding: 7px 15px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.container {
-
+.profile-form {
     background: #fff;
     width: 540px;
     height: 450px;
     position: relative;
-    margin-top: 10%;
-    box-shadow: 2px 5px 20px rgba(119, 119, 119, .5);
 }
 
-.leftbox {
+.profile-form-leftbox {
     float: left;
     top: -5%;
     left: 5%;
@@ -55,7 +33,7 @@ body {
     border: .1em solid #fff;
 }
 
-nav a {
+.profile-form-leftbox nav a {
     list-style: none;
     padding: 35px;
     color: #fff;
@@ -64,69 +42,20 @@ nav a {
     transition: all .3s ease-in-out;
 }
 
-nav a:hover {
-    color: #10ac84;
-    cursor: pointer;
-    transform: scale(1.2);
-}
-
-nav a:first-child {
-    margin-top: 7px;
-}
-
-nav a.active {
-    color: #10ac84;
-}
-
-.rightbox {
+.profile-form-rightbox {
     width: 60%;
     margin-left: 27%;
 }
 
-.tabShow {
-    transition: all .5s ease-in;
-    width: 80%;
-    position: absolute;
-    margin-left: -10px;
-    margin-top: -20px;
-}
-
-h1 {
+.profile-form-rightbox h1 {
     font-family: "Montserrat", sans-serif;
     color: #7ed386;
     font-size: 1.2 rem;
     margin-top: 40px;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }
 
-h2 {
-    color: #777;
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    font-size: 8px;
-    letter-spacing: 1px;
-    margin-left: 2px;
-    margin-top: 10px;
-}
-
-.input,
-p {
-    border: 0;
-    border-bottom: 1px solid #3fb6a8;
-    width: 80%;
-    font-family: 'montserrat', sans-serif;
-    font-size: .7em;
-    padding: 7px 0;
-    color: #070707;
-    outline: none;
-}
-
-span {
-    font-size: .7em;
-    color: #777;
-}
-
-.btn {
+.profile-form-btn {
     font-family: "roboto", sans-serif;
     text-transform: uppercase;
     font-size: 15px;
@@ -136,19 +65,5 @@ span {
     padding: 7px 15px;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
     cursor: pointer;
-    margin-top: 15px;
-}
-
-.fa-card-my {
-    margin-left: -7px;
-
-}
-
-.fa-user-my {
-    margin-left: -2px;
-}
-
-form{
-    flex-direction: column;
-    
+    margin-top: 25px;
 }

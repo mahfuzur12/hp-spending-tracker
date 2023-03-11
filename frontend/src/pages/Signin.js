@@ -6,8 +6,9 @@ import { isEmpty, isEmail } from "../components/helper/validate";
 import axios from 'axios'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Input from "../components/Input/Input";
 import { AuthContext } from "../context/AuthContext";
+import "./Signin.css"
+
 const initialState = {
   name: '',
   password: ''
@@ -15,10 +16,12 @@ const initialState = {
 
 const Signin = () => {
 
+  const [inputValue, setInputValue] = useState('');
+
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState(initialState)
-  const {email, password} = data
-  const {dispatch} = useContext(AuthContext)
+  const { email, password } = data
+  const { dispatch } = useContext(AuthContext)
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -56,32 +59,47 @@ const Signin = () => {
 
   return (
     <>
-    <ToastContainer />
-    <form onSubmit={signin}>
+      <ToastContainer />
+      <form className="signin-landing-form" onSubmit={signin}>
+        <div className="signin-landing-form">
+          <label className="signin-input-title">Email</label>
 
-      <div class = 'landing-form'>
-      <label>Email</label>
-      <Input type="email"  name="email" handleChange={handleChange}/>
-      </div>
-      
-      <br/>
-      <div class = 'landing-form'>
-      <label>Password</label>
-      <Input
-        name="password"
-        type={visible ? "text" : "password"}
-        icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-        handleClick={handleClick}
-        handleChange={handleChange}
-      />
-      </div>
-      
-      <br/>
-      <br/>
+          <div className="signin-input-div">
+            <label>
+              <input className="signin-input-input" type={email} name={"email"} onChange={handleChange}
+                placeholder="&nbsp;" autoComplete="off" />
+            </label>
+          </div>
 
-        <button class ='btns' type="submit">Log In</button>
-     
-    </form>
+        </div>
+
+        <br />
+        <div className="signin-landing-form">
+          <div className="signin-input-div">
+            <label className="signin-input-title"> Password
+              <span onClick={handleClick}> {visible ? <MdVisibility /> : <MdVisibilityOff />}</span>
+            </label>
+
+
+            <input className="signin-input-input" type={visible ? "text" : "password"} name="password" onChange={handleChange}
+              placeholder="&nbsp;" autoComplete="off" />
+
+
+
+          </div>
+
+
+        </div>
+
+
+
+
+        <br />
+        <br />
+
+        <button class='auth-btns' type="submit">Log In</button>
+
+      </form>
     </>
   )
 };
