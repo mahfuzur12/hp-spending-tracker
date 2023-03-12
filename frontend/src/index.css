@@ -64,22 +64,14 @@
 
 body{
 	background-color: #000;
-    float: left;
-    margin-right: 5px;
 	
 }
 
 .content{
-    flex-direction: column;
-    text-align: left;
-    float:left;
-    margin-right:5px;
-    display: flex;    
 	font-family: 'Karla';
 	color: #d8d8d8;
 	margin-top: 10%;
 	margin-left:90px;
-    background-color: #000;
 }
 
 h1{
@@ -87,15 +79,17 @@ h1{
 }
 
 p{
+	margin-top: 10px;
 }
 
 .main{
-    float:left; 
-    
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 .btns{
 	margin-top: 10px;
+	background: #d8d8d8;
 	cursor:pointer;
 	color: #191919;
 	padding: 12px 20px;
@@ -119,14 +113,6 @@ img.hover{
 	transition: 3s;
 	cursor: pointer;
 }
-.signup-form{
-    width: 50%;
-    background-color: #000;
-    flex-direction: column;
-    text-align: left;
-
-}
-
 
 #chartTitle{
 	text-align: center;

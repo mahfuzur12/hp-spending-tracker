@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import Profile from "../../components/Profile/Profile";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Charts from "../../pages/Charts";
-import Saver from "../../pages/Saver";
+import Budget from "../../pages/Budget";
 import Overview from "../../pages/Overview";
 import './ProfileLayout.css'
 const ProfileLayout = () => {
@@ -19,7 +19,7 @@ const ProfileLayout = () => {
         </div>
 
         <div>
-        <Saver />
+        <Budget />
         </div>
       
         <div class = "content">

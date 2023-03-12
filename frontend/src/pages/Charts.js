@@ -200,11 +200,11 @@ function Charts(){
 
     return (
         <div className = "Charts">
-            <h1 id= "chartTitle">Spending Trends for this month</h1>
         <div className = "content">
             <div>
             <Navbar />
             </div>
+            <h1 id= "chartTitle">Spending Trends For This Month</h1>
             <div id = "pieChart">
                 <Doughnut
                 data = {pieData}

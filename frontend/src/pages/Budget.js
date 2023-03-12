@@ -22,7 +22,7 @@ export default function Spending(){
     
     return(
         
-            <div class = 'content'>
+            <div className = 'content'>
                 <div>
                 <Navbar />
                 </div>

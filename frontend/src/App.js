@@ -8,7 +8,7 @@ import { AuthContext } from "./context/AuthContext";
 import axios from "axios";
 import Overview from "./pages/Overview";
 import Charts from "./pages/Charts";
-import Saver from "./pages/Saver";
+import Budget from "./pages/Budget";
 import Transactions from "./pages/Transactions"
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
         <Route
           path="/api/auth/activate/:activation_token"
           exact element={<ActivateLayout />} />
-        <Route path="/saver" element={<Saver />}/> 
+        <Route path="/budget" element={<Budget />}/> 
         <Route path="/charts" element={<Charts/>}/>
         <Route path="/transactions" element = {<Transactions/>}/>
           
