@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import "./Navbar.css"
 
 
 const initialState = {
@@ -34,6 +35,7 @@ export default function Navbar() {
           <li><a href="/charts">Charts</a></li>
           <li><a href="/budget">Budget</a></li>
           <li><a href="/transactions">Transactions</a></li>
+          <li><a href="/profile">Profile</a></li>
           <li><h2>Welcome {user.name}!</h2></li>
           <li><button className = 'btns' onClick={handleClick} >Log out</button>
           </li>

@@ -9,6 +9,8 @@ import axios from "axios";
 import Charts from "./pages/Charts";
 import Budget from "./pages/Budget";
 import Transactions from "./pages/Transactions"
+import Profile from "./components/Profile/Profile";
+
 
 function App() {
   const { dispatch, token, isLoggedIn } = useContext(AuthContext);
@@ -56,6 +58,7 @@ function App() {
         <Route path="/budget" exact element={isLoggedIn? <Budget /> : <AuthLayout/>}/> 
         <Route path="/charts" exact element={isLoggedIn? <Charts/> : <AuthLayout/>}/>
         <Route path="/transactions"exact element = {isLoggedIn? <Transactions/> : <AuthLayout/>}/>
+        <Route path="/profile" exact element = {isLoggedIn? <Profile/> : <AuthLayout/>}/>
           
       </Routes>
     </Router>
