@@ -32,7 +32,7 @@ export default function Navbar() {
         <ul>
           <li><a href="/">Overview</a></li>
           <li><a href="/charts">Charts</a></li>
-          <li><a href="/saver">Budget</a></li>
+          <li><a href="/budget">Budget</a></li>
           <li><a href="/transactions">Transactions</a></li>
           <li><h2>Welcome {user.name}!</h2></li>
           <li><button className = 'btns' onClick={handleClick} >Log out</button>

@@ -6,7 +6,6 @@ import ProfileLayout from "./Layouts/ProfileLayout/ProfileLayout";
 import ResetLayout from "./Layouts/ResetLayout/ResetLayout";
 import { AuthContext } from "./context/AuthContext";
 import axios from "axios";
-import Overview from "./pages/Overview";
 import Charts from "./pages/Charts";
 import Budget from "./pages/Budget";
 import Transactions from "./pages/Transactions"
@@ -54,15 +53,14 @@ function App() {
         <Route
           path="/api/auth/activate/:activation_token"
           exact element={<ActivateLayout />} />
-        <Route path="/budget" element={<Budget />}/> 
-        <Route path="/charts" element={<Charts/>}/>
-        <Route path="/transactions" element = {<Transactions/>}/>
+        <Route path="/budget" exact element={isLoggedIn? <Budget /> : <AuthLayout/>}/> 
+        <Route path="/charts" exact element={isLoggedIn? <Charts/> : <AuthLayout/>}/>
+        <Route path="/transactions"exact element = {isLoggedIn? <Transactions/> : <AuthLayout/>}/>
           
       </Routes>
     </Router>
   );
   
-  //return (<Overview />);
 }
 
 export default App;
