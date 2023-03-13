@@ -83,15 +83,15 @@ return(
             <tbody>
                 {transactions.map((transaction) => (
                     <tr>
-                        <td > <Popup trigger={<button className='edit-btn'> Edit </button>} hideOnDocumentClick={true} >
+                        <td > <Popup trigger={<button className='edit-btn'> Edit </button>}  >
     <div className="modal">
-        <div className="modal-content">
+        <div className="modal-content" hideOnDocumentClick={true}>
             <h2>Edit Transaction</h2>
-            <span className="close">&times;</span>
+            <a href='/' className='close'>&times;</a>
         <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-                <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
-                <input type="text" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} />
+                <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} /><br/>
+                <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} /><br/>
+                <input type="text" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} /><br/>
                 <input type="date" placeholder="Date" value={date} onChange={(e) => setDate(e.target.value)} />
                 <button type="submit">SAVE</button>
 
