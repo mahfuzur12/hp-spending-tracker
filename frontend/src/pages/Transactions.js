@@ -3,7 +3,7 @@ import React,{useEffect, useState} from "react";
 import "../transactions.css"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-
+import Navbar from '../components/Navbar';
 
 
 
@@ -69,6 +69,7 @@ function Transactions() {
        
 return(
    
+   
     <div className="transactions">
     <div className='div1'>
         <table>
@@ -83,17 +84,18 @@ return(
             <tbody>
                 {transactions.map((transaction) => (
                     <tr>
-                        <td > <Popup trigger={<button className='edit-btn'> Edit </button>}  >
+                        <td > <Popup trigger={<button className='edit-btn'> Edit Transaction </button>}  >
     <div className="modal">
         <div className="modal-content" hideOnDocumentClick={true}>
-            <h2>Edit Transaction</h2>
+            <h2>EDIT TRANSACTION</h2>
             <a href='/' className='close'>&times;</a>
         <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} /><br/>
                 <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} /><br/>
                 <input type="text" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} /><br/>
-                <input type="date" placeholder="Date" value={date} onChange={(e) => setDate(e.target.value)} />
-                <button type="submit">SAVE</button>
+                <input type="date" placeholder="Date" value={date} onChange={(e) => setDate(e.target.value)} /><br/>
+                <input type="image" alt='Upload Image'></input><br/>
+                <button type="submit" className='save-btn'>SAVE</button>
 
             </form>
             </div>
@@ -110,10 +112,10 @@ return(
 
             
     </div>
-    
-
-
     </div>
+
+
+    
 
 
 
