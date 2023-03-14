@@ -2,27 +2,21 @@ body {
   margin: 0;
   }
 
-  .div1{
-   
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(163, 222, 182);
-  }
+  
  
   .div1 {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background-color: rgb(163, 222, 182);
+    background-color: rgb(163, 222, 182, 0.5);
   }
 
   table{
     
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid;
+    border: 1px solid greenyellow;
     border-collapse: collapse;
     text-align: center;
     padding: 5px;
@@ -31,7 +25,7 @@ body {
   }
 
  tr, th, td{
-    border: 1px solid;
+    border: 2px solid white;
     border-collapse: collapse;
     text-align: center;
     padding: 5px;
@@ -43,30 +37,31 @@ body {
 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
-    background-color: rgb(58, 85, 66);
+    background-color: rgb(58, 85, 66,0.5);
     color: white;
     padding: 5px;
+    border: 2px solid white;
   }
   
   td{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
-    background-color: rgb(163, 222, 182);
+    background-color: rgb(163, 222, 182, 0.5);
     color: black;
     padding: 5px;
     text-transform: capitalize;
-
+    
     
   }
   
   .edit-btn{
     float: left;
     height: 100%;
-    background-color: rgb(58, 85, 66);
+    background-color: rgb(58, 85, 66,0.5);
     color: white;
     font-size: 1.5rem;
     font-family:  'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
+    
     text-transform: capitalize;
     border: none;
     border-radius: 5%;
@@ -76,7 +71,7 @@ body {
   }
 
   .edit-btn:hover{
-    background-color: rgb(99, 142, 113);
+    background-color: rgb(99, 142, 113, 0.5);
   }
   
 
