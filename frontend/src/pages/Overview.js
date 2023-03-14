@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import 'regenerator-runtime/runtime';
 import axios from 'axios';
 import { usePlaidLink } from 'react-plaid-link';
-//import './App.css';
-
+import "./Overview.css"
 axios.default.baseUrl = "http://localhost:8000"
 
 function PlaidAuth({ publicToken }) {
