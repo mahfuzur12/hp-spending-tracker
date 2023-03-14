@@ -2,6 +2,7 @@ import {Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale
 import {Doughnut, Bar, Line} from 'react-chartjs-2';
 import React,{useEffect, useState} from "react";
 import Navbar from "../components/Navbar"; 
+import "./Charts.css"
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
