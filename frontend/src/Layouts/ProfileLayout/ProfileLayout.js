@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar";
 import Profile from "../../components/Profile/Profile";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Overview from "../../pages/Overview";
-import ConnectBank from "../../pages/ConnectBank";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useState } from "react";

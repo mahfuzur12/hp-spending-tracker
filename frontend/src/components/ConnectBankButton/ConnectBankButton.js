@@ -4,6 +4,7 @@ import 'regenerator-runtime/runtime';
 import axios from 'axios';
 import { usePlaidLink } from 'react-plaid-link';
 import { AuthContext } from "../../context/AuthContext";
+import './ConnectBankButton.css';
 //import './App.css';
 
 
@@ -14,7 +15,6 @@ axios.default.baseUrl = "http://localhost:8000"
 function PlaidAuth({ publicToken }) {
     //const [account, setAccount] = useState();
     //const [balance, setBalance] = useState();
-    //const [transactions, setTransactions] = useState();
     const { user } = useContext(AuthContext);
     useEffect(() => {
         async function fetch() {
@@ -28,7 +28,6 @@ function PlaidAuth({ publicToken }) {
             console.log("transactions", transactions.data);
             //setAccount(auth.data.numbers.bacs[0]);
             //setBalance(auth.data.accounts[0].balances);
-            //setTransactions(transactions.data.transactions);
 
             await axios.patch("/" + user._id, { accessToken: accessToken.data.accessToken }
             );
@@ -77,8 +76,6 @@ function PlaidAuth({ publicToken }) {
 function ConnectBankButton() {
     const [linkToken, setLinkToken] = useState();
     const [publicToken, setPublicToken] = useState();
-    const [accessToken, setAccessToken] = useState();
-    const { user } = useContext(AuthContext);
 
     useEffect(() => {
 
@@ -87,14 +84,6 @@ function ConnectBankButton() {
             setLinkToken(response.data.link_token);
         }
         fetch();
-    }, []);
-
-    useEffect(() => {
-        async function Fetch() {
-            const response = await axios.get("http://localhost:8000/" + user._id);
-            setAccessToken(response.data.data.accessToken);
-        }
-        Fetch();
     }, []);
 
 
@@ -111,12 +100,9 @@ function ConnectBankButton() {
     });
 
     return publicToken ? (<PlaidAuth publicToken={publicToken} /> ) : (
-        <div>
-            <br />
             <button class='btns' onClick={() => open()} disabled={!ready}>
-                Connect a bank account
+                Connect Bank Account
             </button>
-        </div>
     );
 }
 
