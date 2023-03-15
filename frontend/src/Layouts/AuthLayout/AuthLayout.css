@@ -156,3 +156,21 @@ img.hover {
   align-items: center;
   background-color: inherit;
 }
+
+.test1{
+  height:100vh;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+}
+
+.test2{
+  height:100vh;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+}

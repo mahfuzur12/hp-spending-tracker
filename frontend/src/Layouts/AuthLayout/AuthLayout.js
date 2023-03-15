@@ -31,10 +31,10 @@ const AuthLayout = () => {
       <nav class="navbar">
         <a class="nav-logo">Piciclot Tracker</a>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#hi">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <main>
@@ -61,11 +61,17 @@ const AuthLayout = () => {
 
 
       </main>
-
       <div className="test" >
-          <p id="hi">aaaaa</p>
+          <p id="about"></p>
         </div>
 
+        <div className="test1" >
+          <p id="services"></p>
+        </div>
+
+        <div className="test2" >
+          <p id="contact"></p>
+        </div>
     </body>
   );
 };
