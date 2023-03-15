@@ -7,7 +7,7 @@
 
 .navbar{
 	background-color: #000;
-	color: #d8d8d8;
+	/* color: #d8d8d8; */
 	border-bottom: 0.5px sold gray;
 	width: 100%;
 	line-height: 80px;
@@ -22,7 +22,7 @@
 
 .navbar a{
 	text-decoration: none;
-	color: #d8d8d8;
+	/* color: #d8d8d8; */
 }
 
 .navbar a.nav-logo{
@@ -34,7 +34,7 @@
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-family: 'Karla';
-	color: #d8d8d8;
+	/* color: #d8d8d8; */
 	font-weight: bold;
 }
 
@@ -59,60 +59,12 @@
 }
 
 .navbar ul li a:hover{
-	background-color:gray;
+	/* background-color:gray; */
 }
 
-body{
-	background-color: #000;
-	
-}
 
-.content{
-	font-family: 'Karla';
-	color: #d8d8d8;
-	margin-top: 10%;
-	margin-left:90px;
-}
 
-h1{
-	font-size: 70px;
-}
 
-p{
-	margin-top: 10px;
-}
-
-.main{
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-}
-
-.btns{
-	margin-top: 10px;
-	background: #d8d8d8;
-	cursor:pointer;
-	color: #191919;
-	padding: 12px 20px;
-	float: left;
-	border: 0;
-	border-radius:20px;
-	margin-left: 10px;
-}
-
-.btns hover{
-	background: #848482;
-}
-img{
-position: relative;
-width: 30%;
-top: -350px;
-right: -350px;
-}
-img.hover{
-	filter: grayscale(0);
-	transition: 3s;
-	cursor: pointer;
-}
 
 #chartTitle{
 	text-align: center;
@@ -158,4 +110,3 @@ img.hover{
 	font-size: 40px;
 	margin: 4px 2px;
   }
-  

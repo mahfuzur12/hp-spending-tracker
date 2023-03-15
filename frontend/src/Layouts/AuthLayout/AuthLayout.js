@@ -4,6 +4,7 @@ import Signin from "../../pages/Signin";
 import Signup from "../../pages/Signup";
 import img from "../../images/landing1.png"
 import "./AuthLayout.css";
+import Navbar from "../../components/Navbar";
 
 const AuthLayout = () => {
   const [signin, setSignin] = useState(true)
@@ -31,16 +32,16 @@ const AuthLayout = () => {
       <nav class="navbar">
         <a class="nav-logo">Piciclot Tracker</a>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#Home">Home</a></li>
+          <li><a href="#About">About</a></li>
+          <li><a href="#Services">Services</a></li>
+          <li><a href="#Contact">Contact</a></li>
         </ul>
       </nav>
-      <main>
-        <div class='content'>
-          <h1>Your Personal <br/> Spending Tracker</h1>
-          <p>Join us to track your spending and save more money :-)</p>
+      <main id ='Home'>
+        <div class='content' style={{ color: "white" }}>
+          <h1 className='LandingTitle'>Your Personal <br/> Spending Tracker</h1>
+          <p id='MainContent'>Join us to track your spending and save more money :-)</p>
           <br/>
           <div class = "landing-form">
           {signin && <Signin />}
@@ -58,10 +59,24 @@ const AuthLayout = () => {
           
         </div>
 
+
+
       </main>
+
+      <div className="LandingSection" >
+          <p id="About">aaaa</p>
+        </div>
+
+        <div className="LandingSection" >
+          <p id="Service">aaaa</p>
+        </div>
+
+        <div className="LandingSection" >
+          <p id="Contact">aaaa</p>
+        </div>
+
     </body>
   );
 };
 
 export default AuthLayout;
-

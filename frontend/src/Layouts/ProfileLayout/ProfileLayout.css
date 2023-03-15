@@ -7,7 +7,7 @@
 
 .navbar{
 	background-color: #000;
-	color: #d8d8d8;
+	/* color: #d8d8d8; */
 	border-bottom: 0.5px sold gray;
 	width: 100%;
 	line-height: 80px;
@@ -22,7 +22,7 @@
 
 .navbar a{
 	text-decoration: none;
-	color: #d8d8d8;
+	/* color: #d8d8d8; */
 }
 
 .navbar a.nav-logo{
@@ -34,7 +34,7 @@
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-family: 'Karla';
-	color: #d8d8d8;
+	/* color: #d8d8d8;s */
 	font-weight: bold;
     flex-direction: row;
 }
@@ -60,7 +60,7 @@
 }
 
 .navbar ul li a:hover{
-	background-color:gray;
+	/* background-color:gray; */
 }
 
 body{
@@ -77,7 +77,7 @@ body{
     margin-right:5px;
     display: flex;    
 	font-family: 'Karla';
-	color: #d8d8d8;
+	/* color: #d8d8d8; */
 	margin-top: 10%;
 	margin-left:90px;
 
