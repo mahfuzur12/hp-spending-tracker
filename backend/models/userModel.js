@@ -24,7 +24,15 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Transaction'
         }
-    ]
+    ],
+    budget: {
+        type: Number,
+        required: false
+    },
+    streaks: {
+        type: Number,
+        required: false
+    },
 });
 
 module.exports = mongoose.model('User', UserSchema);
