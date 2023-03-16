@@ -8,7 +8,7 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 
 function BudgetSummary(){
-
+    const [filled, setFilled] = useState(0);
     
     const daysInMonth = (year, month) => new Date(year, month, 0).getDate();
     var today = new Date();
@@ -17,18 +17,26 @@ function BudgetSummary(){
     var yyyy = today.getFullYear();
 
     var daysLeft = (daysInMonth(yyyy, mm) - dd) + 1
-    //var budgetDescription = document.getElementById("budget-left")
-    //budgetDescription.innerText = daysLeft;
     
-        
     const budgetData = {
         labels: ['Budget Left'],
         datasets: [
-            { 
+            {
+                label: "Total Budget",
+                backgroundColor: "rgb(0, 0, 0, 0.1)",
                 data: [500],
+                borderWidth: 1,
+                borderSkipped: false,
+                borderRadius: 5,
+                barPercentage: 0.25,
+                grouped: false
+            },
+            { 
+                label: "Budget Left",
+                data: [360],
                 backgroundColor: "rgb(46, 213, 115)",
                 borderColor: "rgba(46, 213, 115, 0.5)",
-                borderWidth: 0,
+                borderWidth: 1,
                 borderSkipped: false,
                 borderRadius: 5,
                 barPercentage: 0.25
