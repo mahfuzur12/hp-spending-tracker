@@ -2,12 +2,13 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Profile from "../../components/Profile/Profile";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Charts from "../../pages/Charts";
+import Budget from "../../pages/Budget";
 import Overview from "../../pages/Overview";
+import './ProfileLayout.css'
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
-
-
 
 
 const ProfileLayout = () => {
@@ -19,19 +20,22 @@ const ProfileLayout = () => {
   
   
     return (
-      <div>
+      <div class = 'content'>
 
 
 
         <div>
-        <Sidebar />
+        <Charts />
         </div>
 
         <div>
+        <Budget />
+        </div>
+      
+        <div class = "content">
         <Overview />
         </div>
 
-      
         
       </div>
     );

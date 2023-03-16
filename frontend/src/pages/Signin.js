@@ -8,8 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Input from "../components/Input/Input";
 import { AuthContext } from "../context/AuthContext";
-import './Signup.css'
-
 const initialState = {
   name: '',
   password: ''
@@ -40,7 +38,7 @@ const Signin = () => {
       });
     // check email
     if (!isEmail(email))
-      return toast("Please enter a valid email addresss.", {
+      return toast("Please enter a valid email address.", {
         className: "toast-failed",
         bodyClassName: "toast-failed",
       });
@@ -61,10 +59,13 @@ const Signin = () => {
     <ToastContainer />
     <form onSubmit={signin}>
 
+      <div class = 'landing-form'>
       <label>Email</label>
       <Input type="email"  name="email" handleChange={handleChange}/>
+      </div>
+      
       <br/>
-
+      <div class = 'landing-form'>
       <label>Password</label>
       <Input
         name="password"
@@ -73,12 +74,13 @@ const Signin = () => {
         handleClick={handleClick}
         handleChange={handleChange}
       />
+      </div>
+      
       <br/>
       <br/>
 
-      <div>
         <button class ='btns' type="submit">Log In</button>
-      </div>
+     
     </form>
     </>
   )

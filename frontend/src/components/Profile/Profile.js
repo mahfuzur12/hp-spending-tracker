@@ -10,6 +10,8 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../Navbar";
+import "./Profile.css"
 
 const initialState = {
   name: "",
@@ -116,20 +118,13 @@ const Profile = () => {
 
   return (
     <>
-    <ToastContainer />
-    <div>
-      <div>
-        <div onClick={handleInput}>
-          <Avatar />
-          <AiFillCamera />
+      <ToastContainer />
+      <div className="content">
+        <div>
+          <Navbar/>
         </div>
-        <input
-          type="file"
-          name="avatar"
-          ref={inputFile}
-        />
-      </div>
-      <form onSubmit={handleSubmit}>
+        <div>
+        <form onSubmit={handleSubmit}>
         <div>
           <Input type="text" text="Name" defaultValue={user.name} name="name" handleChange={handleChange}/>
           <Input type="text" text="Email" defaultValue={user.email} disabled name="email" handleChange={handleChange}/>
@@ -154,7 +149,10 @@ const Profile = () => {
           </div>
         </div>
       </form>
-    </div>
+        </div>
+      
+      </div>
+      
     </>
   );
 };

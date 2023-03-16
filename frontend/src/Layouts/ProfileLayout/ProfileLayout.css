@@ -34,8 +34,9 @@
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-family: 'Karla';
-	/* color: #d8d8d8; */
+	/* color: #d8d8d8;s */
 	font-weight: bold;
+    flex-direction: row;
 }
 
 .navbar ul{
@@ -63,7 +64,7 @@
 }
 
 body{
-	background-color: #000;
+	
     float: left;
     margin-right: 5px;
 	
@@ -79,7 +80,7 @@ body{
 	/* color: #d8d8d8; */
 	margin-top: 10%;
 	margin-left:90px;
-    background-color: #000;
+
 }
 
 h1{
@@ -95,14 +96,16 @@ p{
 }
 
 .btns{
+   
 	margin-top: 10px;
+	background: white;
 	cursor:pointer;
 	color: #191919;
 	padding: 12px 20px;
 	float: left;
 	border: 0;
 	border-radius:20px;
-	margin-left: 10px;
+    width: auto;
 }
 
 .btns hover{
@@ -120,56 +123,11 @@ img.hover{
 	cursor: pointer;
 }
 .signup-form{
+    float:left;
+    position: relative;
     width: 50%;
     background-color: #000;
-    flex-direction: column;
     text-align: left;
+    color: white;
 
 }
-
-
-#chartTitle{
-	text-align: center;
-  }
-  
-  #pieChart{
-	padding: 20px;
-	width: 45%;
-	float:left;
-	
-  }
-  
-  #barChart{
-	padding: 20px;
-	width: 45%;
-	float: right;
-  
-  }
-  
-  #lineChart{
-	padding: 20px;
-	width: 45%;
-	float: right;
-  }
-  
-  .budgetSetter{
-	text-align: center;
-	
-  
-  }
-  
-  .budgetButton{
-	padding: 14px 40px;
-	margin: 4px 2px;
-	background-color: #5CCC74;
-	border: none;
-	color: white;
-	font-size: 24px;
-	border-radius: 4px;
-  }
-  
-  #budget{
-	font-size: 40px;
-	margin: 4px 2px;
-  }
-  

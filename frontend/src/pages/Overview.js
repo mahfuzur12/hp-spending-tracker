@@ -3,6 +3,8 @@ import 'regenerator-runtime/runtime';
 import axios from 'axios';
 import { AuthContext } from "../context/AuthContext";
 import Card from "../components/ConnectBankButton/Card";
+import { usePlaidLink } from 'react-plaid-link';
+import "./Overview.css"
 
 axios.default.baseUrl = "http://localhost:8000"
 
