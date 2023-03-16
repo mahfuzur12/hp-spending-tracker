@@ -1,6 +1,7 @@
 import React from "react";
 import {useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+
 export default function Spending(){
     function incBudget(){
         const budget = document.getElementById("budget");
@@ -32,7 +33,7 @@ export default function Spending(){
                     <span>£</span><span id ="budget">500</span>
                     <button onClick={incBudget} className="budgetButton"> + </button>
                     <div>
-                        <button onClick={() => {navigate("/charts")}} className="budgetButton"> Done </button>
+                        <button onClick={() => {navigate("/budget-summary")}} className="budgetButton"> Done </button>
                      </div>
                 </div>
 

@@ -113,30 +113,6 @@ img.hover{
 	transition: 3s;
 	cursor: pointer;
 }
-
-#chartTitle{
-	text-align: center;
-  }
-  
-  #pieChart{
-	padding: 20px;
-	width: 45%;
-	float:left;
-	
-  }
-  
-  #barChart{
-	padding: 20px;
-	width: 45%;
-	float: right;
-  
-  }
-  
-  #lineChart{
-	padding: 20px;
-	width: 45%;
-	float: right;
-  }
   
   .budgetSetter{
 	text-align: center;
