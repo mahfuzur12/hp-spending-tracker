@@ -119,6 +119,7 @@ img.hover{
 	transition: 3s;
 	cursor: pointer;
 }
+
 .signup-form{
     width: 50%;
     background-color: #000;
@@ -151,6 +152,7 @@ img.hover{
 	width: 45%;
 	float: right;
   }
+
   
   .budgetSetter{
 	text-align: center;

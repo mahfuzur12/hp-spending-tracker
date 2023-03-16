@@ -27,13 +27,6 @@ function Charts(){
                 borderColor: '#6b9bd1',
                 tension: 0.3,
                 label: "Spending this month"
-            },
-            {
-                label: "Spending last month",
-                data:[10, 20, 30],
-                backgroundColor: 'red',
-                borderColor: 'red',
-                tension: 0.3
             }
         ]
     })
@@ -201,9 +194,7 @@ function Charts(){
     }
 
     return (
-        <div className = "Charts">
-        <div className = "content">
-            <div>
+        <div className='charts'>
             <Navbar />
             </div>
             <h1 id= "chartTitle">Spending Trends For {month}</h1>
@@ -228,7 +219,6 @@ function Charts(){
             </div>
         </div>
         
-        </div>
     )
 
 }

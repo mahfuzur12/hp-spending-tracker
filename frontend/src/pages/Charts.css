@@ -1,3 +1,34 @@
-*{
-   
+#chartTitle{
+	text-align: center;
+  }
+  
+#pieChart{
+padding: 20px;
+width: 75%;
+float:left;
+
+}
+
+#barChart{
+padding: 20px;
+width: 90%;
+float: right;
+
+}
+
+#lineChart{
+padding: 20px;
+width: 90%;
+float: right;
+}
+
+.charts{
+    font-family: 'Karla';
+	color: #d8d8d8;
+    margin-top: 5%;
+	margin-left:30px;
+    margin-bottom: 150px;
+    padding: 20px;
+    width: 100%;
+    
 }
