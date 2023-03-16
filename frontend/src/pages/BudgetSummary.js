@@ -29,7 +29,7 @@ function BudgetSummary(){
                 borderSkipped: false,
                 borderRadius: 5,
                 barPercentage: 0.25,
-                grouped: false
+                grouped: false,
             },
             { 
                 label: "Budget Left",

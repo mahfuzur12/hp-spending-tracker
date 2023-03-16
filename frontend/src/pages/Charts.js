@@ -196,7 +196,6 @@ function Charts(){
     return (
         <div className='charts'>
             <Navbar />
-            </div>
             <h1 id= "chartTitle">Spending Trends For {month}</h1>
             <div id = "pieChart">
                 <Doughnut
