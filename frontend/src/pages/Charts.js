@@ -67,6 +67,13 @@ function Charts(){
             dates: w,
           }));
       }
+
+    var today = new Date();
+    var mm = String(today.getMonth() + 1 ).padStart(2, '0'); 
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm
+    const d = new Date(yyyy, mm - 1, 10);  
+    const month = d.toLocaleString('en-us', { month: 'long' });
     
     useEffect(() => {
        const fetchData = () => {
@@ -81,12 +88,6 @@ function Charts(){
             const lineLabel = [];
             const barData = [];
             const barLabel = [];
-            var today = new Date();
-            var mm = String(today.getMonth() + 1 ).padStart(2, '0'); 
-            var yyyy = today.getFullYear();
-            today = yyyy + "-" + mm
-            const d = new Date(yyyy, mm - 1, 10);  
-            const month = d.toLocaleString('en-us', { month: 'long' });
             var other = 0;
             var transport = 0;
             var entertainment = 0;
@@ -195,7 +196,8 @@ function Charts(){
     return (
         <div className='charts'>
             <Navbar />
-            <h1 id= "chartTitle">Spending Trends For This Month</h1>
+            </div>
+            <h1 id= "chartTitle">Spending Trends For {month}</h1>
             <div id = "pieChart">
                 <Doughnut
                 data = {pieData}

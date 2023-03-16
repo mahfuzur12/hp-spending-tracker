@@ -31,14 +31,14 @@ const AuthLayout = () => {
       <nav class="navbar">
         <a class="nav-logo">Piciclot Tracker</a>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <main>
-        <div class='content'>
+        <div class='content' style={{ color: "white" }}>
           <h1>Your Personal <br/> Spending Tracker</h1>
           <p>Join us to track your spending and save more money :-)</p>
           <br/>
@@ -58,10 +58,22 @@ const AuthLayout = () => {
           
         </div>
 
+
+
       </main>
+      <div className="test" >
+          <p id="about"></p>
+        </div>
+
+        <div className="test1" >
+          <p id="services"></p>
+        </div>
+
+        <div className="test2" >
+          <p id="contact"></p>
+        </div>
     </body>
   );
 };
 
 export default AuthLayout;
-

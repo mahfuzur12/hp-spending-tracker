@@ -6,13 +6,23 @@ import Charts from "../../pages/Charts";
 import Budget from "../../pages/Budget";
 import Overview from "../../pages/Overview";
 import './ProfileLayout.css'
+import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext, useEffect, useState } from "react";
+
+
 const ProfileLayout = () => {
+  //const [hasCard, setHasCard] = useState(false);
+
+      
+
+  
+  
+  
     return (
       <div class = 'content'>
 
-        <div>
-        <Navbar />
-        </div>
+
 
         <div>
         <Charts />
@@ -29,6 +39,8 @@ const ProfileLayout = () => {
         
       </div>
     );
-  };
+
+}
+  
   
   export default ProfileLayout;
