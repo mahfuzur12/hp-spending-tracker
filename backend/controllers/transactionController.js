@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // @route    POST api/transactions
 // @desc     Create a transaction
 exports.addTransaction = async (req, res) => {
-    const { date, description, amount, category } = req.body;
+    const { date, description, amount, category, userId } = req.body;
 
     try {
         const newTransaction = new Transaction({
@@ -13,14 +13,13 @@ exports.addTransaction = async (req, res) => {
             description,
             amount,
             category,
-            user: req.user.id
+            // user: req.user.id
         });
 
         const transaction = await newTransaction.save();
 
         // update user transactions
-        await User.findByIdAndUpdate(req.user.id, { $push: { transactions: transaction._id } });
-
+        await User.findByIdAndUpdate(userId, { $push: { transactions: transaction._id } });
 
         res.json(transaction);
     } catch (err) {
