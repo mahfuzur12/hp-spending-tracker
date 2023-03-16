@@ -1,75 +1,89 @@
 body {
   margin: 0;
   }
-
-  
+ .transactions {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 8%;
  
-  .div1 {
-    display: flex;
-    flex-direction: column;
+ 
+  background-color: rgb(163, 222, 182, 0.2);
+
+  }
+  
+  .content{
     width: 100%;
-    height: 100%;
-    background-color: rgb(163, 222, 182, 0.5);
+    left: 0;
   }
   table{
     
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid greenyellow;
+    
+   
     border-collapse: collapse;
     text-align: center;
     padding: 5px;
-    margin: 5px;
     
+    width: 90%;
   }
 
  tr, th, td{
-    border: 2px solid white;
+    border: 0.3px solid darkolivegreen;
     border-collapse: collapse;
     text-align: center;
-    background-color: rgb(163, 222, 182);  
+    background-color: rgb(163, 222, 182, 0.2);  
     font-size: 1.5rem;
   }
 
   th{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.5rem;
-    background-color: rgb(58, 85, 66,0.5);
+    font-family: 'Karla';
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: rgb(58, 85, 66,0.2);
     color: white;
     padding: 5px;
-    border: 2px solid white;
+    border: 0.3px solid darkolivegreen;
+    text-shadow: 0.5px 0.5px 0.5px olivedrab;
   }
   
   td{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
-    background-color: rgb(163, 222, 182, 0.5);
+    background-color: rgb(163, 222, 182, 0.2);
     color: black;
     padding: 5px;
     text-transform: capitalize;
     
     
   }
-  
-  .edit-btn{
-    float: left;
-    height: 100%;
-    background-color: rgb(58, 85, 66,0.5);
-    color: white;
-    font-size: 1.5rem;
-    font-family:  'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    
-    text-transform: capitalize;
-    border: none;
-    border-radius: 5%;
-    padding: 5px;
-    margin: 5px;
-    cursor: pointer;
+ 
+  .modal {
+ 
+    border: 1px solid black;
+    width: 100%;
+
+
+
   }
-
-  .edit-btn:hover{
-    background-color: rgb(99, 142, 113, 0.5);
-  }
+ 
+form{
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
   
+  
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  
+  text-align: center;
+}
 
+.popup-content{
+  margin:0;
+  padding: 0px;
+}
 
+  
