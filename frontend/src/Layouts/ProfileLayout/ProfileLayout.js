@@ -9,6 +9,7 @@ import './ProfileLayout.css'
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
+import Streaks from "../../pages/Streaks";
 
 
 const ProfileLayout = () => {
@@ -34,6 +35,10 @@ const ProfileLayout = () => {
       
         <div class = "content">
         <Overview />
+        </div>
+
+        <div>
+          <Streaks/>
         </div>
 
         

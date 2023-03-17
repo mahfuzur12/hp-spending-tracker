@@ -11,6 +11,7 @@ import Budget from "./pages/Budget";
 import Transactions from "./pages/Transactions"
 import Profile from "./components/Profile/Profile";
 import BudgetSummary from "./pages/BudgetSummary";
+import Streaks from "./pages/Streaks";
 
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
         <Route path="/transactions"exact element = {isLoggedIn? <Transactions/> : <AuthLayout/>}/>
         <Route path="/profile" exact element = {isLoggedIn? <Profile/> : <AuthLayout/>}/>
         <Route path="/budget-summary" exact element={isLoggedIn? <BudgetSummary/> : <AuthLayout/>}/>
+        <Route path="/progress" exact element={isLoggedIn? <Streaks/> : <AuthLayout/>}/>
+
+
           
       </Routes>
     </Router>
