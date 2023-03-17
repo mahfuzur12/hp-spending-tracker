@@ -21,7 +21,7 @@ function BudgetSummary(){
     var daysLeft = (daysInMonth(yyyy, mm) - dd) + 1
     
     const budgetData = {
-        labels: ['Budget Left'],
+        labels: ['Budget Tracker'],
         datasets: [
             {
                 label: "Total Budget",
@@ -45,6 +45,8 @@ function BudgetSummary(){
             }
         ]
     }
+
+    const budget = 360;
 
     const budgetOptions = {
         indexAxis: 'y',
@@ -83,7 +85,7 @@ function BudgetSummary(){
         <div className="content">
             <Navbar/>
             <h1> Budget Summary</h1>
-            <h2 id="budget-left">You have £ left for {daysLeft} days</h2>
+            <h2 id="budget-left">You have £{budget} left for {daysLeft} days</h2>
             <div className="budget-bar"> 
                 <Bar 
                 data = {budgetData}
