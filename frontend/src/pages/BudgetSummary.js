@@ -2,14 +2,16 @@ import Navbar from "../components/Navbar";
 import React, {useState, useEffect} from 'react'
 import {Bar} from 'react-chartjs-2';
 import {Chart as ChartJS, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
+import "./BudgetSummary.css"
+import {useNavigate } from "react-router-dom";
 
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 
 function BudgetSummary(){
-    const [filled, setFilled] = useState(0);
-    
+    const navigate = useNavigate();
+
     const daysInMonth = (year, month) => new Date(year, month, 0).getDate();
     var today = new Date();
     var dd = today.getDate();
@@ -79,13 +81,16 @@ function BudgetSummary(){
 
     return(
         <div className="content">
-            <Navbar></Navbar>
+            <Navbar/>
             <h1> Budget Summary</h1>
             <h2 id="budget-left">You have £ left for {daysLeft} days</h2>
-            <Bar
-            data = {budgetData}
-            options = {budgetOptions}>
-            </Bar>
+            <div className="budget-bar"> 
+                <Bar 
+                data = {budgetData}
+                options = {budgetOptions}>
+                </Bar>
+            </div>
+            <button onClick={() => {navigate("/budget")}} className="reset-budget-button"> Reset Budget </button>
         </div>
     )
 }

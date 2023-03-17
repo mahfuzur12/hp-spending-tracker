@@ -1,0 +1,13 @@
+.reset-budget-button{
+    font-size: 30px;
+	margin: 4px 2px;
+    width: 500px;
+	height: 75px;
+	border-radius: 5px;
+    
+}
+
+.budget-bar{
+	height: 450px;
+	float: center;
+}
