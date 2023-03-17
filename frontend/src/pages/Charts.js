@@ -69,7 +69,7 @@ function Charts(){
       }
 
     var today = new Date();
-    var mm = String(today.getMonth() + 1 ).padStart(2, '0'); 
+    var mm = String(today.getMonth() +1).padStart(2, '0'); 
     var yyyy = today.getFullYear();
     today = yyyy + "-" + mm
     const d = new Date(yyyy, mm - 1, 10);  
@@ -109,9 +109,6 @@ function Charts(){
                     }
                     lineData.push(i.amount)
                     lineLabel.push(i.date.toString().substring(5,10))
-                    if(!pieLabel.includes(i.category)){
-                        pieLabel.push(i.category)
-                    }
                     if(i.category === "Other"){
                         other += i.amount;
                     }
@@ -131,6 +128,7 @@ function Charts(){
             }
             lineData.reverse()
             lineLabel.sort()
+            pieLabel.push("Other", "Transport", "Entertainment", "Food", "Shopping")
             pieData.push(other, transport, entertainment, food, shopping)
             setPieData(
                 {
