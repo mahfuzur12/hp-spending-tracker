@@ -5,7 +5,7 @@ body {
   display: flex;
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: 70%;
   top: 8%;
  
  
@@ -25,14 +25,14 @@ body {
     text-align: center;
     padding: 5px;
     
-    width: 90%;
+    width: 100%;
   }
 
  tr, th, td{
     border: 0.3px solid darkolivegreen;
     border-collapse: collapse;
     text-align: center;
-    background-color: rgb(163, 222, 182, 0.2);  
+    background-color: rgba(255, 255, 255, 0);  
     font-size: 1.5rem;
   }
 
@@ -44,14 +44,17 @@ body {
     color: white;
     padding: 5px;
     border: 0.3px solid darkolivegreen;
-    text-shadow: 0.5px 0.5px 0.5px olivedrab;
+    -webkit-text-stroke: 0.1px;
+    -webkit-text-stroke-color: black;
   }
   
   td{
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     background-color: rgb(163, 222, 182, 0.2);
-    color: black;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.2px;
+    -webkit-text-stroke-color: rgb(255, 246, 246);
     padding: 5px;
     text-transform: capitalize;
     
@@ -87,3 +90,24 @@ form{
 }
 
   
+.filter{
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  display: inline-flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+
+.filter h2{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  -webkit-text-stroke: 0.1px;
+  -webkit-text-stroke-color: black;
+  color: white;
+  text-align: center;
+  margin-right: 10px;
+}
+

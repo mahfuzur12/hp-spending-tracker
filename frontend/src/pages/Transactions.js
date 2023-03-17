@@ -8,10 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import TextField from '@mui/material/TextField';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import dayjs from 'dayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
 
 
 function Transactions() {
@@ -22,35 +21,42 @@ function Transactions() {
     const [category, setCategory] = useState(" ");
      const [date, setDate] = useState(" ");
      const [selectedTransactionId, setSelectedTransactionId] = useState(null);
-    const [showPopup, setShowPopup] = useState(false);
-    const [value, setValue] = React.useState(dayjs('2014-01-01'));
-   
+    const[showPopup, setShowPopup] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const[categoryFilter, setCategoryFilter] = useState("All");
+    const [originalTransactions, setOriginalTransactions] = useState([]);
     
-    // Fetch transactions on component mount
-  useEffect(() => {
-    axios.get("http://localhost:8000/api/transactions")
-      .then(res => setTransactions(res.data))
-      .catch(err => console.log(err))
-  }, []);
-  
-     // Fetch a single transaction on component mount with an ID parameter
-     const fetchTransaction = (transactionId) => {
-        axios.get(`http://localhost:8000/api/transactions/${transactionId}`)
+    // Fetch transactions data
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/transactions") 
           .then(res => {
-            console.log(res.data);
-            setDescription(res.data.description);
-            setAmount(res.data.amount);
-            setCategory(res.data.category);
-            setDate(res.data.date);
-            setSelectedTransactionId(transactionId);
-            setShowPopup(true);
+            setOriginalTransactions(res.data);
+            setTransactions(res.data);
           })
-          .catch(err => {
-            console.log(err);
-          })
-      };
+          .catch(err => console.log(err))
+      }, []);
+  
+        const filteredTransactions =
+            categoryFilter === "All"
+            ? transactions
+            : transactions.filter((transaction) => transaction.category === categoryFilter);
 
     
+    // Filter transactions by category
+    const handleCategoryChange = (selectedCategory) => {
+        setSelectedCategory(selectedCategory);
+        if (selectedCategory === "All") {
+            setTransactions(originalTransactions);
+        } else {
+            const filtered = originalTransactions.filter(
+            (transaction) => transaction.category === selectedCategory
+            );
+            setTransactions(filtered);
+        }
+        };
+    
+
+
     // Handle form submit to update a transaction
     function handleSubmit (event) {
         event.preventDefault();
@@ -62,9 +68,8 @@ function Transactions() {
         .then(res => {
           console.log(res.data);
           setShowPopup(false);
-          setSelectedTransactionId(null);
-          // Refresh transactions data
-          axios.get("http://localhost:8000/api/transactions")
+          setSelectedTransactionId(null);         
+          axios.get("http://localhost:8000/api/transactions") // Refresh transactions data
             .then(res => setTransactions(res.data))
             .catch(err => console.log(err))
         })
@@ -73,6 +78,8 @@ function Transactions() {
         })
       }
       
+
+      // Handle edit button click
       function handleEdit(event) {
         console.log("Hello")
         const transactionId = event.currentTarget.dataset.transactionId;
@@ -97,6 +104,25 @@ return(
     <div >
         <Navbar />
     </div>
+    <div className="filter">
+        <h2>Filter by Category:</h2>
+    <Select
+          value={selectedCategory}
+          onChange={(e) => handleCategoryChange(e.target.value)}
+          displayEmpty
+          
+          inputProps={{ 'aria-label': 'Filter by Category' }}
+        >
+          <MenuItem value="All">
+            Category
+          </MenuItem>
+          <MenuItem value="transport">Transport</MenuItem>
+          <MenuItem value="shopping">Shopping</MenuItem>
+          <MenuItem value="food & drink">Food & Drink</MenuItem>
+          <MenuItem value="entertainment">Entertainment</MenuItem>
+          <MenuItem value="Other">Other</MenuItem>
+        </Select>
+</div>
     <div className="transactions">
     <table> 
         <thead>
@@ -108,7 +134,11 @@ return(
             </tr>
         </thead>
     <tbody>
-        {transactions.map((transaction) => ( 
+    {transactions.filter(
+    (transaction) =>
+      selectedCategory === "All" || transaction.category === selectedCategory
+  )
+  .map((transaction) => ( 
             <tr key={transaction._id} data-transaction-id={transaction._id}>
                 <td key={transaction.id}> <Popup trigger={
                 <IconButton
