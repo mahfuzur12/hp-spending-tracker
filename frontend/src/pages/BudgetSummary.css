@@ -4,10 +4,13 @@
     width: 350px;
 	height: 75px;
 	border-radius: 5px;
+	font-family: 'Karla';
+	
     
 }
 
 .budget-bar{
 	height: 450px;
 	float: center;
+	
 }
