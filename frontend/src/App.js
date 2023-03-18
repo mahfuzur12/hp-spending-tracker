@@ -10,6 +10,7 @@ import Charts from "./pages/Charts";
 import Budget from "./pages/Budget";
 import Transactions from "./pages/Transactions"
 import Profile from "./components/Profile/Profile";
+import Overview from "./pages/Overview2";
 
 
 function App() {
@@ -55,11 +56,11 @@ function App() {
         <Route
           path="/api/auth/activate/:activation_token"
           exact element={<ActivateLayout />} />
-        <Route path="/budget" exact element={isLoggedIn? <Budget /> : <AuthLayout/>}/> 
-        <Route path="/charts" exact element={isLoggedIn? <Charts/> : <AuthLayout/>}/>
-        <Route path="/transactions"exact element = {isLoggedIn? <Transactions/> : <AuthLayout/>}/>
-        <Route path="/profile" exact element = {isLoggedIn? <Profile/> : <AuthLayout/>}/>
-          
+        <Route path="/budget" exact element={isLoggedIn ? <Budget /> : <AuthLayout />} />
+        <Route path="/charts" exact element={isLoggedIn ? <Charts /> : <AuthLayout />} />
+        <Route path="/transactions" exact element={isLoggedIn ? <Transactions /> : <AuthLayout />} />
+        <Route path="/profile" exact element={isLoggedIn ? <Profile /> : <AuthLayout />} />
+
       </Routes>
     </Router>
   );
