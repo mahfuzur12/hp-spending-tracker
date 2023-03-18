@@ -1,11 +1,11 @@
-.content{
+.content {
     background-color: inherit;
     align-items: left;
     font: inherit;
     color: black;
-
-}
-.calendar {
+  }
+  
+  .calendar {
     display: flex;
     flex-wrap: wrap;
   }
@@ -38,5 +38,6 @@
   }
   
   .progress-bar.over-budget {
-    background-color:inherit}
+    background-color: red;
+  }
   
