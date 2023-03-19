@@ -115,9 +115,6 @@ function Charts() {
                         }
                         lineData.push(i.amount)
                         lineLabel.push(i.date.toString().substring(5, 10))
-                        if (!pieLabel.includes(i.category)) {
-                            pieLabel.push(i.category)
-                        }
                         if (i.category === "Other") {
                             other += i.amount;
                         }
@@ -137,6 +134,7 @@ function Charts() {
                 }
                 lineData.reverse()
                 lineLabel.sort()
+                pieLabel.push("Other", "Transport", "Entertainment", "Food & Drink", "Shopping")
                 pieData.push(other, transport, entertainment, food, shopping)
                 setPieData(
                     {

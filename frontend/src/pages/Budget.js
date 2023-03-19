@@ -36,7 +36,7 @@ export default function Spending() {
             <span className="budget-signal">£</span><span className="budget-num" id="budget-num-id">500</span>
             <button onClick={incBudget} className="budget-btn"> + </button>
             <div>
-                <button onClick={() => { navigate("/charts") }} className="budget-done"> Done </button>
+                <button onClick={() => { navigate("/budget-summary") }} className="budget-done"> Done </button>
             </div>
         </div>
 
