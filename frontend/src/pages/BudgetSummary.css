@@ -9,5 +9,12 @@
 
 .budget-bar{
 	height: 450px;
-	float: center;
+}
+
+.budget-summary-container{
+	margin: 0px auto;
+	text-align: center;
+	height: 100vh;
+	
+	
 }
