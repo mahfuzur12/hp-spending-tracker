@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import "./Budget.css"
+import "./Budget.css";
+import { AuthContext } from "../context/AuthContext";
+import axios from 'axios';
+import { useContext } from "react";
+import { useState } from "react";
 
 export default function Spending() {
+    const [budget, setBudget] = useState(500);
+    const { user } = useContext(AuthContext);
+
     function incBudget() {
         const budget = document.getElementById("budget-num-id");
         const newBudget = parseInt(budget.innerText) + 10
         budget.innerText = newBudget;
+        setBudget(newBudget);
     }
 
     function decBudget() {
         const budget = document.getElementById("budget-num-id");
         const newBudget = parseInt(budget.innerText) - 10;
         budget.innerText = newBudget;
+        setBudget(newBudget);
 
         if (newBudget < 100) {
             budget.innerText = 100
@@ -21,6 +30,13 @@ export default function Spending() {
     }
 
     const navigate = useNavigate();
+
+    
+    async function open() {
+        await axios.patch("/" + user._id, { budget: budget }
+        );
+        navigate("/budget-summary");
+    }
 
     return (
 
@@ -36,7 +52,7 @@ export default function Spending() {
             <span className="budget-signal">£</span><span className="budget-num" id="budget-num-id">500</span>
             <button onClick={incBudget} className="budget-btn"> + </button>
             <div>
-                <button onClick={() => { navigate("/charts") }} className="budget-done"> Done </button>
+                <button onClick={() => open()} className="budget-done"> Done </button>
             </div>
         </div>
 
