@@ -87,7 +87,7 @@ function BudgetSummary(){
             <h1> Budget Summary</h1>
             <h2 id="budget-left">You have £{budget} left for {daysLeft} days</h2>
             <div className="budget-bar"> 
-                <Bar 
+                <Bar className="budget-bar"
                 data = {budgetData}
                 options = {budgetOptions}>
                 </Bar>
