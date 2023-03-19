@@ -11,7 +11,8 @@ import "./Signin.css"
 
 const initialState = {
   name: '',
-  password: ''
+  password: '',
+  email: ''
 }
 
 const Signin = () => {
@@ -46,7 +47,7 @@ const Signin = () => {
         bodyClassName: "toast-failed",
       });
     try {
-      await axios.post("/signin", { email, password });
+      await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
       dispatch({ type: "SIGNING" });
     } catch (err) {
@@ -67,23 +68,23 @@ const Signin = () => {
           <div className="signin-input-div">
             <label>
               <input className="signin-input-input" type={email} name={"email"} onChange={handleChange}
-                placeholder="&nbsp;" autoComplete="off" />
+                placeholder="Enter your email" autoComplete="off" value={data.email} />
             </label>
           </div>
 
         </div>
+
 
         <br />
         <div className="signin-landing-form">
           <div className="signin-input-div">
             <label className="signin-input-title"> Password
-              <span onClick={handleClick}> {visible ? <MdVisibility /> : <MdVisibilityOff />}</span>
+              <span onClick={handleClick} data-testid="password-visibility-toggle" > {visible ? <MdVisibility label={"Password visibility toggle"} /> : <MdVisibilityOff />}</span>
             </label>
 
 
             <input className="signin-input-input" type={visible ? "text" : "password"} name="password" onChange={handleChange}
-              placeholder="&nbsp;" autoComplete="off" />
-
+              placeholder="Enter your password" autoComplete="off" value={data.password} />
 
 
           </div>
@@ -97,7 +98,7 @@ const Signin = () => {
         <br />
         <br />
 
-        <button class='auth-btns' type="submit">Log In</button>
+        <button className='auth-btns' type="submit">Log In</button>
 
       </form>
     </>
