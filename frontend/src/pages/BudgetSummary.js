@@ -82,7 +82,7 @@ function BudgetSummary(){
 
 
     return(
-        <div className="content">
+        <div className="budget-summary-container">
             <Navbar/>
             <h1> Budget Summary</h1>
             <h2 id="budget-left">You have £{budget} left for {daysLeft} days</h2>
