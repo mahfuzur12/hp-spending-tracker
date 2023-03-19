@@ -1,6 +1,6 @@
 # Hitgub Pocilot Personal Spending Tracker
 
-##Authors
+## Authors
 The authors of the software are:
 
 ## Getting Started with Create React App
