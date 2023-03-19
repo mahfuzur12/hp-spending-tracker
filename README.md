@@ -1,5 +1,8 @@
 # Hitgub Pocilot Personal Spending Tracker
 
+##Authors
+The authors of the software are:
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
