@@ -2,6 +2,14 @@
 
 ## Authors
 The authors of the software are:
+- *<Rameez, Ahmed>*
+- *<Goncalo(Zalo), Azevedo>*
+- *<Justin, Bullah>*
+- *<Ting-Chen(Selina), Chen>*
+- *<Shih-Hung(Alex), Lin>*
+- *<Fathima Nahisah, Mohammad Nasleem>*
+- *<Mahfuzur, Rahman>*
+
 
 ## Getting Started with Create React App
 
