@@ -46,7 +46,11 @@ function BudgetSummary(){
         ]
     }
 
-    const budget = 360;
+    //async function getBudget() {
+        //let curUser = await axios.get("/" + user._id);
+    //}
+
+    const budget= 360;
 
     const budgetOptions = {
         indexAxis: 'y',
@@ -84,7 +88,7 @@ function BudgetSummary(){
     return(
         <div className="budget-summary-container">
             <Navbar/>
-            <h1> Budget Summary</h1>
+            <h1 id="budget-summary-title"> Budget Summary</h1>
             <h2 id="budget-left">You have £{budget} left for {daysLeft} days</h2>
             <div className="budget-bar"> 
                 <Bar className="budget-bar"

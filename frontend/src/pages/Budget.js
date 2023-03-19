@@ -38,6 +38,8 @@ export default function Spending() {
         navigate("/budget-summary");
     }
 
+    
+
     return (
 
 
