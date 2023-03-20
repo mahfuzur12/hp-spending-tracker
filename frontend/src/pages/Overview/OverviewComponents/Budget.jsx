@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
+
+import BudgetPage from '../../Budget';
 
 const Container = styled.div`
   display: flex;
@@ -45,6 +47,25 @@ const ProgressBar = styled.progress`
   margin-bottom: 0;
 `;
 
+const ChangeBudgetButton = styled.a`
+
+  border: none;
+  background-color: ${theme.colors.primary};
+  font-family: ${theme.fonts.buttonText};
+  font-size: ${theme.fontSizes.buttonText};
+  font-weight: ${theme.fontWeight.semiBold};
+  color: #fff;
+  padding: 1vh;
+  margin-bottom: 1vh;
+  border-radius: ${theme.borderRadius.button};
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: ${theme.colors.text};
+  }
+`;
+
 const Budget = ({ budgetUsed, totalBudget, daysLeft }) => {
     const budgetPercentage = ((budgetUsed / totalBudget) * 100).toFixed(0);
 
@@ -55,11 +76,30 @@ const Budget = ({ budgetUsed, totalBudget, daysLeft }) => {
         descriptionText = `Oops! You have gone over your budget by ${(budgetPercentage - 100).toFixed(0)}%.`;
     }
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <Container>
-            <Title>Budget</Title>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                <Title>Budget</Title>
+                <ChangeBudgetButton href="#" role="button" onClick={() => setIsModalOpen(true)}>Change</ChangeBudgetButton>
+            </div>
                 <Description>{descriptionText}</Description>
             <ProgressBar value={budgetUsed} max={totalBudget} />
+            {isModalOpen && (
+                <dialog open>
+                    <article>
+                        <header>
+                            <a onClick={() => setIsModalOpen(false)} aria-label="Close" class="close"></a>
+                            <Title>Set Budget</Title>
+                        </header>
+                        <body>
+                            <BudgetPage />
+                        </body>
+                        
+                    </article>
+                </dialog>
+            )}
         </Container>
     );
 };

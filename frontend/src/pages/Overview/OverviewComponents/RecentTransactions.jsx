@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 import moneyIcon from './money.png';
+import TransactionsPage from '../../Transactions';
 
 
 const TransactionContainer = styled.div`
@@ -87,11 +88,31 @@ const RecentTransactionsContainer = styled.div`
   height: 100%;
 `;
 
+const Modal = styled.dialog`
+width: 100vw !important;
+  height: 100vh;
+  margin: 0 !important;
+`;
+
+const ModalHeader = styled.header`
+  /* your styles */
+`;
+
+const ModalTitle = styled.h2`
+  /* your styles */
+`;
+
+const ModalBody = styled.article`
+  /* your styles */
+`;
+
 
 
 const RecentTransactions = ({ transactions }) => {
 
     const recentTransactions = transactions.slice(0, 8);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <RecentTransactionsContainer>
@@ -107,7 +128,20 @@ const RecentTransactions = ({ transactions }) => {
                         <TransactionAmount>£{transaction.data.amount*-1}</TransactionAmount>
                     </TransactionContainer>
                 ))}
-            <SeeMoreButton>See more</SeeMoreButton>
+            <SeeMoreButton onClick={() => setIsModalOpen(true)}>See More</SeeMoreButton>
+            {isModalOpen && (
+                <Modal open>
+                    <article>
+                    <ModalHeader>
+                            <a onClick={() => setIsModalOpen(false)} aria-label="Close" class="close"></a>
+                            <ModalTitle>Transactions</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        <TransactionsPage />
+                        </ModalBody>
+                    </article>
+                </Modal>
+            )}
         </RecentTransactionsContainer>
     );
 };
