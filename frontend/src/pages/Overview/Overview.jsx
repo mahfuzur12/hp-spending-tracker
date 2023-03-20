@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import RecentTransactions from './OverviewComponents/RecentTransactions';
 import SpendingLine from './OverviewComponents/SpendingLine';
+import SpendingHeatmap from './OverviewComponents/SpendingHeatmap';
 import Budget from './OverviewComponents/Budget';
 import Streak from './OverviewComponents/Streak';
 import ChangeCard from './OverviewComponents/ChangeCard';
@@ -13,7 +14,7 @@ import { useContext } from 'react';
 
 const Container = styled.div`
   background-color: ${theme.colors.background};
-  padding: 6vh 14vw;
+  padding: 4vh 14vw;
 `;
 
 const Title = styled.h1`
@@ -73,7 +74,7 @@ const ProfileButton = styled.a`
 
 const CardContainer = styled.div`
   display: grid;
-  grid-template-rows: 4fr 3fr;
+  grid-template-rows: 2fr 0.6fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 3vh;
 `;
@@ -90,6 +91,7 @@ const RegularCard = styled(Card)`
 
 const DoubleCard = styled(Card)`
   grid-column: span 2;
+  max-height: 100%;
 
   background-color: ${theme.colors.primary} !important;
 `;
@@ -97,6 +99,7 @@ const DoubleCard = styled(Card)`
 const TallCard = styled(Card)`
   grid-row: span 2;
   grid-column: span 1;
+
 `;
 
 const Footer = styled.footer`
@@ -230,7 +233,7 @@ const Overview = () => {
             <CardContainer>
                 <TallCard><RecentTransactions transactions={transactions} /></TallCard>
                 <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>
-                <RegularCard></RegularCard>
+                <RegularCard><SpendingHeatmap transactions={transactions} /></RegularCard>
                 <RegularCard><Budget budgetUsed={budgetSpent} totalBudget={budget} daysLeft={daysLeft} /></RegularCard>
                 <RegularCard><Streak /></RegularCard>
                 <RegularCard><ChangeCard /></RegularCard>
