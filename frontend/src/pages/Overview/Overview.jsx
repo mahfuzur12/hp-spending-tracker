@@ -83,6 +83,7 @@ const Card = styled.div`
   background-color: #fff;
   border-radius: ${theme.borderRadius.card};
   padding: 2vh;
+  max-height: 100%;
 `;
 
 const RegularCard = styled(Card)`
@@ -91,7 +92,6 @@ const RegularCard = styled(Card)`
 
 const DoubleCard = styled(Card)`
   grid-column: span 2;
-  max-height: 100%;
 
   background-color: ${theme.colors.primary} !important;
 `;
@@ -239,9 +239,7 @@ const Overview = () => {
                 <RegularCard><ChangeCard /></RegularCard>
             </CardContainer>
             <Footer>
-                <AttributionLink href="https://www.flaticon.com/free-icons/money" title="Money icons created by Freepik - Flaticon">
-                    Money icons created by Freepik - Flaticon
-                </AttributionLink>
+
             </Footer>
         </Container>
     );

@@ -122,7 +122,7 @@ const SpendingHeatmap = ({ transactions }) => {
 
     return (
         <Container>
-            <Title>Spending Heatmap {year}</Title>
+            <Title>Spending {year}</Title>
             <Grid>
                 {spending.map((value, index) => (
                     <Month key={index}>
