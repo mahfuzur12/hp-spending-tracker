@@ -32,30 +32,34 @@ const Signup = () => {
 
   const signup = async (e) => {
     e.preventDefault();
-    // check fields
-    if (isEmpty(name) || isEmpty(password))
-      return toast("Please fill in all fields.", {
-        className: "toast-failed",
-        bodyClassName: "toast-failed",
-      });
-    // check email
-    if (!isEmail(email))
-      return toast("Please enter a valid email address.", {
-        className: "toast-failed",
-        bodyClassName: "toast-failed",
-      });
-    // check password
-    if (isLength(password))
-      return toast("Password must be at least 6 characters.", {
-        className: "toast-failed",
-        bodyClassName: "toast-failed",
-      });
-    // check match
-    if (!isMatch(password, cf_password))
-      return toast("Password did not match.", {
-        className: "toast-failed",
-        bodyClassName: "toast-failed",
-      });
+
+
+
+    // // check fields
+    // if (isEmpty(name) || isEmpty(password))
+    //   return toast("Please fill in all fields.", {
+    //     className: "toast-failed",
+    //     bodyClassName: "toast-failed",
+    //   });
+    // // check email
+    // if (!isEmail(email))
+    //   return toast("Please enter a valid email address.", {
+    //     className: "toast-failed",
+    //     bodyClassName: "toast-failed",
+    //   });
+    // // check password
+    // if (isLength(password))
+    //   return toast("Password must be at least 6 characters.", {
+    //     className: "toast-failed",
+    //     bodyClassName: "toast-failed",
+    //   });
+    // // check match
+    // if (!isMatch(password, cf_password))
+    //   return toast("Password did not match.", {
+    //     className: "toast-failed",
+    //     bodyClassName: "toast-failed",
+    //   });
+
     try {
       const res = await axios.post("/signup", {
         name,

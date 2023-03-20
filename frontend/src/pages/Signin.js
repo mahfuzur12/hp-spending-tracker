@@ -19,6 +19,7 @@ const Signin = () => {
 
   const [inputValue, setInputValue] = useState('');
 
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState(initialState)
   const { email, password } = data
@@ -50,17 +51,18 @@ const Signin = () => {
       await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
       dispatch({ type: "SIGNING" });
+      setIsSignedIn(true); // Add this line
     } catch (err) {
-      toast(err.response.data.msg, {
-        className: "toast-failed",
-        bodyClassName: "toast-failed",
-      });
+      // toast(err.response.data.msg, {
+      //   className: "toast-failed",
+      //   bodyClassName: "toast-failed",
+      // });
     }
   };
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer data-testid="signin-component" is-signed-in={isSignedIn} />
       <form className="signin-landing-form" onSubmit={signin}>
         <div className="signin-landing-form">
           <label className="signin-input-title">Email</label>

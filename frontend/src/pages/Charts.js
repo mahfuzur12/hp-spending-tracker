@@ -208,6 +208,7 @@ function Charts() {
                     <Doughnut
                         data={pieData}
                         options={pieOptions}
+                        data-testid="doughnut-chart"
                     >
                     </Doughnut>
                 </div>
@@ -215,13 +216,15 @@ function Charts() {
                     <div className="charts-bar">
                         <Bar
                             data={barData}
-                            options={barOptions}>
+                            options={barOptions}
+                            data-testid="bar-chart">
                         </Bar>
                     </div>
                     <div className="charts-line">
                         <Line
                             data={lineData}
-                            options={lineOptions}>
+                            options={lineOptions}
+                            data-testid="line-chart">
                         </Line>
                     </div>
                 </div>

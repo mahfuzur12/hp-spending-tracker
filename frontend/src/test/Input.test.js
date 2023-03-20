@@ -1,80 +1,64 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-import Input from "../components/Input/Input";
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Input from '../components/Input/Input';
+import '@testing-library/jest-dom/extend-expect';
 
-const mockHandleClick = jest.fn();
-const mockHandleChange = jest.fn();
+describe('Input', () => {
+    test('renders Input component with basic props', () => {
+        const handleChange = jest.fn();
 
-const renderInput = (props) => {
-    render(<Input {...props} />);
-};
+        render(
+            <Input
+                type="text"
+                name="testInput"
+                text="Test Input"
+                handleChange={handleChange}
+            />
+        );
 
-describe("Input", () => {
-    test("renders Input component correctly", () => {
-        const props = {
-            icon: "👁",
-            handleClick: mockHandleClick,
-            type: "text",
-            name: "fullName",
-            handleChange: mockHandleChange,
-            defaultValue: "",
-            disabled: false,
-            text: "Full Name",
-        };
-        renderInput(props);
+        const labelText = screen.getByText('Test Input');
+        expect(labelText).toBeInTheDocument();
 
-        expect(screen.getByText("Full Name")).toBeInTheDocument();
-        expect(screen.getByText("👁")).toBeInTheDocument();
-        expect(screen.getByRole("textbox")).toBeInTheDocument();
+        const inputElement = screen.getByLabelText('Test Input');
+        expect(inputElement).toBeInTheDocument();
+        expect(inputElement.type).toBe('text');
+        expect(inputElement.name).toBe('testInput');
+
+        fireEvent.change(inputElement, { target: { value: 'Testing input' } });
+        expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
-    test("renders the correct input type", () => {
-        const props = {
-            icon: "👁",
-            handleClick: mockHandleClick,
-            type: "password",
-            name: "password",
-            handleChange: mockHandleChange,
-            defaultValue: "",
-            disabled: false,
-            text: "Password",
-        };
-        renderInput(props);
+    test('renders Input component with additional props', () => {
+        const handleClick = jest.fn();
+        const handleChange = jest.fn();
 
-        // expect(screen.getByLabelText("Password")).toHaveAttribute("type", "password");
+        render(
+            <Input
+                icon={<span>ICON</span>}
+                handleClick={handleClick}
+                type="password"
+                name="passwordInput"
+                defaultValue="default"
+                disabled
+                text="Password"
+                handleChange={handleChange}
+            />
+        );
+
+        const labelText = screen.getByText("Password");
+        expect(labelText).toBeInTheDocument();
+
+        const inputElement = screen.getByLabelText(/Password/i);
+        expect(inputElement).toBeInTheDocument();
+        expect(inputElement.type).toBe('password');
+        expect(inputElement.name).toBe('passwordInput');
+        expect(inputElement.defaultValue).toBe('default');
+        expect(inputElement.disabled).toBe(true);
+
+        const iconElement = screen.getByText(/ICON/i);
+        expect(iconElement).toBeInTheDocument();
+
+        fireEvent.click(iconElement);
+        expect(handleClick).toHaveBeenCalledTimes(1);
     });
-
-    // test("renders the correct input name", () => {
-    //     const props = {
-    //         icon: "👁",
-    //         handleClick: mockHandleClick,
-    //         type: "text",
-    //         name: "fullName",
-    //         handleChange: mockHandleChange,
-    //         defaultValue: "",
-    //         disabled: false,
-    //         text: "Full Name",
-    //     };
-    //     renderInput(props);
-
-    //     expect(screen.getByRole("textbox", { name: "Full Name" })).toHaveAttribute("disabled");
-    // });
-
-    // test("renders the correct disabled attribute", () => {
-    //     const props = {
-    //         icon: "👁",
-    //         handleClick: mockHandleClick,
-    //         type: "text",
-    //         name: "fullName",
-    //         handleChange: mockHandleChange,
-    //         defaultValue: "",
-    //         disabled: true,
-    //         text: "Full Name",
-    //     };
-    //     renderInput(props);
-
-    //     expect(screen.getByRole("textbox", { name: "Full Name" })).toHaveAttribute("name", "fullName");
-
-    // });
 });

@@ -119,56 +119,77 @@ const Profile = () => {
   };
 
   return (
-    <>
-      <body className="profile-body">
-        <ToastContainer />
-        <div>
-          <div className="profile-nav">
-            <Navbar />
-          </div>
-          <div className="profile-container">
-            <form className="profile-form" onSubmit={handleSubmit}>
-              <div class="profile-form-leftbox">
-                <nav>
-                  <a>
-                    <FontAwesomeIcon icon={faUser} className="fa-lg fa-user-my" />
-                  </a>
-                </nav>
+
+    <div className="profile-body">
+      <ToastContainer />
+      <div>
+        <div className="profile-nav">
+          <Navbar />
+        </div>
+        <div className="profile-container">
+          <form className="profile-form" onSubmit={handleSubmit}>
+            <div className="profile-form-leftbox">
+              <nav>
+                <a>
+                  <FontAwesomeIcon icon={faUser} className="fa-lg fa-user-my" />
+                </a>
+              </nav>
+            </div>
+
+            <div className="profile-form-rightbox">
+              <h1>Personal Info</h1>
+              <Input type="text" text="Name" defaultValue={user.name} name="name" handleChange={handleChange} />
+              <Input type="text" text="Email" defaultValue={user.email} disabled name="email" handleChange={handleChange} />
+              <Input
+                name="password"
+                type={visible ? "text" : "password"}
+                icon={
+                  visible ? (
+                    <span data-testid="password-toggle">
+                      <MdVisibility />
+                    </span>
+                  ) : (
+                    <span data-testid="password-toggle">
+                      <MdVisibilityOff />
+                    </span>
+                  )
+                }
+                text="Password"
+                handleClick={handleClick}
+                handleChange={handleChange}
+              />
+              <Input
+                name="cf_password"
+                type={visible ? "text" : "password"}
+                icon={
+                  visible ? (
+                    <span data-testid="cf-password-toggle">
+                      <MdVisibility />
+                    </span>
+                  ) : (
+                    <span data-testid="cf-password-toggle">
+                      <MdVisibilityOff />
+                    </span>
+                  )
+                }
+                text="Confirm Password"
+                handleClick={handleClick}
+                handleChange={handleChange}
+              />
+
+
+              <div>
+                <button className="profile-form-btn" type="submit">Update</button>
               </div>
 
-              <div class="profile-form-rightbox">
-                <h1>Personal Info</h1>
-                <Input type="text" text="Name" defaultValue={user.name} name="name" handleChange={handleChange} />
-                <Input type="text" text="Email" defaultValue={user.email} disabled name="email" handleChange={handleChange} />
-                <Input
-                  name="password"
-                  type={visible ? "text" : "password"}
-                  icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-                  text="Password"
-                  handleClick={handleClick}
-                  handleChange={handleChange}
-                />
-                <Input
-                  name="cf_password"
-                  type={visible ? "text" : "password"}
-                  icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-                  text="Confirm Password"
-                  handleClick={handleClick}
-                  handleChange={handleChange}
-                />
-
-                <div>
-                  <button className="profile-form-btn" type="submit">Update</button>
-                </div>
-
-              </div>
-            </form>
-
-          </div>
+            </div>
+          </form>
 
         </div>
-      </body>
-    </>
+
+      </div>
+    </div>
+
   );
 };
 

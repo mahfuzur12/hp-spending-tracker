@@ -15,5 +15,3 @@ const Input = ({ icon, handleClick, type, name, handleChange, defaultValue, disa
 
 export default Input;
 
-{/* <h2>Full Name</h2>
-<input type="text" class="input" value=""> */}
