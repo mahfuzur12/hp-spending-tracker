@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "../transactions.css"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -25,7 +25,7 @@ function Transactions() {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const[categoryFilter, setCategoryFilter] = useState("All");
     const [originalTransactions, setOriginalTransactions] = useState([]);
-    
+
     // Fetch transactions data
     useEffect(() => {
         axios.get("http://localhost:8000/api/transactions") 
@@ -182,12 +182,12 @@ return(
 </div>
 </div>
 
-)
+    )
 }
 
 
 export default Transactions;
-    
+
 
 
 

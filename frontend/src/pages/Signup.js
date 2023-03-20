@@ -7,6 +7,7 @@ import { isEmpty, isEmail, isLength, isMatch } from "../components/helper/valida
 import axios from 'axios'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./Signin.css";
 
 const initialState = {
   name: "",
@@ -84,12 +85,12 @@ const Signup = () => {
   return (
     <>
       <ToastContainer />
-      <form onSubmit={signup}>
-        <label>Name</label>
-        <Input type="text" name="name"  handleChange={handleChange} />
-        <label>Email</label>
-        <Input type="text" name="email" class = "signup-text-input" handleChange={handleChange} />
-        <label>Password</label>
+      <form className="signin-landing-form" onSubmit={signup}>
+        <label className="signin-title">Name</label>
+        <Input type="text" name="name" class="signin-text-input" handleChange={handleChange} />
+        <label className="signin-title"> Email</label>
+        <Input type="text" name="email" class="signin-text-input" handleChange={handleChange} />
+        <label className="signin-title">Password</label>
         <Input
           name="password"
           type={visible ? "text" : "password"}
@@ -98,7 +99,7 @@ const Signup = () => {
           handleChange={handleChange}
         />
 
-        <label>Confirm Password</label>
+        <label className="signin-title">Confirm Password</label>
 
         <Input
           name="cf_password"
@@ -107,9 +108,9 @@ const Signup = () => {
           handleClick={handleClick}
           handleChange={handleChange}
         />
-        
-          <br/>
-          <button class = "btns" type="submit">Sign up</button>
+
+        <br />
+        <button class="signin-btns" type="submit">Sign up</button>
       </form>
     </>
   );

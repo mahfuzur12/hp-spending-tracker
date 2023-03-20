@@ -1,42 +1,63 @@
-import React from "react";
-import {useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-export default function Spending(){
-    function incBudget(){
-        const budget = document.getElementById("budget");
+import "./Budget.css";
+import { AuthContext } from "../context/AuthContext";
+import axios from 'axios';
+import { useContext } from "react";
+import { useState } from "react";
+
+export default function Spending() {
+    const [budget, setBudget] = useState(500);
+    const { user } = useContext(AuthContext);
+
+    function incBudget() {
+        const budget = document.getElementById("budget-num-id");
         const newBudget = parseInt(budget.innerText) + 10
         budget.innerText = newBudget;
+        setBudget(newBudget);
     }
 
-    function decBudget(){
-        const budget = document.getElementById("budget");
-        const newBudget = parseInt(budget.innerText) -10;
+    function decBudget() {
+        const budget = document.getElementById("budget-num-id");
+        const newBudget = parseInt(budget.innerText) - 10;
         budget.innerText = newBudget;
+        setBudget(newBudget);
 
-        if(newBudget < 100){
+        if (newBudget < 100) {
             budget.innerText = 100
         }
     }
 
     const navigate = useNavigate();
-    
-    return(
-        
-            <div className = 'content'>
-                <div>
-                <Navbar />
-                </div>
-                <div className="budgetSetter">
-                    <h1>Set up your monthly budget </h1>
-                    <button onClick={decBudget} className="budgetButton"> - </button>
-                    <span>£</span><span id ="budget">500</span>
-                    <button onClick={incBudget} className="budgetButton"> + </button>
-                    <div>
-                        <button onClick={() => {navigate("/charts")}} className="budgetButton"> Done </button>
-                     </div>
-                </div>
 
+    
+    async function open() {
+        await axios.patch("/" + user._id, { budget: budget }
+        );
+        navigate("/budget-summary");
+    }
+
+    
+
+    return (
+
+
+        <div className="budget-container">
+
+            <div className="budget-navbar">
+                <Navbar />
             </div>
-            
+
+            <h1 className="budget-title">Set up your monthly budget </h1>
+            <button onClick={decBudget} className="budget-btn"> - </button>
+            <span className="budget-signal">£</span><span className="budget-num" id="budget-num-id">500</span>
+            <button onClick={incBudget} className="budget-btn"> + </button>
+            <div>
+                <button onClick={() => open()} className="budget-done"> Done </button>
+            </div>
+        </div>
+
+
     )
 }

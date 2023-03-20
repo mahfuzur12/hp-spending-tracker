@@ -73,6 +73,20 @@ app.post('/auth', async function (request, response) {
     }
   });
 
+  app.post('/institution', async function (request, response) {
+    try {
+      const institution_id = request.body.institution_id;
+      const plaidRequest = {
+        institution_id: institution_id,
+        country_codes: ['GB'],
+      };
+      const plaidResponse = await plaidClient.institutionsGetById(plaidRequest);
+      response.json(plaidResponse.data);
+    } catch (e) {
+      response.status(500).send("failure");
+    }
+  });
+
   app.post('/transactions', async function (request, response) {
     try {
       //using the access token from the request body, get the transactions using the plaid api
@@ -83,7 +97,7 @@ app.post('/auth', async function (request, response) {
       const plaidRequest = {
         access_token: access_token,
         start_date: '2018-01-01',
-        end_date: '2022-01-31',
+        end_date: new Date().toISOString().slice(0, 10),
         options: {
           count: 250,
           offset: 0,
@@ -124,12 +138,29 @@ app.post('/exchange_public_token', async function (
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(process.env.PORT, () => {
-            console.log('connected to db, listening on port ' + process.env.PORT)
+          console.log('connected to db, listening on port ' + process.env.PORT)
         })
     })
     .catch((error => {
         console.log(error)
     }))
+
+//mongoose.test.users.update({}, { $set: { "": "" } }, false, true)
+/*
+const MongoClient = require('mongodb').MongoClient;
+const client = new MongoClient(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+client.connect(err => {
+  const collection = client.db("test").collection("users");
+  // Update all documents in the collection
+  collection.updateMany({}, { $set: { "budget": 0 } }, (err, result) => {
+    if (err) throw err;
+    console.log(`${result.modifiedCount} documents updated`);
+    client.close();
+  });
+});
+*/
+
 
 require('./models/userModel')
 

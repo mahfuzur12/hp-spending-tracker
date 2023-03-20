@@ -1,9 +1,11 @@
-//import logo from './logo.svg';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import 'regenerator-runtime/runtime';
 import axios from 'axios';
+import { AuthContext } from "../context/AuthContext";
+import Card from "../components/ConnectBankButton/Card";
 import { usePlaidLink } from 'react-plaid-link';
 import "./Overview.css"
+
 axios.default.baseUrl = "http://localhost:8000"
 
 function PlaidAuth({ publicToken }) {
@@ -36,33 +38,33 @@ function PlaidAuth({ publicToken }) {
 }
 
 function Overview() {
-  const [linkToken, setLinkToken] = useState();
-  const [publicToken, setPublicToken] = useState();
+  const [hasCard, setHasCard] = useState(false);
 
-  useEffect(() => {
+  function CheckToken() {
+    const { user } = useContext(AuthContext);
 
-    async function fetch() {
-      const response = await axios.post("http://localhost:8000/create_link_token")
-      setLinkToken(response.data.link_token);
-    }
-    fetch();
-  }, []);
+    useEffect(() => {
+      async function HasCard() {
+        let currUser = await axios.get("http://localhost:8000/" + user._id);
+        if (currUser.data.data.accessToken !== "") {
+          setHasCard(true);
+        } else {
+          setHasCard(false);
+        }
+      }
+      HasCard();
+    }, [user._id]);
+    return hasCard;
+  }
 
-  const { open, ready } = usePlaidLink({
-    token: linkToken,
-    onSuccess: (public_token, metadata) => {
-      setPublicToken(public_token);
-      console.log("success", public_token, metadata);
-      // send public_token to server
-    },
-  });
-
-  return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
-    <div>
-      <br/>
-    <button class = 'btns' onClick={() => open()} disabled={!ready}>
-      Connect a bank account
-    </button>
+  return !CheckToken() ? (
+    <div className="card-container">
+      <Card />
+    </div>
+  ) : (
+    <div className="card-container">
+      <h1 className="overview-overview">Overview</h1>
+      <Card />
     </div>
   );
 

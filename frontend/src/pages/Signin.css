@@ -1,0 +1,49 @@
+.signin-landing-form {
+    width: 30%;
+    background-color: transparent;
+    text-align: left;
+}
+
+.signin-input-title {
+    color: black;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-left: 2px;
+    margin-top: 10px;
+    width: 200px;
+}
+
+.signin-input-title span {
+    color: black;
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+}
+
+
+.signin-btns {
+    margin-top: 10px;
+    background: white;
+    cursor: pointer;
+    color: #191919;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 20px;
+    width: auto;
+}
+
+.signin-input-div {
+    width: 300px;
+}
+
+.signin-input-input {
+    width: 80%;
+    font-family: 'montserrat', sans-serif;
+    font-size: 16px;
+    padding: 7px 0;
+    color: #070707;
+    outline: none;
+    text-align: left;
+}

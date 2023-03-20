@@ -1,0 +1,29 @@
+.reset-budget-button{
+    font-size: 30px;
+	margin: 4px 2px;
+    width: 350px;
+	height: 75px;
+	border-radius: 5px;
+    
+}
+
+.budget-bar{
+	height: 450px;
+	
+}
+
+.budget-summary-container{
+	margin: 0px auto;
+	text-align: center;
+	height: 100vh;
+}
+
+#budget-left {
+    font-size: 30px;
+    margin: 30px auto;
+}
+
+#budget-summary-title {
+    font-size: 60px;
+    margin: 100px auto;
+}
