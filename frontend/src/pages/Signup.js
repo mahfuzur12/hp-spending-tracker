@@ -86,12 +86,13 @@ const Signup = () => {
     <>
       <ToastContainer />
       <form className="signin-landing-form" onSubmit={signup}>
-        <label className="signin-title">Name</label>
-        <Input type="text" name="name" class="signin-text-input" handleChange={handleChange} />
-        <label className="signin-title"> Email</label>
-        <Input type="text" name="email" class="signin-text-input" handleChange={handleChange} />
-        <label className="signin-title">Password</label>
+        <label htmlFor="name" className="signin-title">Name</label>
+        <Input id="name" type="text" name="name" class="signin-text-input" handleChange={handleChange} />
+        <label htmlFor="email" className="signin-title"> Email</label>
+        <Input id="email" type="text" name="email" class="signin-text-input" handleChange={handleChange} />
+        <label htmlFor="password" className="signin-title">Password</label>
         <Input
+          id="password"
           name="password"
           type={visible ? "text" : "password"}
           icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
@@ -99,9 +100,10 @@ const Signup = () => {
           handleChange={handleChange}
         />
 
-        <label className="signin-title">Confirm Password</label>
+        <label htmlFor="cf_password" className="signin-title">Confirm</label>
 
         <Input
+          id="cf_password"
           name="cf_password"
           type={visible ? "text" : "password"}
           icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
@@ -110,7 +112,7 @@ const Signup = () => {
         />
 
         <br />
-        <button class="signin-btns" type="submit">Sign up</button>
+        <button className="signin-btns" type="submit">Sign up</button>
       </form>
     </>
   );
