@@ -5,7 +5,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Charts from "../../pages/Charts";
 import Budget from "../../pages/Budget";
 import Overview from "../../pages/Overview/Overview";
-import Overview2 from "../../pages/Overview2";
 import './ProfileLayout.css'
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
