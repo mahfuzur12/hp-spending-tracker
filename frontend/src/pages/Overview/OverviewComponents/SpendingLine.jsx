@@ -11,60 +11,66 @@ const Container = styled.div`
   align-items: left;
   min-width: 5vw;
   padding: 1vh;
-  max-height: 2vh;
+  height: 100%;
 `;
 
 const Title = styled.h2`
   font-family: ${theme.fonts.titles};
   font-size: ${theme.fontSizes.medium};
   font-weight: ${theme.fontWeight.semiBold};
-    color: ${theme.colors.white} !important;
+  color: ${theme.colors.white} !important;
   margin-bottom: 1vh;
 `;
 
-const COLORS = [theme.colors.white, theme.colors.text];
+const COLORS = [theme.colors.text, theme.colors.white];
 
 const processData = (transactions) => {
     const data = [];
     const today = new Date();
-    const last28DaysDate = new Date(today - 28 * 24 * 60 * 60 * 1000);
-    const pastYearDate = new Date(today - 365 * 24 * 60 * 60 * 1000);
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+    const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-    const averageDailySpending = new Array(28).fill(0);
-    const dailySpendingCounts = new Array(28).fill(0);
-
-    // Calculate the average spending for each day over multiple 28-day periods
-    for (const transaction of transactions) {
+    const thisMonthTransactions = transactions.filter((transaction) => {
         const transactionDate = new Date(transaction.data.date);
-        if (transactionDate >= pastYearDate && transactionDate < last28DaysDate) {
-            const dayIndex = Math.floor((transactionDate - pastYearDate) / (24 * 60 * 60 * 1000)) % 28;
-            averageDailySpending[dayIndex] += transaction.data.amount;
-            dailySpendingCounts[dayIndex]++;
-        }
-    }
+        const thisMonth = today.getMonth();
+        return transactionDate.getMonth() === thisMonth && transaction.data.amount > 0;
+    });
 
-    for (let i = 0; i < 28; i++) {
-        averageDailySpending[i] /= dailySpendingCounts[i];
-    }
+    const lastMonthTransactions = transactions.filter((transaction) => {
+        const transactionDate = new Date(transaction.data.date);
+        const lastMonth = today.getMonth() - 1;
+        return transactionDate.getMonth() === lastMonth && transaction.data.amount > 0;
+    });
 
-    for (let i = 0; i < 28; i++) {
-        const date = new Date(last28DaysDate.valueOf() + i * 24 * 60 * 60 * 1000);
+    const processedThisMonthData = [];
+    const processedLastMonthData = [];
+
+    for (let i = 0; i < daysInCurrentMonth; i++) {
+        const date = new Date(currentYear, currentMonth, i + 1);
+        const dateString = `${date.getDate()}/${date.getMonth() + 1}`;
+        const thisMonthAmount = thisMonthTransactions.reduce((total, transaction) => {
+            const transactionDate = new Date(transaction.data.date);
+            return transactionDate.getDate() === date.getDate() ? total + transaction.data.amount : total;
+        }, 0);
+        const lastMonthAmount = lastMonthTransactions.reduce((total, transaction) => {
+            const transactionDate = new Date(transaction.data.date);
+            return transactionDate.getDate() === date.getDate() ? total + transaction.data.amount : total;
+        }, 0);
+        processedThisMonthData.push(thisMonthAmount);
+        processedLastMonthData.push(lastMonthAmount);
         data.push({
-            date: `${date.getMonth() + 1}/${date.getDate()}`,
-            last28Days: 0,
-            averageDaily: averageDailySpending[i],
+            date: dateString,
+            thisMonth: thisMonthAmount,
+            lastMonth: lastMonthAmount,
         });
     }
 
-    for (const transaction of transactions) {
-        const transactionDate = new Date(transaction.data.date);
-        const diff = Math.floor((today - transactionDate) / (24 * 60 * 60 * 1000));
-        if (diff < 28) {
-            data[27 - diff].last28Days += transaction.data.amount;
-        }
-    }
-
-    return data;
+    return {
+        data: data,
+        thisMonth: processedThisMonthData,
+        lastMonth: processedLastMonthData,
+    };
 };
 
 
@@ -75,16 +81,30 @@ const SpendingLine = ({ transactions }) => {
     const options = {
         chart: {
             type: "line",
-            sparkline: {
-                enabled: true
-            }
+            zoom: {
+                type: 'x',
+                enabled: true,
+                autoScaleYaxis: true
+            },
         },
         xaxis: {
-            categories: lineGraphData.map((d) => d.date),
+            categories: lineGraphData.data.map((d) => d.date),
+            labels: {
+                style: {
+                    colors: theme.colors.white, 
+                    fontSize: theme.fontSizes.mini, 
+                    fontFamily: theme.fonts.normalText, 
+                },
+            },
         },
         yaxis: {
             labels: {
                 formatter: (value) => `£${value.toFixed(2)}`,
+                style: {
+                    colors: theme.colors.white, 
+                    fontSize: theme.fontSizes.normalText, 
+                    fontFamily: theme.fonts.normalText, 
+                },
             },
         },
         tooltip: {
@@ -107,30 +127,27 @@ const SpendingLine = ({ transactions }) => {
             show: false,
         },
         legend: {
-            show: false,
+            show: true,
         },
     };
 
+
     const series = [
         {
-            name: "Last 28 days",
-            data: lineGraphData.map((d) => d.last28Days),
+            name: "Last Month",
+            data: lineGraphData.lastMonth,
         },
         {
-            name: "Average daily",
-            data: lineGraphData.map((d) => d.averageDaily),
+            name: "This Month",
+            data: lineGraphData.thisMonth,
         },
     ];
 
-    
-
-
     return (
         <Container>
-            <Title>Spending Last 30 Days</Title>
+            <Title>Spending this month</Title>
             <Chart options={options} series={series} type="line" />
         </Container>
     );
 };
-
 export default SpendingLine;

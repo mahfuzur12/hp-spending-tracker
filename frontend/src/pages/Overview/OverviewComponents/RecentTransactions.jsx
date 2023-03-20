@@ -91,7 +91,7 @@ const RecentTransactionsContainer = styled.div`
 
 const RecentTransactions = ({ transactions }) => {
 
-    const recentTransactions = transactions.slice(0, 6);
+    const recentTransactions = transactions.slice(0, 8);
 
     return (
         <RecentTransactionsContainer>
@@ -104,7 +104,7 @@ const RecentTransactions = ({ transactions }) => {
                             <TransactionTitle>{transaction.data.description}</TransactionTitle>
                             <TransactionCategory>{transaction.data.category}</TransactionCategory>
                         </div>
-                        <TransactionAmount>{transaction.data.amount}</TransactionAmount>
+                        <TransactionAmount>£{transaction.data.amount*-1}</TransactionAmount>
                     </TransactionContainer>
                 ))}
             <SeeMoreButton>See more</SeeMoreButton>
