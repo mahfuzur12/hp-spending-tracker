@@ -25,7 +25,7 @@ const ProfileLayout = () => {
 
 
         <div class = "content">
-        <Overview2 />
+        <Overview />
         </div>
 
         

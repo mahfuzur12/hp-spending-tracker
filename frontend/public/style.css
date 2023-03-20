@@ -1,37 +1,44 @@
-/* Red Light scheme (Default) */
+/* Blue Light scheme (Default) */
 /* Can be forced with data-theme="light" */
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
-    --primary: #e53935;
-    --primary-hover: #d32f2f;
-    --primary-focus: rgba(229, 57, 53, 0.125);
+    --primary: #43a047;
+    --primary-hover: #1976d2;
+    --primary-focus: rgba(30, 136, 229, 0.125);
     --primary-inverse: #FFF;
 }
 
-/* Red Dark scheme (Auto) */
+/* Blue Dark scheme (Auto) */
 /* Automatically enabled if user has Dark mode enabled */
 @media only screen and (prefers-color-scheme: dark) {
     :root:not([data-theme]) {
-        --primary: #e53935;
-        --primary-hover: #f44336;
-        --primary-focus: rgba(229, 57, 53, 0.25);
+        --primary: #1e88e5;
+        --primary-hover: #2196f3;
+        --primary-focus: rgba(30, 136, 229, 0.25);
         --primary-inverse: #FFF;
     }
 }
 
-/* Red Dark scheme (Forced) */
+/* Blue Dark scheme (Forced) */
 /* Enabled if forced with data-theme="dark" */
 [data-theme="dark"] {
-    --primary: #e53935;
-    --primary-hover: #f44336;
-    --primary-focus: rgba(229, 57, 53, 0.25);
+    --primary: #1e88e5;
+    --primary-hover: #2196f3;
+    --primary-focus: rgba(30, 136, 229, 0.25);
     --primary-inverse: #FFF;
 }
 
-/* Red (Common styles) */
+/* Blue (Common styles) */
 :root {
     --form-element-active-border-color: var(--primary);
     --form-element-focus-color: var(--primary-focus);
     --switch-color: var(--primary-inverse);
     --switch-checked-background-color: var(--primary);
 }
+body {
+   font-family: 'Poppins',
+    sans-serif;
+    font-family: 'Inter',
+    sans-serif; 
+}
+
