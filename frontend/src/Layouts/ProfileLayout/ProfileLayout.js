@@ -23,7 +23,8 @@ const ProfileLayout = () => {
       <div class = 'content'>
 
 
-        <div class = "content">
+        <div class="content">
+          <Navbar />
         <Overview />
         </div>
 

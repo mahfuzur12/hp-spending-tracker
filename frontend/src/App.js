@@ -10,7 +10,7 @@ import Charts from "./pages/Charts";
 import Budget from "./pages/Budget";
 import Transactions from "./pages/Transactions"
 import Profile from "./components/Profile/Profile";
-import Overview from "./pages/Overview2";
+
 
 
 function App() {

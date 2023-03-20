@@ -3,8 +3,10 @@ const theme = {
         background: '#EDEDED',
         text: '#030303',
         primary: '#43a047',
+        secondary: '#039be5',
         white: '#FFFFFF',
-        grey: '#D9D9D9'
+        grey: '#D9D9D9',
+        danger: '#e53935'
     },
     borderRadius: {
         button: '16px',

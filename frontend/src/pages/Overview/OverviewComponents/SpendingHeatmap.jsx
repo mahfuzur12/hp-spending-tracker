@@ -79,6 +79,7 @@ const MonthName = styled.div`
 const SpendingHeatmap = ({ transactions }) => {
     const [year, setYear] = useState(new Date().getFullYear());
 
+    console.log(transactions)
     const monthNames = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'

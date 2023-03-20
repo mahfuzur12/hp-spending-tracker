@@ -45,7 +45,7 @@ function PlaidAuth({ publicToken }) {
             //delete all transactions from that user
             userTransactions.forEach(async (transaction) => {
                 console.log(transaction)
-                await axios.delete("/api/transactions/" + transaction);
+                await axios.delete("http://localhost:8000/api/transactions/" + transaction);
             });
             
             await axios.patch("/" + user._id, { transactions: [] })

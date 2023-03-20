@@ -130,6 +130,9 @@ const Overview = () => {
     const [budget, setBudget] = useState(0);
     const [budgetSpent, setBudgetSpent] = useState(0);
     const [streak, setStreak] = useState(0);
+    const [accessToken, setAccessToken] = useState("");
+    const [institution, setInstitution] = useState("");
+    const [accountInfo, setAccountInfo] = useState("");
 
     const { user } = useContext(AuthContext);
       
@@ -140,8 +143,7 @@ const Overview = () => {
             console.log('done');
             console.log(transactions)
         });
-    }, [user._id]);
-
+    }, [user._id, accessToken]);
 
 
     // get user._id from AuthContext
@@ -155,10 +157,14 @@ const Overview = () => {
         const transactionIds = currUser.data.data.transactions;
         const budget = currUser.data.data.budget;
         const streak = currUser.data.data.streak;
-
+        const auth = await axios.post("/auth", { access_token: currUser.data.data.accessToken });
+        const institution = await axios.post("/institution", { institution_id: auth.data.item.institution_id });
+        
         setBudget(budget);
         setStreak(streak);
-
+        setAccessToken(currUser.data.data.accessToken);
+        setInstitution(institution.data.institution);
+        setAccountInfo(auth.data.numbers.bacs[auth.data.numbers.bacs.length - 1]);
         //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
 
         // add every transaction from backend to transactions array
@@ -240,7 +246,7 @@ const Overview = () => {
                 <RegularCard><SpendingHeatmap transactions={transactions} /></RegularCard>
                 <RegularCard><Budget budgetUsed={budgetSpent} totalBudget={budget} daysLeft={daysLeft} /></RegularCard>
                 <RegularCard><Streak streak={streak} /></RegularCard>
-                <RegularCard><ChangeCard /></RegularCard>
+                <RegularCard><ChangeCard accessToken={accessToken} institution={institution} accountInfo={accountInfo} /></RegularCard>
             </CardContainer>
             <Footer>
 
