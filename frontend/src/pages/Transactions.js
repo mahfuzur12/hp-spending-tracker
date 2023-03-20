@@ -55,6 +55,7 @@ function Transactions() {
         }
         };
     
+        
 
 
     // Handle form submit to update a transaction
@@ -114,7 +115,7 @@ return(
           inputProps={{ 'aria-label': 'Filter by Category' }}
         >
           <MenuItem value="All">
-            Category
+            All
           </MenuItem>
           <MenuItem value="transport">Transport</MenuItem>
           <MenuItem value="shopping">Shopping</MenuItem>
@@ -137,24 +138,23 @@ return(
     {transactions.filter(
     (transaction) =>
       selectedCategory === "All" || transaction.category === selectedCategory
-  )
-  .map((transaction) => ( 
+  ).map((transaction) => ( 
             <tr key={transaction._id} data-transaction-id={transaction._id}>
-                <td key={transaction.id}> <Popup trigger={
-                <IconButton
-                aria-label="Edit"
-                onClick={handleEdit}
-                data-transaction-id={transaction._id}
-                    >
-                <EditIcon />
-                </IconButton>} 
-                modal
-                >
+                <td key={transaction.id}>
+             <Popup trigger={
+                <IconButton aria-label="Edit" onClick={handleEdit}   data-transaction-id={transaction._id} > <EditIcon /> </IconButton>
+                            }  modal >
                     <div className="modal">
                             <form onSubmit={handleSubmit}>
                                 
                                 <TextField id="standard-basic" label="Description" variant="standard" value={description} onChange={(e) => setDescription(e.target.value)} />
-                                <TextField id="standard-basic" label="Category" variant="standard" value={category} onChange={(e) => setCategory(e.target.value)} />  
+                                <Select value={category} onChange={(e) => setCategory(e.target.value)}>
+                                    <MenuItem value="transport">Transport</MenuItem>
+                                    <MenuItem value="shopping">Shopping</MenuItem>
+                                    <MenuItem value="food & drink">Food & Drink</MenuItem>
+                                    <MenuItem value="entertainment">Entertainment</MenuItem>
+                                    <MenuItem value="Other">Other</MenuItem>
+                                 </Select>
                                  <input type="image" alt='Upload Image'></input>
 
                                 <IconButton
@@ -179,8 +179,6 @@ return(
 
     </tbody>
 </table>
-
-
 </div>
 </div>
 
