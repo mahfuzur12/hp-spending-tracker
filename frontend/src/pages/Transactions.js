@@ -22,9 +22,6 @@ function Transactions() {
 
 return(
     <div>
-        <div>
-        <Navbar />
-        </div>
     <table> 
         <thead>
             <tr>
