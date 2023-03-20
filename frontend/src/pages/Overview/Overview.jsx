@@ -129,6 +129,8 @@ const Overview = () => {
     const [transactions, setTransactions] = useState([]);
     const [budget, setBudget] = useState(0);
     const [budgetSpent, setBudgetSpent] = useState(0);
+    const [streak, setStreak] = useState(0);
+
     const { user } = useContext(AuthContext);
       
     useEffect(() => {
@@ -152,8 +154,10 @@ const Overview = () => {
         const currUser = await axios.get('/' + user._id);
         const transactionIds = currUser.data.data.transactions;
         const budget = currUser.data.data.budget;
+        const streak = currUser.data.data.streak;
 
         setBudget(budget);
+        setStreak(streak);
 
         //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
 
@@ -235,7 +239,7 @@ const Overview = () => {
                 <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>
                 <RegularCard><SpendingHeatmap transactions={transactions} /></RegularCard>
                 <RegularCard><Budget budgetUsed={budgetSpent} totalBudget={budget} daysLeft={daysLeft} /></RegularCard>
-                <RegularCard><Streak /></RegularCard>
+                <RegularCard><Streak streak={streak} /></RegularCard>
                 <RegularCard><ChangeCard /></RegularCard>
             </CardContainer>
             <Footer>

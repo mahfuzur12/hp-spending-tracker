@@ -19,7 +19,15 @@ const Title = styled.h2`
   font-size: ${theme.fontSizes.medium};
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.white} !important;
-  margin-bottom: 1vh;
+  margin-bottom: 0;
+`;
+
+const SubHeading = styled.h3`
+    font-family: ${theme.fonts.subHeadings};
+    font-size: ${theme.fontSizes.subHeadings};
+    font-weight: ${theme.fontWeight.semiBold};
+    color: ${theme.colors.text};
+    margin-bottom: 1vh;
 `;
 
 const COLORS = [theme.colors.text, theme.colors.white];
@@ -146,6 +154,7 @@ const SpendingLine = ({ transactions }) => {
     return (
         <Container>
             <Title>Spending this month</Title>
+            <SubHeading>vs last month</SubHeading>
             <Chart options={options} series={series} type="line" />
         </Container>
     );

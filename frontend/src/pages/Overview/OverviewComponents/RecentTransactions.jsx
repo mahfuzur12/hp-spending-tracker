@@ -116,7 +116,7 @@ const RecentTransactions = ({ transactions }) => {
 
     return (
         <RecentTransactionsContainer>
-            <Title>Recent Transactions</Title>
+            <Title>Recent transactions</Title>
                 {recentTransactions.map((transaction) => (
                     <TransactionContainer key={transaction._id}>
                         <IconContainer>
@@ -125,7 +125,7 @@ const RecentTransactions = ({ transactions }) => {
                             <TransactionTitle>{transaction.data.description}</TransactionTitle>
                             <TransactionCategory>{transaction.data.category}</TransactionCategory>
                         </div>
-                        <TransactionAmount>£{transaction.data.amount*-1}</TransactionAmount>
+                        <TransactionAmount>£{(transaction.data.amount*-1).toFixed(2)}</TransactionAmount>
                     </TransactionContainer>
                 ))}
             <SeeMoreButton onClick={() => setIsModalOpen(true)}>See More</SeeMoreButton>
