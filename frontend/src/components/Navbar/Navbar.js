@@ -9,10 +9,10 @@ import axios from "axios";
 
 
 const Navbar = styled.nav`
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // margin-bottom: 3vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3vh;
   
 `;
 

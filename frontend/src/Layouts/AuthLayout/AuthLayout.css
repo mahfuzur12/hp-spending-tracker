@@ -110,14 +110,14 @@
 
 
 .auth-btns {
-  background: #ffffff;
+  background: #2ed573;
   cursor: pointer;
   padding: 12px 20px;
   border: 0;
   border-radius: 20px;
   margin-right: 10px;
   width: 300px;
-  color: black;
+  color: #ffffff;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-size: 16px;
@@ -127,8 +127,8 @@
 }
 
 .auth-btns:hover {
-  background-color: #2ed573;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #2ed573;
 }
 
 .auth-btns-position {
