@@ -22,10 +22,11 @@ export default function Spending() {
         const budget = document.getElementById("budget-num-id");
         const newBudget = parseInt(budget.innerText) - 10;
         budget.innerText = newBudget;
-        setBudget(newBudget);
+        setBudget(budget.innerText);
 
         if (newBudget < 100) {
             budget.innerText = 100
+            setBudget(budget.innerText);
         }
     }
 
