@@ -1,74 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
-import "./Streaks.css"
+import "./Streaks.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
-
+import "./Budget.css";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 function StreaksNavbar() {
-    const dailyBudget = 60;
-    const [todaysTotal, setTodaysTotal] = useState(0);
-    const [monthTotals, setMonthTotals] = useState([]);
-    const [currentStreak, setCurrentStreak] = useState(0);
+  const { user } = useContext(AuthContext);
 
-    useEffect(() => {
-        const fetchData = () => {
-            fetch("http://localhost:8000/api/transactions")
-                .then((data) => {
-                    const res = data.json();
-                    return res;
-                })
-                .then((res) => {
-                    console.log("resss", res);
+  const [todaysTotal, setTodaysTotal] = useState(0);
+  const [monthTotals, setMonthTotals] = useState([]);
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [budget, setBudget] = useState(0);
 
-                    // Filter transactions that occurred today
-                    const today = new Date();
-                    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                    const todayEnd = new Date(todayStart.getTime() + 24 * 60 * 60 * 1000);
-                    const todayTransactions = res.filter((transaction) => {
-                        const transactionDate = new Date(transaction.date);
-                        return transactionDate >= todayStart && transactionDate < todayEnd;
-                    });
+  useEffect(() => {
+    async function Fetch() {
+      try {
+        const res = await axios.get(`http://localhost:8000/users/${user._id}`);
+        const { budget } = res.data;
 
-                    // Calculate the total spending for today
-                    const todayTotal = todayTransactions.reduce(
-                        (total, transaction) => total + transaction.amount,
-                        0
-                    );
-                    setTodaysTotal(todayTotal);
+        // Calculate daily budget based on the number of days in the current month
+        const today = new Date();
+        const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        const dailyBudget = budget / daysInMonth;
+        setBudget(budget);
 
-                    // Calculate the daily spending totals for the current month
-                    const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-                    const monthTotals = new Array(daysInMonth).fill(0);
-                    res.forEach((transaction) => {
-                        const transactionDate = new Date(transaction.date);
-                        if (transactionDate.getMonth() === today.getMonth() && transactionDate.getFullYear() === today.getFullYear()) {
-                            const dayOfMonth = transactionDate.getDate() - 1;
-                            monthTotals[dayOfMonth] += transaction.amount;
-                        }
-                    });
-                    setMonthTotals(monthTotals);
+        const data = await axios.get("http://localhost:8000/api/transactions");
 
-                    // Calculate the current streak
-                    let streak = 0;
-                    let currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                    while (streak < monthTotals.length) {
-                        if (monthTotals[currentDate.getDate() - 1] > dailyBudget) {
-                            break;
-                        }
-                        streak++;
-                        currentDate.setDate(currentDate.getDate() - 1);
-                    }
-                    setCurrentStreak(streak);
+        // Filter transactions that occurred today
+        const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const todayEnd = new Date(todayStart.getTime() + 24 * 60 * 60 * 1000);
+        const todayTransactions = res.filter((transaction) => {
+          const transactionDate = new Date(transaction.date);
+          return transactionDate >= todayStart && transactionDate < todayEnd;
+        });
 
-                })
-                .catch((e) => {
-                    console.log("error", e);
-                });
-        };
+        // Calculate the total spending for today
+        const todayTotal = todayTransactions.reduce((total, transaction) => total + transaction.amount, 0);
+        setTodaysTotal(todayTotal);
 
-        fetchData();
-    }, []);
+        // Calculate the daily spending totals for the current month
+        const monthTotals = new Array(daysInMonth).fill(0);
+        res.forEach((transaction) => {
+          const transactionDate = new Date(transaction.date);
+          if (transactionDate.getMonth() === today.getMonth() && transactionDate.getFullYear() === today.getFullYear()) {
+            const dayOfMonth = transactionDate.getDate() - 1;
+            monthTotals[dayOfMonth] += transaction.amount;
+          }
+        });
+        setMonthTotals(monthTotals);
+
+        // Calculate the current streak
+        let streak = 0;
+        let currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        while (streak < monthTotals.length) {
+          if (monthTotals[currentDate.getDate() - 1] > dailyBudget) {
+            break;
+          }
+          streak++;
+          currentDate.setDate(currentDate.getDate() - 1);
+        }
+        setCurrentStreak(streak);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    Fetch();
+  }, []);
 
     const fireIcons = Array(currentStreak).fill(null);
 

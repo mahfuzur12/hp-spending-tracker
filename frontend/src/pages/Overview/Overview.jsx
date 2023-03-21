@@ -143,7 +143,7 @@ const Overview = () => {
             console.log('done');
             console.log(transactions)
         });
-    }, [user._id, accessToken]);
+    }, [user._id, accessToken, budget]);
 
 
     // get user._id from AuthContext
@@ -192,10 +192,11 @@ const Overview = () => {
     const getBudgetSpent = () => {
         let spent = 0;
         let today = new Date();
-        let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+        //let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30);
+        let lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
         for (let i = 0; i < transactions.length; i++) {
             let transactionDate = new Date(transactions[i].data.date);
-            if (transactionDate > lastWeek) {
+            if (transactionDate > lastMonth) {
                 if (transactions[i].data.amount > 0) {
                     spent += transactions[i].data.amount;
                 }
@@ -204,17 +205,6 @@ const Overview = () => {
         }
         setBudgetSpent(spent);
     }
-
-    const budgetData = [
-        {
-            name: 'Used',
-            value: budgetSpent,
-        },
-        {
-            name: 'Remaining',
-            value: budget - budgetSpent,
-        },
-    ];
 
     const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
