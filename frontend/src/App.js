@@ -12,6 +12,8 @@ import Transactions from "./pages/Transactions"
 import Profile from "./components/Profile/Profile";
 import BudgetSummary from "./pages/BudgetSummary";
 import Streaks from "./pages/Streaks";
+import StreaksNavbar from "./pages/StreaksNavbar"
+import Points from "./pages/Points";
 
 
 function App() {
@@ -63,6 +65,10 @@ function App() {
         <Route path="/profile" exact element = {isLoggedIn? <Profile/> : <AuthLayout/>}/>
         <Route path="/budget-summary" exact element={isLoggedIn? <BudgetSummary/> : <AuthLayout/>}/>
         <Route path="/progress" exact element={isLoggedIn? <Streaks/> : <AuthLayout/>}/>
+        <Route path="/streaks" exact element={isLoggedIn? <StreaksNavbar/> : <AuthLayout/>}/>
+        <Route path="/points" exact element={isLoggedIn? <Points/> : <AuthLayout/>}/>
+
+
 
 
           
