@@ -139,9 +139,9 @@
 .auth-image-container {
   background-attachment: fixed;
   background-color: inherit;
-  margin-top: 15%;
-  margin-right: 0%;
+  margin-top: 5%;
   width: 75%;
+  
 }
 
 .auth-image {
@@ -228,7 +228,7 @@
 
 
 .auth-contact-submit {
-  background-color: #4CAF50;
+  background-color: #7ed386;
   color: white;
   padding: 10px 20px;
   border: none;

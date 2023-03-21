@@ -17,14 +17,14 @@
     text-transform: uppercase;
     font-size: 30px;
     border: 0;
-    color: #fff;
-    background: #7ed386;
+    color: #030303;
+    background:  #4CAF50;
     padding: 7px 15px;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
     cursor: pointer;
 }
 
 .contactus-link:hover {
-    background-color: #4CAF50;
-    color: black;
+    background-color: #7ed386;
+    color: #fff;
 }

@@ -9,10 +9,11 @@ import axios from "axios";
 
 
 const Navbar = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3vh;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // margin-bottom: 3vh;
+  
 `;
 
 const NavItem = styled.li`
@@ -73,7 +74,7 @@ const NavComp = () =>{
 return(
 <Navbar>
         <ul>
-            <Brand>pocilot</Brand>
+            <Brand>Pocilot Tracker</Brand>
                 <NavItem>
                     <a href="/">Overview</a>
                 </NavItem>
