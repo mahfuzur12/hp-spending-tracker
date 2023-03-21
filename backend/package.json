@@ -26,6 +26,7 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "plaid": "^12.4.0",
+    "progressbar.js": "^1.1.0",
     "validator": "^13.9.0"
   }
 }

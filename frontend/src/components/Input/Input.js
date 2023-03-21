@@ -1,16 +1,17 @@
 import React from "react";
+import "./Input.css"
 
-const Input = ({icon, handleClick, type, name, handleChange, defaultValue, disabled, text}) => {
+const Input = ({ icon, handleClick, type, name, handleChange, defaultValue, disabled, text }) => {
     return (
-        <div>
-            <label>
-                <div onClick={handleClick}>{icon}</div>
-                <input type={type} name={name} onChange={handleChange} 
-                defaultValue={defaultValue} disabled={disabled} placeholder="&nbsp;" autoComplete="off" />
-                <span>{text}</span>
+        <div className="input-div">
+            <label htmlFor={name}>
+                <h2 className="input-content">{text}                <span onClick={handleClick}> {icon}</span></h2>
+                <input className="input-input" id={name} type={type} name={name} onChange={handleChange}
+                    defaultValue={defaultValue} disabled={disabled} placeholder="&nbsp;" autoComplete="off" />
             </label>
         </div>
     );
 };
 
 export default Input;
+

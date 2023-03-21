@@ -9,30 +9,26 @@ import './ProfileLayout.css'
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
+import Streaks from "../../pages/Streaks";
 
 
 const ProfileLayout = () => {
   //const [hasCard, setHasCard] = useState(false);
 
-      
-
-  
-  
-  
-    return (
-      <div class = 'content'>
+  return (
+    <div>
 
 
-        <div class="content">
-          <Navbar />
+      <div class="content">
+        <Navbar />
         <Overview />
-        </div>
-
-        
       </div>
-    );
+
+
+    </div>
+  );
 
 }
-  
-  
-  export default ProfileLayout;
+
+
+export default ProfileLayout;

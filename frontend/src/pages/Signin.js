@@ -6,19 +6,24 @@ import { isEmpty, isEmail } from "../components/helper/validate";
 import axios from 'axios'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Input from "../components/Input/Input";
 import { AuthContext } from "../context/AuthContext";
+import "./Signin.css"
+
 const initialState = {
   name: '',
-  password: ''
+  password: '',
+  email: ''
 }
 
 const Signin = () => {
 
+  const [inputValue, setInputValue] = useState('');
+
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState(initialState)
-  const {email, password} = data
-  const {dispatch} = useContext(AuthContext)
+  const { email, password } = data
+  const { dispatch } = useContext(AuthContext)
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -43,45 +48,61 @@ const Signin = () => {
         bodyClassName: "toast-failed",
       });
     try {
-      await axios.post("/signin", { email, password });
+      await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
       dispatch({ type: "SIGNING" });
+      setIsSignedIn(true); // Add this line
     } catch (err) {
-      toast(err.response.data.msg, {
-        className: "toast-failed",
-        bodyClassName: "toast-failed",
-      });
+      // toast(err.response.data.msg, {
+      //   className: "toast-failed",
+      //   bodyClassName: "toast-failed",
+      // });
     }
   };
 
   return (
     <>
-    <ToastContainer />
-    <form onSubmit={signin}>
+      <ToastContainer data-testid="signin-component" is-signed-in={isSignedIn} />
+      <form className="signin-landing-form" onSubmit={signin}>
+        <div className="signin-landing-form">
+          <label className="signin-input-title">Email</label>
 
-      <div class = 'landing-form'>
-      <label>Email</label>
-      <Input type="email"  name="email" handleChange={handleChange}/>
-      </div>
-      
-      <br/>
-      <div class = 'landing-form'>
-      <label>Password</label>
-      <Input
-        name="password"
-        type={visible ? "text" : "password"}
-        icon={visible ? <MdVisibility /> : <MdVisibilityOff />}
-        handleClick={handleClick}
-        handleChange={handleChange}
-      />
-      </div>
-      
-      <br/>
-      <br/>
+          <div className="signin-input-div">
+            <label>
+              <input className="signin-input-input" type={email} name={"email"} onChange={handleChange}
+                placeholder="Enter your email" autoComplete="off" value={data.email} />
+            </label>
+          </div>
 
-        <button class ='btns' type="submit">Log In</button>
-     
-    </form>
+        </div>
+
+
+        <br />
+        <div className="signin-landing-form">
+          <div className="signin-input-div">
+            <label className="signin-input-title"> Password
+              <span onClick={handleClick} data-testid="password-visibility-toggle" > {visible ? <MdVisibility label={"Password visibility toggle"} /> : <MdVisibilityOff />}</span>
+            </label>
+
+
+            <input className="signin-input-input" type={visible ? "text" : "password"} name="password" onChange={handleChange}
+              placeholder="Enter your password" autoComplete="off" value={data.password} />
+
+
+          </div>
+
+
+        </div>
+
+
+
+
+        <br />
+        <br />
+
+        <button className='auth-btns' type="submit">Log In</button>
+
+      </form>
     </>
   )
 };
