@@ -5,6 +5,8 @@ import Signup from "../../pages/Signup";
 import ContactUs from "../../components/ContactUs/ContactUs";
 import imgPath from "../../images/landing1.png"
 import "./AuthLayout.css";
+import theme from "../../pages/Overview/theme";
+import NavComp from '../../components/Navbar/LandingNavbar';
 
 const AuthLayout = () => {
   const [signin, setSignin] = useState(true)
@@ -29,15 +31,7 @@ const AuthLayout = () => {
 
   return (
     <body id="auth-body-id">
-      <nav className="auth-navbar">
-        <a className="auth-nav-logo" >Pocilot Tracker</a>
-        <ul>
-          <li><a href="#auth-body-id" >Home</a></li>
-          <li><a href="#auth-about-container-id">About</a></li>
-          <li><a href="#auth-services-container-id">Services</a></li>
-          <li><a href="#auth-contact-container-id">Contact</a></li>
-        </ul>
-      </nav>
+      <NavComp/>
       <main className="auth-main">
         <div className='auth-content' >
           <h1 className='auth-title-content'>Your Personal Spending Tracker</h1>
