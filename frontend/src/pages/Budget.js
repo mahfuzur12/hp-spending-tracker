@@ -49,9 +49,9 @@ export default function Spending(isDone) {
             </div>
 
             <h1 className="budget-title">Set up your monthly budget </h1>
-            <button onClick={decBudget} className="budget-btn"> - </button>
+            <button onClick={decBudget} id="budget-btn-minus"> - </button>
             <span className="budget-signal">£</span><span className="budget-num" id="budget-num-id">500</span>
-            <button onClick={incBudget} className="budget-btn"> + </button>
+            <button onClick={incBudget} id="budget-btn-plus"> + </button>
             <div>
                 <button onClick={() => open()} className="budget-done"> Done </button>
             </div>
