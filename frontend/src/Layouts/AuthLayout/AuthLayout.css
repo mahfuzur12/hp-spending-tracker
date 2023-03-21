@@ -14,7 +14,7 @@
   line-height: 80px;
   font-size: 18px;
   padding: 0 30px;
-  font-family: 'Karla';
+  font-family: "Poppins", sans-serif;
 }
 
 .auth-navbar a {
@@ -29,7 +29,7 @@
   font-size: 40px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-family: 'Karla';
+  font-family: "Poppins", sans-serif;
   color: #ffffff;
   font-weight: bold;
 }
@@ -75,7 +75,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  font-family: 'Karla';
+  font-family: "Poppins", sans-serif;
   align-items: flex-start;
   height: calc(100vh - 80px);
   box-sizing: border-box;
@@ -118,7 +118,7 @@
   margin-right: 10px;
   width: 300px;
   color: black;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: 1px;
