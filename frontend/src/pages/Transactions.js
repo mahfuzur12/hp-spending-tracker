@@ -3,14 +3,12 @@ import React, { useEffect, useState } from "react";
 import "./transactions.css"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import Navbar from '../components/Navbar';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-
 
 
 function Transactions() {
@@ -95,12 +93,10 @@ function Transactions() {
 return(
   
  <>
-    <div >
-        <Navbar />
-    </div>
+    
     <div className="transactions-page">
     <div className="filter">
-        <h2>Filter by Category:</h2>
+        <h2>Filter by Category</h2>
     <Select
           value={selectedCategory}
           onChange={(e) => handleCategoryChange(e.target.value)}
@@ -122,8 +118,8 @@ return(
     <table> 
         <thead>
             <tr>
-            <th>TRANSACTION<br/>NAME</th>
-            <th>AMOUNT <br></br> SPENT</th>
+            <th>NAME</th>
+            <th>AMOUNT</th>
             <th>CATEGORY</th>
             <th>DATE</th>
             </tr>
@@ -134,23 +130,23 @@ return(
       selectedCategory === "All" || transaction.category === selectedCategory
   ).map((transaction) => ( 
             <tr key={transaction._id} data-transaction-id={transaction._id}>
-                <td key={transaction.id}>
+                <td key={transaction.id} className="description-td">
              <Popup trigger={
-                <IconButton aria-label="Edit" onClick={handleEdit}   data-transaction-id={transaction._id} > <EditIcon /> </IconButton>
-                            }  modal >
+                <IconButton aria-label="Edit" onClick={handleEdit}   data-transaction-id={transaction._id} className="edit-btn"> 
+                   <EditIcon />
+                 </IconButton> }  modal >
                     <div className="modal">
-                            <form onSubmit={handleSubmit}>
-                                
+                      <h2>Edit Transaction</h2>
+                            <form onSubmit={handleSubmit}>                          
                                 <TextField id="standard-basic" label="Description" variant="standard" value={description} onChange={(e) => setDescription(e.target.value)} />
                                 <TextField id="standard-basic" label="Category" variant="standard" value={category} onChange={(e) => setCategory(e.target.value)} />
-                                 <input type="image" alt='Upload Image'></input>
+                                 <input type="image" alt='Upload Image' className='image-in'></input>
 
                                                 <IconButton
                                                     aria-label="Edit"
                                                     onClick={handleSubmit}
                                                     data-transaction-id={transaction._id}
                                                 >
-
                                                     <DoneIcon />
                                                 </IconButton>
 

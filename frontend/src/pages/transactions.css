@@ -1,116 +1,98 @@
-
- .transactions-page {
-  display: flex;
-  position: absolute;
-
-  width: 100%;
-  top: 8%;
-
- 
-  background: linear-gradient(to right, #2ed573, #f9ca24);
-
-  }
-  
-  .transactions-table{
-    display: flex;
-    
-    
-    left: 8%;
-    width: 70%;
-    height: 100%;
-  }
- 
-  table{
-    
-    border-collapse: collapse;
-    text-align: center;
-    padding: 5px;
-   
-    width: 100%;
-  }
-
- tr, th, td{
-    border: 0.3px solid darkolivegreen;
-    border-collapse: collapse;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0);  
-    font-size: 1.5rem;
-    
-  }
-
-  th{
-    font-family: 'Karla';
-    font-size: 2rem;
-    font-weight: bold;
-    background-color: rgb(58, 85, 66,0.2);
+th{
+    background-color: #4CAF50;
     color: white;
-    padding: 5px;
-    border: 0.3px solid darkolivegreen;
-    -webkit-text-stroke: 0.1px;
-    -webkit-text-stroke-color: black;
+    align-items: center;
+    text-align: center;
+    border-bottom: black 1px solid;
+    font-size: 1rem;
+    font-weight: bold;
     
-  }
-  
-  td{
+}
+
+td{
     font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
-    background-color: rgb(163, 222, 182, 0.2);
+    text-align: center;
+    background-color: rgba(249, 249, 249, 0.2);
     color: rgb(0, 0, 0);
     -webkit-text-stroke: 0.2px;
-    -webkit-text-stroke-color: rgb(255, 246, 246);
-    padding: 5px;
+    border-bottom: 0.5px solid #4CAF50;
+    padding: 10px;
     text-transform: capitalize;
-    
-    
-  }
- 
-  .modal {
- 
-    border: 1px solid black;
-    width: 100%;
-
-
-
-  }
- 
-form{
-  display: grid;
-  flex-direction: column;
-  justify-content: center;
-  
-  
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: black;
-  
-  text-align: center;
 }
 
-.popup-content{
-  margin:0;
-  padding: 0px;
-}
+table{    
+        
+        text-align: center;
+        padding: 5px;
+       border: 0.5px solid black;
+        width: 100%;
+        
+    }
 
-  
+
 .filter{
- 
-  top: 10%;
-  right: 2%;
-
-  align-items: center;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid white;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+    display: inline;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255, 0.5);
 }
+
 
 .filter h2{
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  -webkit-text-stroke: 0.1px;
-  -webkit-text-stroke-color: black;
-  color: white;
-  text-align: center;
-  margin-right: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    -webkit-text-stroke: 0.1px;
+    -webkit-text-stroke-color: black;
+    text-align: center;
+    margin-right: 10px;
+  }
+
+.description-td{
+    
+    align-items: center;  
+ 
 }
 
+.transactions-page button{
+    width: 20%;
+}
+
+form input{
+    box-sizing: initial; 
+    margin: 5px;
+    padding: 5px;
+    height: 20%;
+    justify-content: center;
+}
+
+form button{
+    width: 30%;
+    align-self: center;
+
+}
+
+form .image-in{
+    width: 50%;
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+form{
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: #4CAF50 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    border-spacing: 0px;
+
+    
+}
