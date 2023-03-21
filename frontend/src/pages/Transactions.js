@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
-import "../transactions.css"
+import "./transactions.css"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Navbar from '../components/Navbar';
@@ -29,19 +29,14 @@ function Transactions() {
     // Fetch transactions data
     useEffect(() => {
         axios.get("http://localhost:8000/api/transactions") 
-          .then(res => {
+         .then(res => {
             setOriginalTransactions(res.data);
             setTransactions(res.data);
+            
           })
           .catch(err => console.log(err))
       }, []);
-  
-        const filteredTransactions =
-            categoryFilter === "All"
-            ? transactions
-            : transactions.filter((transaction) => transaction.category === categoryFilter);
-
-    
+     
     // Filter transactions by category
     const handleCategoryChange = (selectedCategory) => {
         setSelectedCategory(selectedCategory);
@@ -67,7 +62,6 @@ function Transactions() {
           category
         })
         .then(res => {
-          console.log(res.data);
           setShowPopup(false);
           setSelectedTransactionId(null);         
           axios.get("http://localhost:8000/api/transactions") // Refresh transactions data
@@ -82,7 +76,6 @@ function Transactions() {
 
       // Handle edit button click
       function handleEdit(event) {
-        console.log("Hello")
         const transactionId = event.currentTarget.dataset.transactionId;
             axios.get(`http://localhost:8000/api/transactions/${transactionId}`)
         .then(res => {
@@ -101,10 +94,11 @@ function Transactions() {
 
 return(
   
-<div className="content">
+ <>
     <div >
         <Navbar />
     </div>
+    <div className="transactions-page">
     <div className="filter">
         <h2>Filter by Category:</h2>
     <Select
@@ -124,7 +118,7 @@ return(
           <MenuItem value="Other">Other</MenuItem>
         </Select>
 </div>
-    <div className="transactions">
+    <div className="transactions-table">
     <table> 
         <thead>
             <tr>
@@ -148,13 +142,7 @@ return(
                             <form onSubmit={handleSubmit}>
                                 
                                 <TextField id="standard-basic" label="Description" variant="standard" value={description} onChange={(e) => setDescription(e.target.value)} />
-                                <Select value={category} onChange={(e) => setCategory(e.target.value)}>
-                                    <MenuItem value="transport">Transport</MenuItem>
-                                    <MenuItem value="shopping">Shopping</MenuItem>
-                                    <MenuItem value="food & drink">Food & Drink</MenuItem>
-                                    <MenuItem value="entertainment">Entertainment</MenuItem>
-                                    <MenuItem value="Other">Other</MenuItem>
-                                 </Select>
+                                <TextField id="standard-basic" label="Category" variant="standard" value={category} onChange={(e) => setCategory(e.target.value)} />
                                  <input type="image" alt='Upload Image'></input>
 
                                 <IconButton
@@ -181,7 +169,7 @@ return(
 </table>
 </div>
 </div>
-
+</>
     )
 }
 
