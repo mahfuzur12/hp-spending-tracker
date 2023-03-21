@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto");
+
+
 .signin-landing-form {
-    width: 30%;
     background-color: transparent;
     text-align: left;
 }
@@ -11,7 +13,6 @@
     font-size: 16px;
     letter-spacing: 1px;
     margin-left: 2px;
-    margin-top: 10px;
     width: 200px;
 }
 
@@ -39,7 +40,7 @@
 }
 
 .signin-input-input {
-    width: 80%;
+    /* width: 80%; */
     font-family: 'montserrat', sans-serif;
     font-size: 16px;
     padding: 7px 0;

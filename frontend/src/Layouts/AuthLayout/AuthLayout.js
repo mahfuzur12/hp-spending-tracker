@@ -41,13 +41,11 @@ const AuthLayout = () => {
       <main className="auth-main">
         <div className='auth-content' >
           <h1 className='auth-title-content'>Your Personal Spending Tracker</h1>
-          <p >Join us to track your spending and save more money :-)</p>
-          <br />
+          <p className='auth-title-side'>Join us to track your spending and save more money :-)</p>
           <div className="auth-landing-form">
             {signin && <Signin />}
             {signup && <Signup />}
             {forgot && <Forgot />}
-            <br />
             <div className='auth-btns-position'>
               <button className='auth-btns' onClick={signin ? handleSignup : handleSignin}>{signin ? "Sign up" : "Log In"}</button>
               <button className='auth-btns' onClick={handleForgot}>Forgot Password</button>
