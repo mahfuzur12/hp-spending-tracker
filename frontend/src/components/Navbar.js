@@ -29,7 +29,7 @@ export default function Navbar() {
 
     <nav className="navbar-overview" >
 
-      <a href="/" className="nav-logo-overview">Piciclot Tracker</a>
+      <a href="/" className="nav-logo-overview">Pocilot Tracker</a>
       <ul>
         <li><a href="/">Overview</a></li>
         <li><a href="/charts">Charts</a></li>
