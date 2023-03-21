@@ -5,6 +5,7 @@ import { faFire } from "@fortawesome/free-solid-svg-icons";
 import "./Budget.css";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import { useContext } from "react";
 
 function StreaksNavbar() {
   const { user } = useContext(AuthContext);
