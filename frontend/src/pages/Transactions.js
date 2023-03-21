@@ -19,11 +19,11 @@ function Transactions() {
     const [description, setDescription] = useState(" ");
     const [amount, setAmount] = useState(" ");
     const [category, setCategory] = useState(" ");
-     const [date, setDate] = useState(" ");
-     const [selectedTransactionId, setSelectedTransactionId] = useState(null);
-    const[showPopup, setShowPopup] = useState(false);
+    const [date, setDate] = useState(" ");
+    const [selectedTransactionId, setSelectedTransactionId] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const[categoryFilter, setCategoryFilter] = useState("All");
+    const [categoryFilter, setCategoryFilter] = useState("All");
     const [originalTransactions, setOriginalTransactions] = useState([]);
 
     // Fetch transactions data
@@ -44,22 +44,22 @@ function Transactions() {
             setTransactions(originalTransactions);
         } else {
             const filtered = originalTransactions.filter(
-            (transaction) => transaction.category === selectedCategory
+                (transaction) => transaction.category === selectedCategory
             );
             setTransactions(filtered);
         }
-        };
-    
-        
+    };
+
+
 
 
     // Handle form submit to update a transaction
-    function handleSubmit (event) {
+    function handleSubmit(event) {
         event.preventDefault();
         const transactionId = event.currentTarget.dataset.transactionId;
         axios.patch(`http://localhost:8000/api/transactions/${transactionId}`, {
-          description,
-          category
+            description,
+            category
         })
         .then(res => {
           setShowPopup(false);
@@ -77,20 +77,20 @@ function Transactions() {
       // Handle edit button click
       function handleEdit(event) {
         const transactionId = event.currentTarget.dataset.transactionId;
-            axios.get(`http://localhost:8000/api/transactions/${transactionId}`)
-        .then(res => {
-        setDescription(res.data.description);
-        setAmount(res.data.amount);
-        setCategory(res.data.category);
-        setDate(res.data.date);
-        setSelectedTransactionId(transactionId);
-        setShowPopup(true);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-    
+        axios.get(`http://localhost:8000/api/transactions/${transactionId}`)
+            .then(res => {
+                setDescription(res.data.description);
+                setAmount(res.data.amount);
+                setCategory(res.data.category);
+                setDate(res.data.date);
+                setSelectedTransactionId(transactionId);
+                setShowPopup(true);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
 
 return(
   
@@ -145,25 +145,25 @@ return(
                                 <TextField id="standard-basic" label="Category" variant="standard" value={category} onChange={(e) => setCategory(e.target.value)} />
                                  <input type="image" alt='Upload Image'></input>
 
-                                <IconButton
-                                        aria-label="Edit"
-                                        onClick={handleSubmit}
-                                        data-transaction-id={transaction._id}
-                                            >
-                                                
-                                        <DoneIcon />
-                               </IconButton> 
+                                                <IconButton
+                                                    aria-label="Edit"
+                                                    onClick={handleSubmit}
+                                                    data-transaction-id={transaction._id}
+                                                >
 
-                            </form>
-                    
-              </div>
-               </Popup>
-                {transaction.description}</td>
-                <td >{transaction.amount} £</td>
-                <td>{transaction.category}</td>
-                <td>{transaction.date.toString().substring(0, 10)}</td>
-            </tr>
-                ))}
+                                                    <DoneIcon />
+                                                </IconButton>
+
+                                            </form>
+
+                                        </div>
+                                    </Popup>
+                                    {transaction.description}</td>
+                                <td >{transaction.amount} £</td>
+                                <td>{transaction.category}</td>
+                                <td>{transaction.date.toString().substring(0, 10)}</td>
+                            </tr>
+                        ))}
 
     </tbody>
 </table>
@@ -179,9 +179,9 @@ export default Transactions;
 
 
 
- 
 
-      
-  
+
+
+
 
 

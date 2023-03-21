@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Forgot from "../../components/Forgot/Forgot";
 import Signin from "../../pages/Signin";
 import Signup from "../../pages/Signup";
-import ContactUs from "../../components/ContractUs/ContactUs";
+import ContactUs from "../../components/ContactUs/ContactUs";
 import imgPath from "../../images/landing1.png"
 import "./AuthLayout.css";
 
@@ -29,8 +29,8 @@ const AuthLayout = () => {
 
   return (
     <body id="auth-body-id">
-      <nav class="auth-navbar">
-        <a class="auth-nav-logo" >Piciclot Tracker</a>
+      <nav className="auth-navbar">
+        <a className="auth-nav-logo" >Piciclot Tracker</a>
         <ul>
           <li><a href="#auth-body-id" >Home</a></li>
           <li><a href="#auth-about-container-id">About</a></li>
@@ -55,8 +55,8 @@ const AuthLayout = () => {
           </div>
         </div>
 
-        <div class="auth-image-container">
-          <img class="auth-image" src={imgPath} alt="no" />
+        <div className="auth-image-container">
+          <img className="auth-image" src={imgPath} alt="no" />
         </div>
 
       </main>

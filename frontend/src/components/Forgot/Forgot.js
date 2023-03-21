@@ -1,4 +1,5 @@
 import React from "react";
+import { act } from "@testing-library/react";
 import Input from "../Input/Input";
 import { isEmpty, isEmail } from "../helper/validate";
 import axios from "axios";
@@ -18,7 +19,9 @@ const Forgot = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
     );
-    setEmail({ email: "" });
+    act(() => {
+      setEmail({ email: "" });
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -50,14 +53,13 @@ const Forgot = () => {
     }
   };
 
-
   return (
     <>
-    <ToastContainer />
-    <form className="signin-landing-form" onSubmit={handleSubmit}>
-      <Input type="text" text="Email" name="email" handleChange={handleChange}/>
-        <button class = 'auth-btns' type="submit">Send</button>
-    </form>
+      <ToastContainer />
+      <form className="signin-landing-form" onSubmit={handleSubmit}>
+        <Input type="text" text="Email" name="email" handleChange={handleChange} />
+        <button className='auth-btns' type="submit">Send</button>
+      </form>
     </>
   );
 };

@@ -31,14 +31,14 @@ export default function Spending() {
 
     const navigate = useNavigate();
 
-    
+
     async function open() {
         await axios.patch("/" + user._id, { budget: budget }
         );
         navigate("/budget-summary");
     }
 
-    
+
 
     return (
 

@@ -86,18 +86,20 @@ function BudgetSummary(){
 
 
     return(
+        <body className="budget-summary-body">
         <div className="budget-summary-container">
             <Navbar/>
             <h1 id="budget-summary-title"> Budget Summary</h1>
             <h2 id="budget-left">You have £{budget} left for {daysLeft} days</h2>
-            <div className="budget-bar"> 
-                <Bar 
+            <div className="budget-bar-container"> 
+                <Bar
                 data = {budgetData}
                 options = {budgetOptions}>
                 </Bar>
             </div>
-            <button onClick={() => {navigate("/budget")}} className="reset-budget-button"> Reset Budget </button>
+            <button className="reset-budget-button" onClick={() => {navigate("/budget")}} > Reset Budget </button>
         </div>
+    </body>
     )
 }
 

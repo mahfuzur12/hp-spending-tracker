@@ -1,29 +1,56 @@
-.reset-budget-button{
-    font-size: 30px;
-	margin: 4px 2px;
-    width: 350px;
-	height: 75px;
-	border-radius: 5px;
-    
+
+/* Set background color and font family */
+.budget-summary-body{
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+}
+.budget-summary-container{
+	font-family: 'karla';
+	background: linear-gradient(to right, #2ed573, #f9ca24);
+	height: 100%;
+	padding: 20px;
+
 }
 
-.budget-bar{
-	height: 450px;
+.budget-bar-container{
+	text-align: center;
 	
 }
-
-.budget-summary-container{
-	margin: 0px auto;
+	
+  /* Style the Budget Summary title */
+  #budget-summary-title {
+	font-size: 2rem;
+	margin-top: 160px;
+	
+  }
+  
+  /* Style the budget left section */
+  #budget-left {
+	margin-left: 80px;
+    position: relative;
 	text-align: center;
-	height: 100vh;
-}
-
-#budget-left {
-    font-size: 30px;
-    margin: 30px auto;
-}
-
-#budget-summary-title {
-    font-size: 60px;
-    margin: 100px auto;
-}
+  }
+  
+  /* Style the budget bar */
+  /* .budget-bar-container {
+	margin: 20px 0;
+  }
+   */
+  /* Style the Reset Budget button */
+  .reset-budget-button {
+	margin-top: 500px;
+	background: #ffffff;
+	cursor: pointer;
+	color: #191919;
+	padding: 12px 20px;
+	border: 0;
+	border-radius: 20px;
+	margin-right: 10px;
+  }
+  
+  .reset-budget-button:hover {
+	background-color: #f9ca24;
+  	color: #ffffff;
+  }
+  

@@ -50,6 +50,13 @@ function Charts() {
         ]
     })
 
+    var today = new Date();
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm
+    const d = new Date(yyyy, mm - 1, 10);
+    const month = d.toLocaleString('en-us', { month: 'long' });
+
     function getWeeksInMonth(year, month) {
         const weeks = [],
             firstDate = new Date(year, month - 1, 1),
@@ -88,12 +95,6 @@ function Charts() {
                 const lineLabel = [];
                 const barData = [];
                 const barLabel = [];
-                var today = new Date();
-                var mm = String(today.getMonth() + 1).padStart(2, '0');
-                var yyyy = today.getFullYear();
-                today = yyyy + "-" + mm
-                const d = new Date(yyyy, mm - 1, 10);
-                const month = d.toLocaleString('en-us', { month: 'long' });
                 var other = 0;
                 var transport = 0;
                 var entertainment = 0;
@@ -202,12 +203,13 @@ function Charts() {
             <div className="charts-navbar">
                 <Navbar />
             </div>
-            <h1 className="charts-title">Spending Trends For This Month</h1>
+            <h1 className="charts-title">Spending Trends For {month}</h1>
             <div className="charts-vision">
                 <div className="charts-pie">
                     <Doughnut
                         data={pieData}
                         options={pieOptions}
+                        data-testid="doughnut-chart"
                     >
                     </Doughnut>
                 </div>
@@ -215,13 +217,15 @@ function Charts() {
                     <div className="charts-bar">
                         <Bar
                             data={barData}
-                            options={barOptions}>
+                            options={barOptions}
+                            data-testid="bar-chart">
                         </Bar>
                     </div>
                     <div className="charts-line">
                         <Line
                             data={lineData}
-                            options={lineOptions}>
+                            options={lineOptions}
+                            data-testid="line-chart">
                         </Line>
                     </div>
                 </div>
