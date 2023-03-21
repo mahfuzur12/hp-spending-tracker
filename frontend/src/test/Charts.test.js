@@ -10,7 +10,12 @@ describe('Charts', () => {
 
     test('renders Charts component', () => {
         // Check if the title is rendered
-        const title = screen.getByText(/Spending Trends For This Month/i);
+        var today = new Date();
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        const d = new Date(yyyy, mm - 1, 10);
+        const month = d.toLocaleString('en-us', { month: 'long' });
+        const title = screen.getByText("Spending Trends For " + month);
         expect(title).toBeInTheDocument();
     });
 
