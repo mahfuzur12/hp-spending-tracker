@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 
@@ -77,6 +77,9 @@ const Budget = ({ budgetUsed, totalBudget, daysLeft }) => {
     }
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    useEffect(() => {
+    setIsModalOpen(BudgetPage.isDone)
+    }, [BudgetPage.isDone])
 
     return (
         <Container>

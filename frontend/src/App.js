@@ -62,12 +62,7 @@ function App() {
           path="/"
           exact
           element={isLoggedIn ? 
-            <>
-            <Container>
-            <NavComp/>
           <ProfileLayout />
-          </Container>
-            </>
            : <AuthLayout />}
         />
         <Route

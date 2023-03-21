@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useContext } from "react";
 import { useState } from "react";
 
-export default function Spending() {
+export default function Spending(isDone) {
     const [budget, setBudget] = useState(500);
     const { user } = useContext(AuthContext);
 
@@ -35,7 +35,7 @@ export default function Spending() {
     async function open() {
         await axios.patch("/" + user._id, { budget: budget }
         );
-        navigate("/");
+        navigate("/overview");
     }
 
 

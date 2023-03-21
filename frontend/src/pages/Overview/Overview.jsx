@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
+import NavComp from '../../components/Navbar/Navbar';
 
 const Container = styled.div`
   background-color: ${theme.colors.background};
@@ -209,7 +210,8 @@ const Overview = () => {
     const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
     return (
-        <div>
+          <Container>
+            <NavComp/>
             <Title>Overview</Title>
             <CardContainer>
                 <TallCard><RecentTransactions transactions={transactions} /></TallCard>
@@ -222,7 +224,7 @@ const Overview = () => {
             <Footer>
 
             </Footer>
-        </div>
+            </Container>
     );
 };
 

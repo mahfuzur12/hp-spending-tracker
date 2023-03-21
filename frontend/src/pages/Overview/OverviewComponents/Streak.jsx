@@ -34,7 +34,7 @@ const Streak = ({ streak }) => {
   console.log(streak)
     return (
         <Container>
-            <Title>Streak</Title>
+            <Title>Streaks</Title>
                 
                 <StreaksNavbar/>
         </Container>
