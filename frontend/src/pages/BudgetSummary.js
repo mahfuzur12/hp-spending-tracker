@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import React, {useState, useEffect} from 'react'
 import {Bar} from 'react-chartjs-2';
 import {Chart as ChartJS, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
@@ -88,7 +87,6 @@ function BudgetSummary(){
     return(
         <body className="budget-summary-body">
         <div className="budget-summary-container">
-            <Navbar/>
             <h1 id="budget-summary-title"> Budget Summary</h1>
             <h2 id="budget-left">You have £{budget} left for {daysLeft} days</h2>
             <div className="budget-bar-container"> 

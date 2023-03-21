@@ -10,16 +10,23 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "../Navbar";
 import "./Profile.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import NavComp from "../Navbar/Navbar";
+import theme from "../../pages/Overview/theme";
+import styled from "styled-components";
 
 const initialState = {
   name: "",
   password: "",
   cf_password: "",
 };
+
+const Container = styled.div`
+  background-color: ${theme.colors.background};
+  padding: 4vh 14vw;
+`;
 
 const Profile = () => {
   const inputFile = useRef(null);
@@ -119,13 +126,11 @@ const Profile = () => {
   };
 
   return (
-
+    <Container>
     <div className="profile-body">
       <ToastContainer />
       <div>
-        <div className="profile-nav">
-          <Navbar />
-        </div>
+        <NavComp/>
         <div className="profile-container">
           <form className="profile-form" onSubmit={handleSubmit}>
             <div className="profile-form-leftbox">
@@ -189,7 +194,7 @@ const Profile = () => {
 
       </div>
     </div>
-
+    </Container>
   );
 };
 

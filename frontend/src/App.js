@@ -8,14 +8,21 @@ import { AuthContext } from "./context/AuthContext";
 import axios from "axios";
 import Charts from "./pages/Charts";
 import Budget from "./pages/Budget";
+import Overview from "./pages/Overview/Overview";
 import Transactions from "./pages/Transactions"
 import Profile from "./components/Profile/Profile";
 import BudgetSummary from "./pages/BudgetSummary";
 import Streaks from "./pages/Streaks";
 import StreaksNavbar from "./pages/StreaksNavbar"
 import Points from "./pages/Points";
+import NavComp from "./components/Navbar/Navbar";
+import theme from "./pages/Overview/theme";
+import styled from "styled-components";
 
-
+const Container = styled.div`
+  background-color: ${theme.colors.background};
+  padding: 4vh 14vw;
+`;
 
 function App() {
   const { dispatch, token, isLoggedIn } = useContext(AuthContext);
@@ -46,13 +53,22 @@ function App() {
     }
   }, [dispatch, token]);
 
+  
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
           exact
-          element={isLoggedIn ? <ProfileLayout /> : <AuthLayout />}
+          element={isLoggedIn ? 
+            <>
+            <Container>
+            <NavComp/>
+          <ProfileLayout />
+          </Container>
+            </>
+           : <AuthLayout />}
         />
         <Route
           path="/auth/reset-password/:token"
@@ -60,6 +76,7 @@ function App() {
         <Route
           path="/api/auth/activate/:activation_token"
           exact element={<ActivateLayout />} />
+        <Route path="/overview" exact element={isLoggedIn ? <Overview /> : <AuthLayout />} />
         <Route path="/budget" exact element={isLoggedIn ? <Budget /> : <AuthLayout />} />
         <Route path="/charts" exact element={isLoggedIn ? <Charts /> : <AuthLayout />} />
         <Route path="/transactions" exact element={isLoggedIn ? <Transactions /> : <AuthLayout />} />

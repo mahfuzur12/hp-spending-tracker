@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "../transactions.css"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import Navbar from '../components/Navbar';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
@@ -103,7 +102,6 @@ function Transactions() {
 
         <div className="content">
             <div >
-                <Navbar />
             </div>
             <div className="filter">
                 <h2>Filter by Category:</h2>

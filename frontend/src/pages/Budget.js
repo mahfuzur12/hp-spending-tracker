@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import "./Budget.css";
 import { AuthContext } from "../context/AuthContext";
 import axios from 'axios';
@@ -36,7 +35,7 @@ export default function Spending() {
     async function open() {
         await axios.patch("/" + user._id, { budget: budget }
         );
-        navigate("/budget-summary");
+        navigate("/");
     }
 
 
@@ -47,7 +46,6 @@ export default function Spending() {
         <div className="budget-container">
 
             <div className="budget-navbar">
-                <Navbar />
             </div>
 
             <h1 className="budget-title">Set up your monthly budget </h1>

@@ -209,26 +209,7 @@ const Overview = () => {
     const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
     return (
-        <Container>
-            <Navbar>
-                <ul>
-                    <Brand>pocilot</Brand>
-                    <NavItem>
-                        <a href="#">Overview</a>
-                    </NavItem>
-                    <NavItem>
-                        <a href="#">Saver</a>
-                    </NavItem>
-                </ul>
-                <ul>
-                    <NavItem>Log out</NavItem>
-                    <NavItem>
-                        <ProfileButton href="#" role="button">
-                            Profile
-                        </ProfileButton>
-                    </NavItem>
-                </ul>
-            </Navbar>
+        <div>
             <Title>Overview</Title>
             <CardContainer>
                 <TallCard><RecentTransactions transactions={transactions} /></TallCard>
@@ -241,7 +222,7 @@ const Overview = () => {
             <Footer>
 
             </Footer>
-        </Container>
+        </div>
     );
 };
 
