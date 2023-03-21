@@ -18,7 +18,7 @@ describe("Navbar", () => {
     test("renders Navbar component correctly", () => {
         const user = { name: "John Doe" };
         renderNavbar(user);
-        expect(screen.getByText("Piciclot Tracker")).toBeInTheDocument();
+        expect(screen.getByText("Pocilot Tracker")).toBeInTheDocument();
         expect(screen.getByText("Overview")).toBeInTheDocument();
         expect(screen.getByText("Charts")).toBeInTheDocument();
         expect(screen.getByText("Budget")).toBeInTheDocument();
