@@ -74,23 +74,25 @@ form button:hover{
    
 
 .popup-content{
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
     margin: 0px;
     justify-content: center;
     align-items: center;
-    display: flex;
-    gap: 20px;
+    display: grid;
+    padding:0px;
 }
 
-.transaction-form{
-    display: flex;
+form{
+    display:grid;
     justify-content: center;
     align-items: center;
     text-align: center;
     border-radius: 10px;
     gap: 20px;
     padding: 10px;
+    margin: 0px;
+
 
     
 }
