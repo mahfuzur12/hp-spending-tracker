@@ -100,7 +100,7 @@ function ConnectBankButton() {
     });
 
     return publicToken ? (<PlaidAuth publicToken={publicToken} /> ) : (
-            <button class='Bank-btns' onClick={() => open()} disabled={!ready}>
+            <button className='Bank-btns' onClick={() => open()} disabled={!ready}>
                 Connect Bank Account
             </button>
     );

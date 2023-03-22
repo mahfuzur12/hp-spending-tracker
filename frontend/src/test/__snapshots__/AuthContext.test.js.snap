@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthContextProvider provides the initial state values to its children 1`] = `<div />`;
