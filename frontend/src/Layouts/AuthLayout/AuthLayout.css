@@ -17,44 +17,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.auth-navbar a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.auth-nav-logo {
-  float: left;
-  margin-top: 8px;
-  margin-left: 4%;
-  font-size: 40px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.auth-navbar ul {
-  float: right;
-  color: white;
-  list-style: none;
-  padding: 0 50px;
-}
-
-.auth-navbar ul li {
-  display: inline-block;
-}
-
-.auth-navbar ul li a {
-  display: block;
-  text-align: center;
-  min-width: 120px;
-}
-
-.auth-navbar ul li a:hover {
-  background-color: #83D475;
-}
-
 #auth-body-id {
   width: 100%;
   background-color: #EDEDED;

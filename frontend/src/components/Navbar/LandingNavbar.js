@@ -7,7 +7,7 @@ const Navbar = styled.nav`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   margin-bottom: 3vh;
+   margin-bottom: -10vh;
   
 `;
 
