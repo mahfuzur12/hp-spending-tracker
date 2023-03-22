@@ -78,9 +78,6 @@ return(
                 <NavItem>
                     <a href="/">Overview</a>
                 </NavItem>
-                <NavItem>
-                    <a href="">Saver</a>
-                </NavItem>
                 </ul>
                 <ul>
                 <NavItem>

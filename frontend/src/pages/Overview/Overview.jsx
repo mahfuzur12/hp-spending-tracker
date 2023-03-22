@@ -270,7 +270,7 @@ const Overview = () => {
   return (
     <Container>
       <NavComp />
-      <Title>Overview</Title>
+      <Title>Overview {accountBalance}</Title>
       <CardContainer>
         <TallCard><RecentTransactions transactions={transactions} /></TallCard>
         <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>
