@@ -26,6 +26,7 @@ const Grid = styled.div`
   gap: 1vh;
   margin-bottom: 2vh;
   justify-items: center;
+  height: 100%;
 `;
 
 const Month = styled.div`
@@ -34,14 +35,14 @@ const Month = styled.div`
   align-items: center;
   justify-content: bottom;
   padding: 1vh;
-    width: 5vh; // Add fixed width
-  height: 6vh; // Add fixed height
+  width: 5vh;
+  height: 8vh;
 `;
 
 const Circle = styled.div`
   background-color: ${theme.colors.primary};
   border-radius: 50%;
-  width: ${(props) => props.size}*0.5vh;
+  width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
 `;
 
