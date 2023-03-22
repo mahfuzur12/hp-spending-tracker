@@ -23,7 +23,7 @@ const theme = {
     },
     fontSizes: {
         titles: responsiveFontSize(38, 48),
-        brand: responsiveFontSize(14, 18),
+        brand: responsiveFontSize(14, 30),
         subHeadings: responsiveFontSize(10, 16),
         medium: responsiveFontSize(12, 16),
         buttonText: responsiveFontSize(10, 14),
