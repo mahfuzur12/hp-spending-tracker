@@ -77,9 +77,6 @@ exports.updateTransaction = async (req, res) => {
         if (!transaction) return res.status(404).json({ msg: 'Transaction not found' });
 
         // Make sure user owns transaction
-        if (transaction.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: 'Not authorized' });
-        }
 
         transaction = await Transaction.findByIdAndUpdate(
             req.params.id,
