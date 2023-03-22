@@ -1,66 +1,48 @@
-
-
-
-import { render, screen} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React, { useState } from 'react';
 import "@testing-library/jest-dom/extend-expect";
 import Transactions from "../pages/Transactions";
 import { AuthContext } from "../context/AuthContext";
 import { BrowserRouter as Router } from "react-router-dom";
 
-
-
 describe("Transactions", () => {
 
-          test("renders Transactions component", () => {
-            render(
-              <AuthContext.Provider value={{ user: { id: 1 } }}>
-                <Router>
-                  <Transactions />
-                </Router>
-              </AuthContext.Provider>
-            );
+  test("renders Transactions component", () => {
+    render(
+      <AuthContext.Provider value={{ user: { id: 1 } }}>
+        <Router>
+          <Transactions />
+        </Router>
+      </AuthContext.Provider>
+    );
+    expect(screen.getByText("NAME")).toBeInTheDocument();
+  });
 
-            expect(screen.getByText("NAME")).toBeInTheDocument();
-          }
-          );
+  test("renders Transactions table", () => {
+    render(
+      <AuthContext.Provider value={{ user: { id: 1 } }}>
+        <Router>
+          <Transactions />
+        </Router>
+      </AuthContext.Provider>
+    );
+    expect(screen.getByText("DATE")).toBeInTheDocument();
+    expect(screen.getByText("CATEGORY")).toBeInTheDocument();
+  });
 
-
-          test("renders Transactions table", () => {
-            render(
-              <AuthContext.Provider value={{ user: { id: 1 } }}>
-                <Router>
-                  <Transactions />
-                </Router>
-              </AuthContext.Provider>
-            );
-            expect(screen.getByText("DATE")).toBeInTheDocument();
-            expect(screen.getByText("CATEGORY")).toBeInTheDocument(); 
-          }  
-          );
-
-
-        test("renders filter button", () => {
-            render(
-                <AuthContext.Provider value={{ user: { id: 1 } }}>
-                <Router>
-                    <Transactions />
-                </Router>
-                </AuthContext.Provider>
-            );
-            expect(screen.getByText("Filter by Category")).toBeInTheDocument();
-            
-            }
-        );
-       
-
-
+  test("renders filter button", () => {
+    render(
+      <AuthContext.Provider value={{ user: { id: 1 } }}>
+        <Router>
+          <Transactions />
+        </Router>
+      </AuthContext.Provider>
+    );
+    expect(screen.getByText("Filter by Category")).toBeInTheDocument();
+  });
 });
 
 describe('handleSubmit', () => {
-  const [transactions, setTransactions] = useState([transaction]);
-      const [description, setDescription] = useState('');
-      const [category, setCategory] = useState('');
   beforeEach(() => {
     jest.resetModules();
   })
@@ -80,8 +62,6 @@ describe('handleSubmit', () => {
       date: '2021-01-01',
     };
     const axios = require('axios');
-    const { useState } = require('react');
-
 
     function TestComponent() {
       const [transactions, setTransactions] = useState([transaction]);
@@ -104,6 +84,7 @@ describe('handleSubmit', () => {
               .catch((err) => console.log(err));
           })
           .catch((err) => {
+
             console.log(err);
           });
       }
