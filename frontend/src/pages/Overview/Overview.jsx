@@ -6,7 +6,6 @@ import Budget from './OverviewComponents/Budget';
 import Streak from './OverviewComponents/Streak';
 import ChangeCard from './OverviewComponents/ChangeCard';
 import theme from './theme';
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
@@ -140,6 +139,7 @@ const Overview = () => {
   const [accessToken, setAccessToken] = useState("");
   const [institution, setInstitution] = useState("");
   const [accountInfo, setAccountInfo] = useState("");
+  const [accountBalance, setAccountBalance] = useState(0);
 
   const { user } = useContext(AuthContext);
 
@@ -174,7 +174,8 @@ const Overview = () => {
 
     const res = await fetch("http://localhost:8000/api/transactions");
     const data = await res.json(); // Parse the JSON data
-    console.log("boo", data)
+    console.log("boo", data);
+
 
     setTransactionData(data);
     setBudget(budget);
@@ -183,6 +184,7 @@ const Overview = () => {
     setAccessToken(currUser.data.data.accessToken);
     setInstitution(institution.data.institution);
     setAccountInfo(auth.data.numbers.bacs[auth.data.numbers.bacs.length - 1]);
+    setAccountBalance(auth.data.accounts[0].balances.current);
     //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
 
     // add every transaction from backend to transactions array
@@ -195,6 +197,8 @@ const Overview = () => {
     transactions.sort((a, b) => {
       return new Date(b.data.date) - new Date(a.data.date);
     });
+
+
 
   }
 
