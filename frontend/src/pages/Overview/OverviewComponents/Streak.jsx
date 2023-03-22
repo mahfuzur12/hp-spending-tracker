@@ -36,7 +36,7 @@ const Streak = ({ streak }) => {
         <Container>
             <Title>Streaks</Title>
                 
-                <StreaksNavbar/>
+                <StreaksNavbar streak={streak}/>
         </Container>
     );
 };

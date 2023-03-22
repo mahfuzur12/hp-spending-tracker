@@ -4,57 +4,6 @@
   box-sizing: border-box;
 }
 
-.auth-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #43a047;
-  width: 100%;
-  line-height: 80px;
-  font-size: 18px;
-  padding: 0 30px;
-  font-family: "Poppins", sans-serif;
-}
-
-.auth-navbar a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.auth-nav-logo {
-  float: left;
-  margin-top: 8px;
-  margin-left: 4%;
-  font-size: 40px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-family: "Poppins", sans-serif;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.auth-navbar ul {
-  float: right;
-  color: white;
-  list-style: none;
-  padding: 0 50px;
-}
-
-.auth-navbar ul li {
-  display: inline-block;
-}
-
-.auth-navbar ul li a {
-  display: block;
-  text-align: center;
-  min-width: 120px;
-}
-
-.auth-navbar ul li a:hover {
-  background-color: #83D475;
-}
-
 #auth-body-id {
   width: 100%;
   background-color: #EDEDED;
@@ -105,8 +54,6 @@
   flex-direction: column;
   width: 70%;
 }
-
-
 
 
 .auth-btns {
