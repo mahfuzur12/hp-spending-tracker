@@ -7,7 +7,7 @@ const Navbar = styled.nav`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   margin-bottom: -10vh;
+   margin-bottom: -15vh;
   
 `;
 
@@ -16,7 +16,7 @@ const NavItem = styled.li`
   font-size: ${theme.fontSizes.subHeadings};
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.text} !important;
-  margin-right: -50vw;
+  margin-right: 2vw;
 
   &:last-child {
     margin-right: 0;
@@ -34,7 +34,8 @@ const Brand = styled.li`
     font-size: ${theme.fontSizes.brand};
     font-weight: ${theme.fontWeight.semiBold};
     color: ${theme.colors.text} !important;
-    margin-right: 2em;
+    margin-left: 2vw;
+    margin-right: 2vw;
       letter-spacing: -0.1rem;
     
 `;
@@ -43,6 +44,7 @@ const LandingNavComp = () =>{
 
 return(
 <Navbar>
+    <ul>
         <Brand>Pocilot Tracker</Brand>
             <NavItem>
                 <a href="#auth-body-id">Home</a>
@@ -56,6 +58,7 @@ return(
             <NavItem>
                 <a href="#auth-contact-container-id">Contact</a>
             </NavItem>
+    </ul>
 
 </Navbar>
 );
