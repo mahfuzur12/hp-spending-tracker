@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
+import StreaksNavbar from '../../StreaksNavbar';
 
 const Container = styled.div`
   display: flex;
@@ -28,13 +29,14 @@ const Description = styled.p`
   margin-bottom: 2vh;
 `;
 
-
 const Streak = ({ streak }) => {
+
 
   return (
     <Container>
-      <Title>Streak</Title>
-      <Description>Nice one! You have kept your streak up for {streak ? streak : 0} weeks in a row. Keep going!</Description>
+      <Title>Streaks</Title>
+
+      <StreaksNavbar streak={streak} />
     </Container>
   );
 };

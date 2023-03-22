@@ -1,0 +1,96 @@
+th{
+    background-color: #4CAF50;
+    color: white;
+    align-items: center;
+    text-align: center;
+    border-bottom: black 1px solid;
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
+
+td{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    background-color: rgba(249, 249, 249, 0.2);
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.2px;
+    border-bottom: 0.5px solid #4CAF50;
+    padding: 10px;
+    text-transform: capitalize;
+}
+
+table{    
+        
+        text-align: center;
+        padding: 5px;
+       border: 0.5px solid black;
+        width: 100%;
+        
+    }
+
+
+.filter{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+    display: inline;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+
+.filter h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    -webkit-text-stroke: 0.1px;
+    -webkit-text-stroke-color: black;
+    text-align: center;
+    margin-right: 10px;
+  }
+
+.description-td{
+    
+    align-items: center;  
+ 
+}
+
+.transactions-page button{
+    width: 20%;
+}
+
+.transaction-form input{
+    box-sizing: initial; 
+    margin: 5px;
+    padding: 5px;
+    height: 20%;
+    justify-content: center;
+}
+
+.transaction-form button{
+    width: 30%;
+    align-self: center;
+
+}
+
+form .image-in{
+    width: 50%;
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+.transaction-form{
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: #4CAF50 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    border-spacing: 0px;
+}

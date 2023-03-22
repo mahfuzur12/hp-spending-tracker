@@ -92,9 +92,16 @@ const RecentTransactionsContainer = styled.div`
 `;
 
 const Modal = styled.dialog`
-width: 100vw !important;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+
   height: 100vh;
   margin: 0 !important;
+  border: none;
+  
 `;
 
 const ModalHeader = styled.header`
@@ -103,7 +110,13 @@ const ModalHeader = styled.header`
 const ModalTitle = styled.h2`
 `;
 
+
 const ModalBody = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 
@@ -132,13 +145,10 @@ const RecentTransactions = ({ transactions }) => {
       {isModalOpen && (
         <Modal open>
           <article>
-            <ModalHeader>
-              <a onClick={() => setIsModalOpen(false)} aria-label="Close" class="close"></a>
-              <ModalTitle>Transactions</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
-              <TransactionsPage />
-            </ModalBody>
+            <a onClick={() => setIsModalOpen(false)} aria-label="Close" class="close"></a>
+
+            <TransactionsPage />
+
           </article>
         </Modal>
       )}

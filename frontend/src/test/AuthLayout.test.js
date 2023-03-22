@@ -41,12 +41,12 @@ describe("AuthLayout", () => {
 
     it("renders About section", () => {
         render(<AuthLayout />);
-        expect(screen.getByText(/At Piciclot Spending Tracker, we understand/i)).toBeInTheDocument();
+        expect(screen.getByText(/At Pocilot Spending Tracker, we understand/i)).toBeInTheDocument();
     });
 
     it("renders Services section", () => {
         render(<AuthLayout />);
-        expect(screen.getByText(/At Piciclot Spending Tracker, we offer/i)).toBeInTheDocument();
+        expect(screen.getByText(/At Pocilot Spending Tracker, we offer/i)).toBeInTheDocument();
     });
 
     it("renders ContactUs component", () => {

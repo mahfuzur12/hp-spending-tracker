@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
 import Profile from "../../components/Profile/Profile";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Charts from "../../pages/Charts";
@@ -20,7 +19,6 @@ const ProfileLayout = () => {
 
 
       <div class="content">
-        <Navbar />
         <Overview />
       </div>
 

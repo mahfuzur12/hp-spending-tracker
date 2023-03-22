@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import "./Streaks.css"
 import CalendarDay from "../components/CalendarDay";
 
@@ -82,7 +81,6 @@ function Streaks() {
     return (
         <>
             <div className="content">
-                <Navbar />
                 <h1>Streaks</h1>
                 <p>
                     Today's spending total: <strong>{todaysTotal}</strong>

@@ -1,14 +1,10 @@
-.profile-body {
-    background: linear-gradient(to right, #2ed573, #f9ca24);
-}
-
 .profile-nav {
     width: 100%;
     height: 100px;
 }
 
 .profile-container {
-    height: 89vh;
+    height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,30 +12,35 @@
 
 .profile-form {
     background: #fff;
-    width: 540px;
-    height: 450px;
+    width: 900px;
+    height: 700px;
     position: relative;
 }
 
 .profile-form-leftbox {
+
     float: left;
     top: -5%;
     left: 5%;
     position: absolute;
     width: 15%;
     height: 110%;
-    background: #2ed573;
+    background: #43a047;
     box-shadow: 3px 3px 10px rgba(119, 119, 119, .5);
     border: .1em solid #fff;
 }
+
+
 
 .profile-form-leftbox nav a {
     list-style: none;
     padding: 35px;
     color: #fff;
-    font-size: 1.1em;
+    font-size: 1.05em;
     display: block;
     transition: all .3s ease-in-out;
+    margin-left: 10px;
+    margin-top: 23px;
 }
 
 .profile-form-rightbox {
@@ -48,15 +49,17 @@
 }
 
 .profile-form-rightbox h1 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: #7ed386;
     font-size: 1.2 rem;
     margin-top: 40px;
     margin-bottom: 20px;
+    width: 500px;
+    text-align: left;
 }
 
 .profile-form-btn {
-    font-family: "roboto", sans-serif;
+    font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     font-size: 15px;
     border: 0;

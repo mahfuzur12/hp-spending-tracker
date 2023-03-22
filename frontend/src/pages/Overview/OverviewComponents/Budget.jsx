@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
 
@@ -71,12 +71,15 @@ const Budget = ({ budgetUsed, totalBudget, daysLeft }) => {
 
     let descriptionText;
     if (budgetPercentage <= 100) {
-        descriptionText = `Good job! You have ${100 - budgetPercentage}% of your budget remaining and ${daysLeft} days to go.`;
+        descriptionText = `Good job! You have ${100 - budgetPercentage}% of your budget remaining and ${daysLeft + 1} days to go.`;
     } else {
         descriptionText = `Oops! You have gone over your budget by ${(budgetPercentage - 100).toFixed(0)}%.`;
     }
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    useEffect(() => {
+    setIsModalOpen(BudgetPage.isDone)
+    }, [BudgetPage.isDone])
 
     return (
         <Container>
