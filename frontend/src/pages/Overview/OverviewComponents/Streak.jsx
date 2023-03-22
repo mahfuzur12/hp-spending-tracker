@@ -31,13 +31,12 @@ const Description = styled.p`
 
 const Streak = ({ streak }) => {
 
-  console.log(streak)
-    return (
-        <Container>
-            <Title>Streak</Title>
-                <Description>Nice one! You have kept your streak up for {streak? streak : 0} weeks in a row. Keep going!</Description>
-        </Container>
-    );
+  return (
+    <Container>
+      <Title>Streak</Title>
+      <Description>Nice one! You have kept your streak up for {streak ? streak : 0} weeks in a row. Keep going!</Description>
+    </Container>
+  );
 };
 
 export default Streak;

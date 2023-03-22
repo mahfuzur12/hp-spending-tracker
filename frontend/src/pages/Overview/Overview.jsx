@@ -15,6 +15,7 @@ import { useContext } from 'react';
 const Container = styled.div`
   background-color: ${theme.colors.background};
   padding: 4vh 14vw;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
@@ -22,7 +23,7 @@ const Title = styled.h1`
   font-size: ${theme.fontSizes.titles};
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.text} ;
-letter-spacing: -0.1rem;
+letter-spacing: -0.05rem;
   margin-bottom: 3vh;
 `;
 
@@ -32,7 +33,7 @@ const Brand = styled.li`
     font-weight: ${theme.fontWeight.semiBold};
     color: ${theme.colors.text} !important;
     margin-right: 2vw;
-      letter-spacing: -0.1rem;
+      letter-spacing: -0.05rem;
 `;
 
 const Navbar = styled.nav`
@@ -84,6 +85,7 @@ const Card = styled.div`
   border-radius: ${theme.borderRadius.card};
   padding: 2vh;
   max-height: 100%;
+  min-width: 15vw;
 `;
 
 const RegularCard = styled(Card)`
@@ -99,6 +101,7 @@ const DoubleCard = styled(Card)`
 const TallCard = styled(Card)`
   grid-row: span 2;
   grid-column: span 1;
+  max-width: 20vw;
 
 `;
 
@@ -126,133 +129,133 @@ const AttributionLink = styled.a`
 
 const Overview = () => {
 
-    const [transactions, setTransactions] = useState([]);
-    const [budget, setBudget] = useState(0);
-    const [budgetSpent, setBudgetSpent] = useState(0);
-    const [streak, setStreak] = useState(0);
-    const [accessToken, setAccessToken] = useState("");
-    const [institution, setInstitution] = useState("");
-    const [accountInfo, setAccountInfo] = useState("");
+  const [transactions, setTransactions] = useState([]);
+  const [budget, setBudget] = useState(0);
+  const [budgetSpent, setBudgetSpent] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [accessToken, setAccessToken] = useState("");
+  const [institution, setInstitution] = useState("");
+  const [accountInfo, setAccountInfo] = useState("");
 
-    const { user } = useContext(AuthContext);
-      
-    useEffect(() => {
-        // reset and set transactions
-        setTransactions([]); 
-        fetchUserData().then(() => {
-            console.log('done');
-            console.log(transactions)
-        });
-    }, [user._id, accessToken]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    // reset and set transactions
+    setTransactions([]);
+    fetchUserData().then(() => {
+      console.log('transactions fetched');
+      console.log(transactions)
+
+      getBudgetSpent();
+    });
+  }, [user._id, accessToken]);
 
 
-    // get user._id from AuthContext
-    // get currUser from backend
-    // get transaction id array from user
-    // get transactions from backend
+  // get user._id from AuthContext
+  // get currUser from backend
+  // get transaction id array from user
+  // get transactions from backend
 
-    const fetchUserData = async () => {
+  const fetchUserData = async () => {
 
-        const currUser = await axios.get('/' + user._id);
-        const transactionIds = currUser.data.data.transactions;
-        const budget = currUser.data.data.budget;
-        const streak = currUser.data.data.streak;
-        const auth = await axios.post("/auth", { access_token: currUser.data.data.accessToken });
-        const institution = await axios.post("/institution", { institution_id: auth.data.item.institution_id });
-        
-        setBudget(budget);
-        setStreak(streak);
-        setAccessToken(currUser.data.data.accessToken);
-        setInstitution(institution.data.institution);
-        setAccountInfo(auth.data.numbers.bacs[auth.data.numbers.bacs.length - 1]);
-        //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
+    const currUser = await axios.get('/' + user._id);
+    const transactionIds = currUser.data.data.transactions;
+    const budget = currUser.data.data.budget;
+    const streak = currUser.data.data.streak;
+    const auth = await axios.post("/auth", { access_token: currUser.data.data.accessToken });
+    const institution = await axios.post("/institution", { institution_id: auth.data.item.institution_id });
 
-        // add every transaction from backend to transactions array
-        for (let i = 0; i < transactionIds.length; i++) {
-            const transaction = await axios.get('/api/transactions/' + transactionIds[i]);
-            setTransactions(transactions => [...transactions, transaction]);
-        }
+    setBudget(budget);
+    setStreak(streak);
+    setAccessToken(currUser.data.data.accessToken);
+    setInstitution(institution.data.institution);
+    setAccountInfo(auth.data.numbers.bacs[auth.data.numbers.bacs.length - 1]);
+    //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
 
-        // sort transactions by date (newest first)
-        transactions.sort((a, b) => {
-            return new Date(b.data.date) - new Date(a.data.date);
-        });
-
+    // add every transaction from backend to transactions array
+    for (let i = 0; i < transactionIds.length; i++) {
+      const transaction = await axios.get('/api/transactions/' + transactionIds[i]);
+      setTransactions(transactions => [...transactions, transaction]);
     }
 
+    // sort transactions by date (newest first)
+    transactions.sort((a, b) => {
+      return new Date(b.data.date) - new Date(a.data.date);
+    });
+
+  }
 
 
-
-    useEffect(() => {
-        getBudgetSpent();
-    }, [transactions]);
-
-    //get budgetSpent from the last week of transactions
-    // if transaction is an expense, add to budgetSpent
-    const getBudgetSpent = () => {
-        let spent = 0;
-        let today = new Date();
-        let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-        for (let i = 0; i < transactions.length; i++) {
-            let transactionDate = new Date(transactions[i].data.date);
-            if (transactionDate > lastWeek) {
-                if (transactions[i].data.amount > 0) {
-                    spent += transactions[i].data.amount;
-                }
-
-            }
-        }
-        setBudgetSpent(spent);
+  //get budgetSpent from the last week of transactions
+  // if transaction is an expense, add to budgetSpent
+  const getBudgetSpent = () => {
+    if (!transactions || transactions.length === 0) {
+      return;
     }
 
-    const budgetData = [
-        {
-            name: 'Used',
-            value: budgetSpent,
-        },
-        {
-            name: 'Remaining',
-            value: budget - budgetSpent,
-        },
-    ];
+    let spent = 0;
+    let today = new Date();
+    let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+    for (let i = 0; i < transactions.length; i++) {
+      let transactionDate = new Date(transactions[i].data.date);
+      if (transactionDate > lastWeek) {
+        if (transactions[i].data.amount > 0) {
+          spent += transactions[i].data.amount;
+        }
+      }
+    }
+    setBudgetSpent(spent);
+  };
 
-    const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
-    return (
-        <Container>
-            <Navbar>
-                <ul>
-                    <Brand>pocilot</Brand>
-                    <NavItem>
-                        <a href="#">Overview</a>
-                    </NavItem>
-                    <NavItem>
-                        <a href="#">Saver</a>
-                    </NavItem>
-                </ul>
-                <ul>
-                    <NavItem>Log out</NavItem>
-                    <NavItem>
-                        <ProfileButton href="#" role="button">
-                            Profile
-                        </ProfileButton>
-                    </NavItem>
-                </ul>
-            </Navbar>
-            <Title>Overview</Title>
-            <CardContainer>
-                <TallCard><RecentTransactions transactions={transactions} /></TallCard>
-                <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>
-                <RegularCard><SpendingHeatmap transactions={transactions} /></RegularCard>
-                <RegularCard><Budget budgetUsed={budgetSpent} totalBudget={budget} daysLeft={daysLeft} /></RegularCard>
-                <RegularCard><Streak streak={streak} /></RegularCard>
-                <RegularCard><ChangeCard accessToken={accessToken} institution={institution} accountInfo={accountInfo} /></RegularCard>
-            </CardContainer>
-            <Footer>
+  const budgetData = [
+    {
+      name: 'Used',
+      value: budgetSpent,
+    },
+    {
+      name: 'Remaining',
+      value: budget - budgetSpent,
+    },
+  ];
 
-            </Footer>
-        </Container>
-    );
+  const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
+
+  return (
+    <Container>
+      <Navbar>
+        <ul>
+          <Brand>pocilot</Brand>
+          <NavItem>
+            <a href="#">Overview</a>
+          </NavItem>
+          <NavItem>
+            <a href="#">Saver</a>
+          </NavItem>
+        </ul>
+        <ul>
+          <NavItem>Log out</NavItem>
+          <NavItem>
+            <ProfileButton href="#" role="button">
+              Profile
+            </ProfileButton>
+          </NavItem>
+        </ul>
+      </Navbar>
+      <Title>Overview</Title>
+      <CardContainer>
+        <TallCard><RecentTransactions transactions={transactions} /></TallCard>
+        <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>
+        <RegularCard><SpendingHeatmap transactions={transactions} /></RegularCard>
+        <RegularCard><Budget budgetUsed={budgetSpent} totalBudget={budget} daysLeft={daysLeft} /></RegularCard>
+        <RegularCard><Streak streak={streak} /></RegularCard>
+        <RegularCard><ChangeCard accessToken={accessToken} institution={institution} accountInfo={accountInfo} /></RegularCard>
+      </CardContainer>
+      <Footer>
+
+      </Footer>
+    </Container>
+  );
 };
 
 export default Overview;
