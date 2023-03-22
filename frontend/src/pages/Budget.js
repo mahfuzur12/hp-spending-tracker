@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Budget.css";
 import { AuthContext } from "../context/AuthContext";
 import axios from 'axios';
@@ -9,8 +8,9 @@ import { useState } from "react";
 export default function Spending() {
     const [budget, setBudget] = useState(500);
     const [displayBudget, setDisplayBudget] = useState();
+    const [showMess, setShowMess] = useState(false);
     const { user } = useContext(AuthContext);
-
+    
     function incBudget() {
         const budget = document.getElementById("budget-num-id");
         const newBudget = parseInt(budget.innerText) + 10
@@ -30,13 +30,10 @@ export default function Spending() {
         }
     }
 
-    const navigate = useNavigate();
-
-
     async function open() {
         await axios.patch("/" + user._id, { budget: budget }
         );
-        navigate("/overview");
+        setShowMess(true);
     }
 
     useEffect(() => {
@@ -61,6 +58,7 @@ export default function Spending() {
             <button onClick={incBudget} id="budget-btn-plus"> + </button>
             <div>
                 <button onClick={() => open()} className="budget-done"> Done </button>
+                {showMess && <p id="budget-message"> Your budget is set !</p>}
             </div>
         </div>
 
