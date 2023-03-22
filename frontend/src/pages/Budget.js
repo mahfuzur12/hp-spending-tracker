@@ -47,20 +47,20 @@ export default function Spending() {
     return (
 
 
-        <div className="budget-container">
+        <div className="budget-container" data-testid="budget-container">
 
-            <div className="budget-navbar">
-            </div>
-
-            <h1 className="budget-title">Set up your monthly budget </h1>
-            <button onClick={decBudget} id="budget-btn-minus"> - </button>
-            <span className="budget-signal">£</span><span className="budget-num" id="budget-num-id">{displayBudget}</span>
-            <button onClick={incBudget} id="budget-btn-plus"> + </button>
-            <div>
-                <button onClick={() => open()} className="budget-done"> Done </button>
-                {showMess && <p id="budget-message"> Your budget is set !</p>}
-            </div>
+        <div className="budget-navbar" data-testid="budget-navbar">
         </div>
+
+        <h1 className="budget-title" data-testid="budget-title">Set up your monthly budget </h1>
+        <button onClick={decBudget} id="budget-btn-minus" data-testid="budget-btn-minus"> - </button>
+        <span className="budget-signal">£</span><span className="budget-num" id="budget-num-id" data-testid="budget-num">{displayBudget}</span>
+        <button onClick={incBudget} id="budget-btn-plus" data-testid="budget-btn-plus"> + </button>
+        <div>
+            <button onClick={() => open()} className="budget-done" data-testid="budget-done"> Done </button>
+            {showMess && <p id="budget-message" data-testid="budget-message"> Your budget is set !</p>}
+        </div>
+    </div>
 
 
     )

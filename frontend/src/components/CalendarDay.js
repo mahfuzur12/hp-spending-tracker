@@ -9,6 +9,10 @@ function CalendarDay({ day, budget, dayTotal }) {
         <div
           className={`progress-bar ${percentUsed > 100 ? 'over-budget' : ''}`}
           style={{ width: `${Math.min(percentUsed, 100)}%` }}
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax={budget}
+          aria-valuenow={dayTotal}
         />
       </div>
     </div>
