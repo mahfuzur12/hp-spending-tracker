@@ -9,6 +9,8 @@ import DoneIcon from '@mui/icons-material/Done';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 
 
 function Transactions() {
@@ -18,22 +20,31 @@ function Transactions() {
     const [amount, setAmount] = useState(" ");
     const [category, setCategory] = useState(" ");
     const [date, setDate] = useState(" ");
-    const [selectedTransactionId, setSelectedTransactionId] = useState(null);
+    
     const [showPopup, setShowPopup] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [categoryFilter, setCategoryFilter] = useState("All");
     const [originalTransactions, setOriginalTransactions] = useState([]);
+    const { user } = useContext(AuthContext);
 
     // Fetch transactions data
-    useEffect(() => {
-        axios.get("http://localhost:8000/api/transactions") 
-         .then(res => {
-            setOriginalTransactions(res.data);
-            setTransactions(res.data);
-            
-          })
-          .catch(err => console.log(err))
-      }, []);
+   async function renderTransactions(){
+         const currUser = await axios.get('/' + user._id);
+         const transactionIds = currUser.data.data.transactions;
+         const transactionArray = [];
+        
+    for (let i = 0; i < transactionIds.length; i++) {
+        const transaction = (await axios.get('/api/transactions/' + transactionIds[i])).data;
+        transactionArray.push(transaction);
+        
+      }
+      setTransactions(transactionArray);
+      setOriginalTransactions(transactionArray);
+    
+      
+      };
+        useEffect(() => {
+      renderTransactions();
+    }, []);
      
     // Filter transactions by category
     const handleCategoryChange = (selectedCategory) => {
@@ -52,23 +63,22 @@ function Transactions() {
 
 
     // Handle form submit to update a transaction
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
         const transactionId = event.currentTarget.dataset.transactionId;
-        axios.patch(`http://localhost:8000/api/transactions/${transactionId}`, {
-            description,
-            category
-        })
-        .then(res => {
-          setShowPopup(false);
-          setSelectedTransactionId(null);         
-          axios.get("http://localhost:8000/api/transactions") // Refresh transactions data
-            .then(res => setTransactions(res.data))
-            .catch(err => console.log(err))
-        })
-        .catch(err => {
-          console.log(err);
-        })
+        await axios.patch(`http://localhost:8000/api/transactions/${transactionId}`, {
+             description,
+             category
+        }).catch(err => {
+            console.log(err);
+        });
+            
+        
+            
+
+          
+        renderTransactions();
+    
       }
       
 
@@ -81,7 +91,7 @@ function Transactions() {
                 setAmount(res.data.amount);
                 setCategory(res.data.category);
                 setDate(res.data.date);
-                setSelectedTransactionId(transactionId);
+              
                 setShowPopup(true);
             })
             .catch(err => {
@@ -107,10 +117,10 @@ return(
           <MenuItem value="All">
             All
           </MenuItem>
-          <MenuItem value="transport">Transport</MenuItem>
-          <MenuItem value="shopping">Shopping</MenuItem>
-          <MenuItem value="food & drink">Food & Drink</MenuItem>
-          <MenuItem value="entertainment">Entertainment</MenuItem>
+          <MenuItem value="Travel">Transport</MenuItem>
+          <MenuItem value="Shops">Shopping</MenuItem>
+          <MenuItem value="Food and Drink">Food & Drink</MenuItem>
+          <MenuItem value="transfer">Transfer</MenuItem>
           <MenuItem value="Other">Other</MenuItem>
         </Select>
 </div>
@@ -137,10 +147,9 @@ return(
                  </IconButton> }  modal >
                     <div className="modal">
                       <h2>Edit Transaction</h2>
-                            <form class="transaction-form" onSubmit={handleSubmit}>                          
-                                <TextField id="standard-basic" label="Description" variant="standard" value={description} onChange={(e) => setDescription(e.target.value)} />
-                                <TextField id="standard-basic" label="Category" variant="standard" value={category} onChange={(e) => setCategory(e.target.value)} />
-                                 <input type="image" alt='Upload Image' className='image-in'></input>
+                            <form onSubmit={handleSubmit}>                          
+                                <TextField size='medium' id="standard-basic" label="New Description" variant="outlined" value={description} onChange={(e) => setDescription(e.target.value)} />
+                                <TextField id="standard-basic" label="New Category" variant="outlined" value={category} onChange={(e) => setCategory(e.target.value)} />
 
                                                 <IconButton
                                                     aria-label="Edit"
@@ -155,7 +164,7 @@ return(
                                         </div>
                                     </Popup>
                                     {transaction.description}</td>
-                                <td >{transaction.amount} £</td>
+                                <td >{transaction.amount * -1} £</td>
                                 <td>{transaction.category}</td>
                                 <td>{transaction.date.toString().substring(0, 10)}</td>
                             </tr>

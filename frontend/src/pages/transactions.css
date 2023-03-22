@@ -64,33 +64,40 @@ table{
     width: 20%;
 }
 
-.transaction-form input{
-    box-sizing: initial; 
-    margin: 5px;
-    padding: 5px;
-    height: 20%;
-    justify-content: center;
+
+
+form button:hover{
+    border: 0.5px solid rgb(66, 193, 72);
+    border-radius: 5px;
+    color: rgb(66, 193, 72);
 }
+   
 
-.transaction-form button{
-    width: 30%;
-    align-self: center;
-
-}
-
-form .image-in{
-    width: 50%;
-    font-size: 0.5rem;
+.popup-content{
+    border-radius: 15px;
     text-align: center;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    padding:0px;
 }
 
-.transaction-form{
+form{
     display:grid;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: #4CAF50 1px solid;
     border-radius: 10px;
+    gap: 20px;
     padding: 10px;
-    border-spacing: 0px;
+    margin: 0px;
+
+
+    
 }
+
+.popup-content input{
+    margin-bottom: 0px;;
+}
+
