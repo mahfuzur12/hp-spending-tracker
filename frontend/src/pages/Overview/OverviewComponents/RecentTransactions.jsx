@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import theme from '../theme';
 import moneyIcon from './money.png';
 import TransactionsPage from '../../Transactions';
-
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 const TransactionContainer = styled.div`
   display: flex;
@@ -93,24 +94,50 @@ const Modal = styled.dialog`
   display: flex;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
 
-  height: 100vh;
+  height: 100%;
+  padding: 0;
   margin: 0 !important;
   border: none;
   
 `;
 
+const ModalHeader = styled.header`
+  display: flex;
+  top: 0;
+  vertical-align: top;
+  
+  background-color: #fff;
+  color: #fff;
 
+`;
 
-
-const ModalBody = styled.article`
+const ModalBody = styled.body`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  padding:0px;
+  margin: 0px;
+  border-radius:10px;
+  width: auto;
+  height: 90%;
+  background-color: #fff;
 `;
+
+const Article = styled.article`
+  position: fixed;
+  display: flex;
+  margin: 0px;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 20%;
+  box-shadow:none;
+  
+`;
+
 
 
 
@@ -137,12 +164,18 @@ const RecentTransactions = ({ transactions }) => {
             <SeeMoreButton onClick={() => setIsModalOpen(true)}>See More</SeeMoreButton>
             {isModalOpen && (
                 <Modal open>
-                    <article>                 
-                            <a onClick={() => setIsModalOpen(false)} aria-label="Close" class="close"></a>                                    
+               
+                    <Article>
+                  <IconButton size="large" onClick={() => setIsModalOpen(false)} ><CloseIcon/></IconButton> 
+                  </Article>
+                 
+                    <ModalBody>
+                                  
+                                                               
                     
                         <TransactionsPage/>                        
-                       
-                    </article>
+                        </ModalBody>
+                   
                 </Modal>
             )}
         </RecentTransactionsContainer>

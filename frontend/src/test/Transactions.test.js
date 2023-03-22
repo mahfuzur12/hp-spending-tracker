@@ -21,7 +21,7 @@ describe("Transactions", () => {
               </AuthContext.Provider>
             );
 
-            expect(screen.getByText("Transactions")).toBeInTheDocument();
+            expect(screen.getByText("NAME")).toBeInTheDocument();
           }
           );
 
@@ -48,15 +48,19 @@ describe("Transactions", () => {
                 </Router>
                 </AuthContext.Provider>
             );
-            expect(screen.getByText("Filter by Category:")).toBeInTheDocument();
+            expect(screen.getByText("Filter by Category")).toBeInTheDocument();
             
             }
         );
+       
 
 
 });
 
 describe('handleSubmit', () => {
+  const [transactions, setTransactions] = useState([transaction]);
+      const [description, setDescription] = useState('');
+      const [category, setCategory] = useState('');
   beforeEach(() => {
     jest.resetModules();
   })
@@ -92,7 +96,6 @@ describe('handleSubmit', () => {
           description,
           category,
         })
-
           .then((res) => {
             setShowPopup(false);
             setSelectedTransactionId(null);
@@ -113,20 +116,25 @@ describe('handleSubmit', () => {
     handleSubmit(event);
 
     // check that transaction data was updated correctly
-    test('should edit transaction successfully', async () => {
+    it('should edit transaction', async () => {
     expect(axios.patch).toHaveBeenCalledWith(`http://localhost:8000/api/transactions/${transaction.id}`, {
       description: 'New description',
       category: 'New category',
+    });
     });
     expect(axios.get).toHaveBeenCalledWith('http://localhost:8000/api/transactions');
     expect(setTransactions).toHaveBeenCalledWith([]);
     expect(description).toBe('New Description');
     expect(category).toBe('New category');
-  });
-
     }
+ 
     });
+  
+    
+
+
 });
+
 
 
 

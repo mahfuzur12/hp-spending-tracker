@@ -170,7 +170,7 @@ const Overview = () => {
     const res = await fetch("http://localhost:8000/api/transactions");
     const data = await res.json(); // Parse the JSON data
     console.log("boo", data)
-
+    
     setTransactionData(data);
     setBudget(budget);
     setDailyBudget(dailyBudget);
