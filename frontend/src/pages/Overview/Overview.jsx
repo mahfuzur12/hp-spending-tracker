@@ -263,25 +263,7 @@ const Overview = () => {
 
   return (
     <Container>
-      <Navbar>
-        <ul>
-          <Brand>pocilot</Brand>
-          <NavItem>
-            <a href="#">Overview</a>
-          </NavItem>
-          <NavItem>
-            <a href="#">Saver</a>
-          </NavItem>
-        </ul>
-        <ul>
-          <NavItem>Log out</NavItem>
-          <NavItem>
-            <ProfileButton href="#" role="button">
-              Profile
-            </ProfileButton>
-          </NavItem>
-        </ul>
-      </Navbar>
+      <NavComp/>
       <Title>Overview</Title>
       <CardContainer>
         <TallCard><RecentTransactions transactions={transactions} /></TallCard>
