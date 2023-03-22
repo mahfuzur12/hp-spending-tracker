@@ -4,19 +4,6 @@
   box-sizing: border-box;
 }
 
-.auth-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #43a047;
-  width: 100%;
-  line-height: 80px;
-  font-size: 18px;
-  padding: 0 30px;
-  font-family: "Poppins", sans-serif;
-}
-
 #auth-body-id {
   width: 100%;
   background-color: #EDEDED;
