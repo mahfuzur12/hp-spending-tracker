@@ -137,7 +137,7 @@ return(
                  </IconButton> }  modal >
                     <div className="modal">
                       <h2>Edit Transaction</h2>
-                            <form onSubmit={handleSubmit}>                          
+                            <form class="transaction-form" onSubmit={handleSubmit}>                          
                                 <TextField id="standard-basic" label="Description" variant="standard" value={description} onChange={(e) => setDescription(e.target.value)} />
                                 <TextField id="standard-basic" label="Category" variant="standard" value={category} onChange={(e) => setCategory(e.target.value)} />
                                  <input type="image" alt='Upload Image' className='image-in'></input>
