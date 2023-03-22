@@ -1,7 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale, LineElement, PointElement } from 'chart.js';
 import { Doughnut, Bar, Line } from 'react-chartjs-2';
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import "./Charts.css"
 
 
@@ -201,7 +200,6 @@ function Charts() {
     return (
         <div className="charts-container">
             <div className="charts-navbar">
-                <Navbar />
             </div>
             <h1 className="charts-title">Spending Trends For {month}</h1>
             <div className="charts-vision">

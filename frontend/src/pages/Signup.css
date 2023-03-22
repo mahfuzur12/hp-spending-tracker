@@ -1,5 +1,15 @@
-/* .signup-form {
-    background-color: aliceblue;
-    flex-direction: column;
+.signup-landing-form {
+    background-color: transparent;
     text-align: left;
+}
+
+/* 
+.signup-title {
+    font-size: 20px;
+    width: 200px;
+}
+
+.signup-text-input {
+    border: 2px solid red;
+    width: 200px;
 } */
