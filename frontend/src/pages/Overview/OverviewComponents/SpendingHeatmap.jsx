@@ -26,6 +26,7 @@ const Grid = styled.div`
   gap: 1vh;
   margin-bottom: 2vh;
   justify-items: center;
+  height: 100%;
 `;
 
 const Month = styled.div`
@@ -34,8 +35,8 @@ const Month = styled.div`
   align-items: center;
   justify-content: bottom;
   padding: 1vh;
-    width: 5vh; // Add fixed width
-  height: 6vh; // Add fixed height
+  width: 5vh;
+  height: clamp(5vh, 10vh, 10vh);
 `;
 
 const Circle = styled.div`
@@ -77,69 +78,68 @@ const MonthName = styled.div`
 `;
 
 const SpendingHeatmap = ({ transactions }) => {
-    const [year, setYear] = useState(new Date().getFullYear());
+  const [year, setYear] = useState(new Date().getFullYear());
 
-    console.log(transactions)
-    const monthNames = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
+  const monthNames = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
 
-    const spendingPerMonth = (year) => {
-        const spending = new Array(12).fill(0);
+  const spendingPerMonth = (year) => {
+    const spending = new Array(12).fill(0);
 
-        transactions.forEach((transaction) => {
-            const transactionDate = new Date(transaction.data.date);
+    transactions.forEach((transaction) => {
+      const transactionDate = new Date(transaction.data.date);
 
-            if (
-                transactionDate.getFullYear() === year &&
-                transaction.data.amount > 0
-            ) {
-                spending[transactionDate.getMonth()] += transaction.data.amount;
-            }
-        });
+      if (
+        transactionDate.getFullYear() === year &&
+        transaction.data.amount > 0
+      ) {
+        spending[transactionDate.getMonth()] += transaction.data.amount;
+      }
+    });
 
-        return spending;
-    };
+    return spending;
+  };
 
-    const maxSpending = (spending) => Math.max(...spending);
+  const maxSpending = (spending) => Math.max(...spending);
 
-    const circleSize = (value, max) => {
-        const minSize = 5;
-        const maxSize = 30;
-        return ((value / max) * (maxSize - minSize)) + minSize;
-    };
+  const circleSize = (value, max) => {
+    const minSize = 5;
+    const maxSize = 30;
+    return ((value / max) * (maxSize - minSize)) + minSize;
+  };
 
-    const spending = spendingPerMonth(year);
-    const maxValue = maxSpending(spending);
+  const spending = spendingPerMonth(year);
+  const maxValue = maxSpending(spending);
 
-    const previousYear = () => {
-        setYear(year - 1);
-    };
+  const previousYear = () => {
+    setYear(year - 1);
+  };
 
-    const nextYear = () => {
-        setYear(year + 1);
-    };
+  const nextYear = () => {
+    setYear(year + 1);
+  };
 
-    return (
-        <Container>
-            <Title>Spending {year}</Title>
-            <Grid>
-                {spending.map((value, index) => (
-                    <Month key={index}>
-                        <MonthName>{monthNames[index]}</MonthName>
-                        {value > 0 && (
-                            <Circle size={circleSize(value, maxValue)} />
-                        )}
-                    </Month>
-                ))}
-            </Grid>
-            <ButtonContainer>
-                <Button onClick={previousYear}>Previous</Button>
-                <Button onClick={nextYear}>Next</Button>
-            </ButtonContainer>
-        </Container>
-    );
+  return (
+    <Container>
+      <Title>Spending {year}</Title>
+      <Grid>
+        {spending.map((value, index) => (
+          <Month key={index}>
+            <MonthName>{monthNames[index]}</MonthName>
+            {value > 0 && (
+              <Circle size={circleSize(value, maxValue)} />
+            )}
+          </Month>
+        ))}
+      </Grid>
+      <ButtonContainer>
+        <Button onClick={previousYear}>Previous</Button>
+        <Button onClick={nextYear}>Next</Button>
+      </ButtonContainer>
+    </Container>
+  );
 };
 
 export default SpendingHeatmap;

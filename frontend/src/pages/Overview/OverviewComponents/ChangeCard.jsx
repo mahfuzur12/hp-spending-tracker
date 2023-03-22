@@ -83,6 +83,7 @@ const CardTitle = styled.div`
   font-size: ${theme.fontSizes.normalText} !important;
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.text} !important;
+  max-width: 100%;
   margin-bottom: 0.6vh;
       white-space: nowrap;
   overflow: hidden;
@@ -101,11 +102,11 @@ const CardStatus = styled.div`
 
 
 
-const ChangeCard = ({accessToken, institution, accountInfo}) => {
+const ChangeCard = ({ accessToken, institution, accountInfo }) => {
 
     const [linkToken, setLinkToken] = useState();
     const [publicToken, setPublicToken] = useState();
-        
+
 
     useEffect(() => {
 
@@ -129,23 +130,23 @@ const ChangeCard = ({accessToken, institution, accountInfo}) => {
         },
     });
 
-    return publicToken ? (<PlaidAuth publicToken={publicToken} />) : ( !accessToken ?
-        
-            (
+    return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (!accessToken ?
+
+        (
             <Container>
                 <IconContainer />
                 <CardTitle>No Card Available</CardTitle>
                 <CardStatus>please connect a card</CardStatus>
                 <ConnectCardButton onClick={() => open()} disabled={!ready} background-color={theme.colors.danger}>Connect Card</ConnectCardButton>
             </Container>
-            ) : (
+        ) : (
             <Container>
                 <IconContainer />
                 <CardTitle>{!institution ? "Bank Name" : institution.name}</CardTitle>
                 <CardStatus>{!accountInfo || !institution ? "BANK-ID1234567" : "ACC-" + accountInfo.account}</CardStatus>
                 <ChangeCardButton onClick={() => open()} disabled={!ready}>Change Card</ChangeCardButton>
             </Container>
-            )    
+        )
     )
 }
 

@@ -29,9 +29,9 @@ function Card() {
   return !accessToken ?
     (
 
-      <div class="card-container">
-        <div class="card-box">
-          <p class='card-connect-buttton'>Connect</p>
+      <div className="card-container">
+        <div className="card-box">
+          <p className='card-connect-buttton'>Connect</p>
           <ConnectBankButton />
 
         </div>
@@ -39,8 +39,8 @@ function Card() {
 
     ) : (
 
-      <div class="card-container">
-        <div class="card-box">
+      <div className="card-container">
+        <div className="card-box">
           <h2 className="card-bank">{bank}</h2>
           <ConnectBankButton />
         </div>

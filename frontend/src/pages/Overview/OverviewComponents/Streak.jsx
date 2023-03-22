@@ -31,14 +31,14 @@ const Description = styled.p`
 
 const Streak = ({ streak }) => {
 
-  console.log(streak)
-    return (
-        <Container>
-            <Title>Streaks</Title>
-                
-                <StreaksNavbar streak={streak}/>
-        </Container>
-    );
+
+  return (
+    <Container>
+      <Title>Streaks</Title>
+
+      <StreaksNavbar streak={streak} />
+    </Container>
+  );
 };
 
 export default Streak;

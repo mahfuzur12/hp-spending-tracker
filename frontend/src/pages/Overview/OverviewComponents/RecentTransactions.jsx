@@ -10,6 +10,8 @@ const TransactionContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 2vh;
+  max width: 100%;
+  overflow: hidden;
 `;
 
 const Title = styled.h2`
@@ -38,6 +40,7 @@ const TransactionTitle = styled.div`
   font-size: ${theme.fontSizes.normalText} !important;
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.text} !important;
+  max-width: 5vw;
   margin-bottom: 0.6vh;
     white-space: nowrap;
   overflow: hidden;
@@ -52,8 +55,8 @@ const TransactionCategory = styled.div`
 `;
 
 const TransactionAmount = styled.div`
-  font-family: ${theme.fonts.normal};
-  font-size: ${theme.fontSizes.normal};
+  font-family: ${theme.fonts.normalText};
+  font-size: ${theme.fontSizes.normalText};
   font-weight: ${theme.fontWeight.regular};
   color: ${theme.colors.text};
   margin-left: auto;
@@ -143,9 +146,9 @@ const Article = styled.article`
 
 const RecentTransactions = ({ transactions }) => {
 
-    const recentTransactions = transactions.slice(0, 8);
+  const recentTransactions = transactions.slice(0, 8);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <RecentTransactionsContainer>

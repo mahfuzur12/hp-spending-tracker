@@ -6,7 +6,6 @@ import Budget from './OverviewComponents/Budget';
 import Streak from './OverviewComponents/Streak';
 import ChangeCard from './OverviewComponents/ChangeCard';
 import theme from './theme';
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
@@ -16,6 +15,7 @@ import NavComp from '../../components/Navbar/Navbar';
 const Container = styled.div`
   background-color: ${theme.colors.background};
   padding: 4vh 14vw;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
@@ -23,7 +23,7 @@ const Title = styled.h1`
   font-size: ${theme.fontSizes.titles};
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.text} ;
-letter-spacing: -0.1rem;
+letter-spacing: -0.05rem;
   margin-bottom: 3vh;
 `;
 
@@ -33,7 +33,7 @@ const Brand = styled.li`
     font-weight: ${theme.fontWeight.semiBold};
     color: ${theme.colors.text} !important;
     margin-right: 2vw;
-      letter-spacing: -0.1rem;
+      letter-spacing: -0.05rem;
 `;
 
 const Navbar = styled.nav`
@@ -85,6 +85,7 @@ const Card = styled.div`
   border-radius: ${theme.borderRadius.card};
   padding: 2vh;
   max-height: 100%;
+  min-width: 15vw;
 `;
 
 const RegularCard = styled(Card)`
@@ -100,6 +101,7 @@ const DoubleCard = styled(Card)`
 const TallCard = styled(Card)`
   grid-row: span 2;
   grid-column: span 1;
+  max-width: 20vw;
 
 `;
 
@@ -137,6 +139,7 @@ const Overview = () => {
   const [accessToken, setAccessToken] = useState("");
   const [institution, setInstitution] = useState("");
   const [accountInfo, setAccountInfo] = useState("");
+  const [accountBalance, setAccountBalance] = useState(0);
 
   const { user } = useContext(AuthContext);
 
@@ -144,10 +147,12 @@ const Overview = () => {
     // reset and set transactions
     setTransactions([]);
     fetchUserData().then(() => {
-      console.log('done');
+      console.log('transactions fetched');
       console.log(transactions)
+
+      getBudgetSpent();
     });
-  }, [user._id, accessToken, budget]);
+  }, [user._id, accessToken]);
 
 
   // get user._id from AuthContext
@@ -169,8 +174,9 @@ const Overview = () => {
 
     const res = await fetch("http://localhost:8000/api/transactions");
     const data = await res.json(); // Parse the JSON data
-    console.log("boo", data)
-    
+    console.log("boo", data);
+
+
     setTransactionData(data);
     setBudget(budget);
     setDailyBudget(dailyBudget);
@@ -178,6 +184,7 @@ const Overview = () => {
     setAccessToken(currUser.data.data.accessToken);
     setInstitution(institution.data.institution);
     setAccountInfo(auth.data.numbers.bacs[auth.data.numbers.bacs.length - 1]);
+    setAccountBalance(auth.data.accounts[0].balances.current);
     //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
 
     // add every transaction from backend to transactions array
@@ -191,10 +198,9 @@ const Overview = () => {
       return new Date(b.data.date) - new Date(a.data.date);
     });
 
+
+
   }
-
-
-
 
   useEffect(() => {
     getBudgetSpent();
@@ -252,19 +258,19 @@ const Overview = () => {
       currentDate.setDate(currentDate.getDate() - 1);
     }
     setStreak(streak);
-    
+
 
   }
   console.log("daily spend", dailySpend)
   console.log(budget, dailyBudget)
-  console.log("streak",streak)
+  console.log("streak", streak)
 
   const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
   return (
     <Container>
-      <NavComp/>
-      <Title>Overview</Title>
+      <NavComp />
+      <Title>Overview {accountBalance}</Title>
       <CardContainer>
         <TallCard><RecentTransactions transactions={transactions} /></TallCard>
         <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>

@@ -1,6 +1,7 @@
 // check empty fields
 export const isEmpty = (value) => {
     if (!value) return true;
+    if (typeof value === 'object' && Object.keys(value).length === 0) return true;
     return false;
   };
   

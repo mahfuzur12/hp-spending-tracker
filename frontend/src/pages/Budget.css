@@ -63,3 +63,7 @@
 .budget-done:hover {
     background-color: aquamarine;
 }
+
+#budget-message{
+    color: #43a047
+}
