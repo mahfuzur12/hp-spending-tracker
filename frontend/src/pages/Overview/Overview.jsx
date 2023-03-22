@@ -23,8 +23,11 @@ const Title = styled.h1`
   font-size: ${theme.fontSizes.titles};
   font-weight: ${theme.fontWeight.semiBold};
   color: ${theme.colors.text} ;
-letter-spacing: -0.05rem;
+  letter-spacing: -0.05rem;
   margin-bottom: 3vh;
+  order: 1;
+  text-align: left;
+
 `;
 
 const Brand = styled.li`
@@ -86,6 +89,22 @@ const Card = styled.div`
   padding: 2vh;
   max-height: 100%;
   min-width: 15vw;
+`;
+
+const BalCard = styled.div`
+  text-align: right;
+  font-family: ${theme.fonts.titles};
+  font-size: ${theme.fontSizes.titles};
+  font-weight: ${theme.fontWeight.semiBold};
+  color: ${theme.colors.text} ;
+  letter-spacing: -0.05rem;
+  margin-bottom: 3vh;
+  order: 2;
+`;
+
+const Dis = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const RegularCard = styled(Card)`
@@ -270,7 +289,10 @@ const Overview = () => {
   return (
     <Container>
       <NavComp />
-      <Title>Overview {accountBalance}</Title>
+        <Dis>
+          <Title>Overview</Title>
+          <BalCard>£{accountBalance}</BalCard>
+        </Dis>
       <CardContainer>
         <TallCard><RecentTransactions transactions={transactions} /></TallCard>
         <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>
