@@ -36,7 +36,7 @@ const Month = styled.div`
   justify-content: bottom;
   padding: 1vh;
   width: 5vh;
-  height: 8vh;
+  height: clamp(5vh, 10vh, 10vh);
 `;
 
 const Circle = styled.div`
