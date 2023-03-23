@@ -173,3 +173,4 @@ app.use('/api/transactions', transactionsRouter);
 app.use('/api/user', userRouter);
 app.use(userRouter)
 
+module.exports = app;

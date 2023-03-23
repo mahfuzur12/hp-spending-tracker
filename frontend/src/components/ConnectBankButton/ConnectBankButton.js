@@ -18,7 +18,7 @@ function PlaidAuth({ publicToken }) {
     const { user } = useContext(AuthContext);
     useEffect(() => {
         async function fetch() {
-            
+            console.log("publicToken", publicToken);
             console.log(user._id);
             let accessToken = await axios.post("http://localhost:8000/exchange_public_token", { public_token: publicToken });
             console.log("accessToken", accessToken.data.accessToken);
