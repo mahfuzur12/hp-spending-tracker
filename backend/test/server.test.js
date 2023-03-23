@@ -2,6 +2,7 @@ const { Configuration, PlaidApi, PlaidEnvironments } = require('plaid');
 const request = require('supertest');
 const app = require('../server');
 
+
 describe('PlaidApi', () => {
   describe('constructor', () => {
     it('should create a new PlaidApi instance with the correct configuration', () => {
@@ -52,6 +53,7 @@ describe('POST /create_link_token', () => {
       .expect(200);
 
     expect(response.body.link_token).toBeDefined();
+
   });
 });
 
@@ -144,9 +146,8 @@ describe('POST /transactions', () => {
 });
 
 describe('POST /exchange_public_token', () => {
-  let server; // declare a variable to hold your server instance
-  let publicToken = "public-sandbox-7aaa5544-5961-4871-aa65-059914152078"
-  let accessToken = "access-sandbox-f2223b69-0d8b-46ad-989c-29d4559bc3e1"
+  const publicToken = "public-sandbox-c5a278ab-b38f-42e8-9a5c-09301b62aa6f"; // Replace with a valid public token for testing
+  let server;
 
   beforeAll((done) => {
     server = app.listen(3000, () => {
@@ -156,17 +157,25 @@ describe('POST /exchange_public_token', () => {
   });
 
   afterAll((done) => {
-    server.close(done); // close the server connection after all tests have run
+    server.close(done);
   });
 
-  it('should responds with a link token when successful', async () => {
-    const response = await request(app)
-      .post('/exchange_public_token')
-      .send({
-        public_token: publicToken,
-      })
-      .expect(200);
+  describe('when valid public token is provided', () => {
+    let response;
 
-    expect(accessToken).toBeDefined();
+    beforeAll(async () => {
+      response = await request(app)
+        .post('/exchange_public_token')
+        .send({ public_token: publicToken });
+    });
+
+    it('should return a 200 status code', () => {
+      expect(response.status).toBe(200);
+    });
+
+    it('should return an access token', () => {
+      expect(response.body.accessToken).toBeDefined();
+    });
   });
 });
+
