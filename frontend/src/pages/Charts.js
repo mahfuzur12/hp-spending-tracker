@@ -83,7 +83,7 @@ function Charts() {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch("http://localhost:8000/api/transactions").then((data) => {
+            fetch("/api/transactions").then((data) => {
                 const res = data.json();
                 return res
             }).then((res) => {

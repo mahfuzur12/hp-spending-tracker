@@ -6,7 +6,7 @@ function Points() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch("http://localhost:8000/api/transactions")
+      fetch("/api/transactions")
         .then((data) => {
           const res = data.json();
           return res;

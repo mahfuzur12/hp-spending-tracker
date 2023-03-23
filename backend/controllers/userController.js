@@ -36,7 +36,7 @@ exports.signupUser = async (req, res) => {
         const salt = await bcrypt.genSalt();
         const hashPassword = await bcrypt.hash(password, salt);
 
-        const newUser = { name, email, password: hashPassword };
+        const newUser = { name, email, password: hashPassword};
         const activation_token = createToken.activation(newUser);
 
         const url = `http://localhost:3000/api/auth/activate/${activation_token}`;
@@ -65,6 +65,7 @@ exports.activateUser = async (req, res) => {
             name,
             email,
             password,
+            budget: 0,
         });
         await newUser.save();
 

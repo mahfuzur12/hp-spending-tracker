@@ -111,7 +111,7 @@ const ChangeCard = ({ accessToken, institution, accountInfo }) => {
     useEffect(() => {
 
         async function fetch() {
-            const response = await axios.post("http://localhost:8000/create_link_token")
+            const response = await axios.post("/create_link_token")
             setLinkToken(response.data.link_token);
         }
         fetch();
@@ -160,7 +160,7 @@ export default ChangeCard;
 
 
 
-axios.default.baseUrl = "http://localhost:8000"
+axios.default.baseUrl = ""
 
 function PlaidAuth({ publicToken }) {
     //const [account, setAccount] = useState();
@@ -170,13 +170,13 @@ function PlaidAuth({ publicToken }) {
         async function fetch() {
 
             console.log(user._id);
-            let accessToken = await axios.post("http://localhost:8000/exchange_public_token", { public_token: publicToken });
+            let accessToken = await axios.post("/exchange_public_token", { public_token: publicToken });
             console.log("accessToken", accessToken.data.accessToken);
-            const auth = await axios.post("http://localhost:8000/auth", { access_token: accessToken.data.accessToken });
+            const auth = await axios.post("/auth", { access_token: accessToken.data.accessToken });
             console.log("auth", auth.data);
-            const transactions = await axios.post("http://localhost:8000/transactions", { access_token: accessToken.data.accessToken });
+            const transactions = await axios.post("/transactions", { access_token: accessToken.data.accessToken });
             console.log("transactions", transactions.data);
-            let institution = await axios.post("http://localhost:8000/institution", { institution_id: auth.data.item.institution_id });
+            let institution = await axios.post("/institution", { institution_id: auth.data.item.institution_id });
             console.log("institution", institution.data);
             //setAccount(auth.data.numbers.bacs[0]);
             //setBalance(auth.data.accounts[0].balances);
@@ -197,7 +197,7 @@ function PlaidAuth({ publicToken }) {
             //delete all transactions from that user
             userTransactions.forEach(async (transaction) => {
                 console.log(transaction)
-                await axios.delete("http://localhost:8000/api/transactions/" + transaction);
+                await axios.delete("/api/transactions/" + transaction);
             });
 
             await axios.patch("/" + user._id, { transactions: [] })
