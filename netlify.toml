@@ -1,3 +1,2 @@
 [build]
-command = "cd backend && npm install && npm start && cd ../frontend && npm install --legacy-peer-deps && npm start"
-publish = "frontend/build"
+command = "npm run install-dependencies && npm run dev"
