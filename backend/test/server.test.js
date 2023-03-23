@@ -145,8 +145,8 @@ describe('POST /transactions', () => {
 
 describe('POST /exchange_public_token', () => {
   let server; // declare a variable to hold your server instance
-  let publicToken = "public-sandbox-ffeccd60-c6c2-4c94-9b23-686878dc2ad7"
-  let accessToken = "access-sandbox-c4b896a1-f334-4808-9ab3-86824856a1ab"
+  let publicToken = "public-sandbox-7aaa5544-5961-4871-aa65-059914152078"
+  let accessToken = "access-sandbox-f2223b69-0d8b-46ad-989c-29d4559bc3e1"
 
   beforeAll((done) => {
     server = app.listen(3000, () => {
