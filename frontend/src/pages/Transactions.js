@@ -147,7 +147,7 @@ return(
                  </IconButton> }  modal >
                     <div className="modal">
                       <h2>Edit Transaction</h2>
-                            <form onSubmit={handleSubmit}>                          
+                            <form className="transaction-form"onSubmit={handleSubmit}>                          
                                 <TextField size='medium' id="standard-basic" label="New Description" variant="outlined" value={description} onChange={(e) => setDescription(e.target.value)} />
                                 <TextField id="standard-basic" label="New Category" variant="outlined" value={category} onChange={(e) => setCategory(e.target.value)} />
 
