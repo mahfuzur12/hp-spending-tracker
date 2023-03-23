@@ -149,7 +149,6 @@ const AttributionLink = styled.a`
 const Overview = () => {
 
   const [transactions, setTransactions] = useState([]);
-  const [transactionData, setTransactionData] = useState([]);
   const [dailySpend, setDailySpend] = useState([]);
   const [budget, setBudget] = useState(0);
   const [dailyBudget, setDailyBudget] = useState(0);
@@ -160,18 +159,23 @@ const Overview = () => {
   const [accountInfo, setAccountInfo] = useState("");
   const [accountBalance, setAccountBalance] = useState(0);
 
+  const [dataFetched, setDataFetched] = useState(false);
+
+
   const { user } = useContext(AuthContext);
+
 
   useEffect(() => {
     // reset and set transactions
     setTransactions([]);
-    fetchUserData().then(() => {
-      console.log('transactions fetched');
-      console.log(transactions)
 
+    fetchUserData().then(() => {
       getBudgetSpent();
+      getStreak()
     });
-  }, [user._id, accessToken]);
+  }, [user._id, dataFetched]);
+
+
 
 
   // get user._id from AuthContext
@@ -191,12 +195,7 @@ const Overview = () => {
     const auth = await axios.post("/auth", { access_token: currUser.data.data.accessToken });
     const institution = await axios.post("/institution", { institution_id: auth.data.item.institution_id });
 
-    const res = await fetch("http://localhost:8000/api/transactions");
-    const data = await res.json(); // Parse the JSON data
-    console.log("boo", data);
 
-
-    setTransactionData(data);
     setBudget(budget);
     setDailyBudget(dailyBudget);
     setStreak(streak);
@@ -205,26 +204,28 @@ const Overview = () => {
     setAccountInfo(auth.data.numbers.bacs[auth.data.numbers.bacs.length - 1]);
     setAccountBalance(auth.data.accounts[0].balances.current);
     //console.log(await axios.get('/api/transactions/' + transactionIds[0]))
-
     // add every transaction from backend to transactions array
     for (let i = 0; i < transactionIds.length; i++) {
       const transaction = await axios.get('/api/transactions/' + transactionIds[i]);
       setTransactions(transactions => [...transactions, transaction]);
     }
 
+
+
     // sort transactions by date (newest first)
     transactions.sort((a, b) => {
       return new Date(b.data.date) - new Date(a.data.date);
     });
 
-
+    setDataFetched(true);
 
   }
 
   useEffect(() => {
     getBudgetSpent();
-  }, [transactions]);
+    getStreak();
 
+  }, [dataFetched]);
 
 
   //get budgetSpent from the last week of transactions
@@ -246,26 +247,34 @@ const Overview = () => {
     setBudgetSpent(spent);
   }
 
-  useEffect(() => {
-    getStreak();
-  }, [streak]);
+
 
 
   const getStreak = () => {
 
-    // get daily spending of current month
+
     let today = new Date();
     let daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    let beginningOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
+    const dailyBudget = Math.round(budget / daysInMonth);
+    setDailyBudget(dailyBudget)
+
+
+    // Initialize an array to hold the daily spend amounts
     const dailySpend = new Array(daysInMonth).fill(0);
-    transactionData.forEach((transaction) => {
-      const transactionDate = new Date(transaction.date);
-      if (transactionDate.getMonth() === today.getMonth() && transactionDate.getFullYear() === today.getFullYear()) {
-        const dayOfMonth = transactionDate.getDate() - 1;
-        dailySpend[dayOfMonth] += transaction.amount;
+
+
+
+    transactions.forEach((transaction) => {
+      let transactionDate = new Date(transaction.data.date);
+      if (transactionDate >= beginningOfMonth) {
+        dailySpend[transactionDate.getDate() - 1] += transaction.data.amount
       }
     });
-    setDailySpend(dailySpend);
+    console.log("transactions:", transactions)
+    console.log("Daily spend", dailySpend)
+
 
     let streak = 0;
     let currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -280,19 +289,16 @@ const Overview = () => {
 
 
   }
-  console.log("daily spend", dailySpend)
-  console.log(budget, dailyBudget)
-  console.log("streak", streak)
 
   const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
   return (
     <Container>
       <NavComp />
-        <Dis>
-          <Title>Overview</Title>
-          <BalCard>£{accountBalance}</BalCard>
-        </Dis>
+      <Dis>
+        <Title>Overview</Title>
+        <BalCard>£{accountBalance}</BalCard>
+      </Dis>
       <CardContainer>
         <TallCard><RecentTransactions transactions={transactions} /></TallCard>
         <DoubleCard><SpendingLine transactions={transactions} /></DoubleCard>

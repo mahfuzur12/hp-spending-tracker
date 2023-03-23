@@ -80,10 +80,10 @@ const MonthName = styled.div`
 const SpendingHeatmap = ({ transactions }) => {
   const [year, setYear] = useState(new Date().getFullYear());
 
-  const monthNames = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-  ];
+    const monthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
 
   const spendingPerMonth = (year) => {
     const spending = new Array(12).fill(0);
