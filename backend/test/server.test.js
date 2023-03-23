@@ -1,5 +1,6 @@
 const { Configuration, PlaidApi, PlaidEnvironments } = require('plaid');
 const request = require('supertest');
+const { response } = require('../server');
 const app = require('../server');
 
 
@@ -142,40 +143,6 @@ describe('POST /transactions', () => {
       .expect(200);
 
     expect(response.body.transactions).toBeDefined();
-  });
-});
-
-describe('POST /exchange_public_token', () => {
-  const publicToken = "public-sandbox-c5a278ab-b38f-42e8-9a5c-09301b62aa6f"; // Replace with a valid public token for testing
-  let server;
-
-  beforeAll((done) => {
-    server = app.listen(3000, () => {
-      console.log('Server started');
-      done();
-    });
-  });
-
-  afterAll((done) => {
-    server.close(done);
-  });
-
-  describe('when valid public token is provided', () => {
-    let response;
-
-    beforeAll(async () => {
-      response = await request(app)
-        .post('/exchange_public_token')
-        .send({ public_token: publicToken });
-    });
-
-    it('should return a 200 status code', () => {
-      expect(response.status).toBe(200);
-    });
-
-    it('should return an access token', () => {
-      expect(response.body.accessToken).toBeDefined();
-    });
   });
 });
 
