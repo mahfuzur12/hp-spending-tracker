@@ -176,7 +176,7 @@ const Overview = () => {
   }, [user._id, dataFetched]);
 
 
-
+  console.log("transactions", transactions);
 
   // get user._id from AuthContext
   // get currUser from backend
