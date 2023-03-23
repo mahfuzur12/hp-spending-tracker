@@ -149,7 +149,6 @@ const AttributionLink = styled.a`
 const Overview = () => {
 
   const [transactions, setTransactions] = useState([]);
-  const [transactionData, setTransactionData] = useState([]);
   const [dailySpend, setDailySpend] = useState([]);
   const [budget, setBudget] = useState(0);
   const [dailyBudget, setDailyBudget] = useState(0);
@@ -162,16 +161,18 @@ const Overview = () => {
 
   const { user } = useContext(AuthContext);
 
+ 
   useEffect(() => {
     // reset and set transactions
     setTransactions([]);
-    fetchUserData().then(() => {
-      console.log('transactions fetched');
-      console.log(transactions)
 
+    fetchUserData().then(() => {
       getBudgetSpent();
+      getStreak()
     });
   }, [user._id, accessToken]);
+
+
 
 
   // get user._id from AuthContext
@@ -191,12 +192,7 @@ const Overview = () => {
     const auth = await axios.post("/auth", { access_token: currUser.data.data.accessToken });
     const institution = await axios.post("/institution", { institution_id: auth.data.item.institution_id });
 
-    const res = await fetch("http://localhost:8000/api/transactions");
-    const data = await res.json(); // Parse the JSON data
-    console.log("boo", data);
-
-
-    setTransactionData(data);
+  
     setBudget(budget);
     setDailyBudget(dailyBudget);
     setStreak(streak);
@@ -223,8 +219,8 @@ const Overview = () => {
 
   useEffect(() => {
     getBudgetSpent();
-  }, [transactions]);
 
+  }, [transactions]);
 
 
   //get budgetSpent from the last week of transactions
@@ -247,25 +243,37 @@ const Overview = () => {
   }
 
   useEffect(() => {
+   
     getStreak();
-  }, [streak]);
+  }, [transactions]);
+  
 
 
   const getStreak = () => {
-
-    // get daily spending of current month
+    
+    
     let today = new Date();
     let daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    let beginningOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
+    const dailyBudget = Math.round(budget/ daysInMonth);
+    setDailyBudget(dailyBudget)
+   
+    
+    // Initialize an array to hold the daily spend amounts
     const dailySpend = new Array(daysInMonth).fill(0);
-    transactionData.forEach((transaction) => {
-      const transactionDate = new Date(transaction.date);
-      if (transactionDate.getMonth() === today.getMonth() && transactionDate.getFullYear() === today.getFullYear()) {
-        const dayOfMonth = transactionDate.getDate() - 1;
-        dailySpend[dayOfMonth] += transaction.amount;
+   
+
+    
+    transactions.forEach((transaction) => {
+      let transactionDate = new Date(transaction.data.date);
+      if (transactionDate >=beginningOfMonth) {
+        dailySpend[transactionDate.getDate() -1] += transaction.data.amount
       }
-    });
-    setDailySpend(dailySpend);
+        });
+    console.log("transactions:", transactions)
+    console.log("Daily spend", dailySpend)
+      
 
     let streak = 0;
     let currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -280,10 +288,7 @@ const Overview = () => {
 
 
   }
-  console.log("daily spend", dailySpend)
-  console.log(budget, dailyBudget)
-  console.log("streak", streak)
-
+ 
   const daysLeft = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate() - new Date().getDate();
 
   return (
