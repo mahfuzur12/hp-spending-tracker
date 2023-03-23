@@ -234,10 +234,10 @@ const Overview = () => {
     let spent = 0;
     let today = new Date();
     //let lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 30);
-    let lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+    let beginningOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     for (let i = 0; i < transactions.length; i++) {
       let transactionDate = new Date(transactions[i].data.date);
-      if (transactionDate > lastMonth) {
+      if (transactionDate >= beginningOfMonth) {
         if (transactions[i].data.amount > 0) {
           spent += transactions[i].data.amount;
         }
@@ -276,7 +276,7 @@ const Overview = () => {
     console.log("Daily spend", dailySpend)
 
 
-    let streak = 0;
+    let streak = -1;
     let currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     while (streak < dailySpend.length) {
       if (dailySpend[currentDate.getDate() - 1] > dailyBudget) {
@@ -285,7 +285,8 @@ const Overview = () => {
       streak++;
       currentDate.setDate(currentDate.getDate() - 1);
     }
-    setStreak(streak);
+
+    if (streak > 0){setStreak(streak);}
 
 
   }
