@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "install-dependencies": "npm --prefix ./frontend install --legacy-peer-deps && npm --prefix ./backend install",
-        "start-frontend": "npm --prefix ./frontend run build",
+        "start-frontend": "npm --prefix ./frontend build",
         "start-backend": "npm --prefix ./backend start",
         "dev": "concurrently \"npm run start-frontend\" \"npm run start-backend\""
     },
