@@ -31,7 +31,7 @@ const AuthLayout = () => {
 
   return (
     <body id="auth-body-id">
-      <NavComp/>
+      <NavComp />
       <main className="auth-main">
         <div className='auth-content' >
           <h1 className='auth-title-content'>Your Personal Spending Tracker</h1>

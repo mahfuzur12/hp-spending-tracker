@@ -6,12 +6,10 @@ import ProfileLayout from "./Layouts/ProfileLayout/ProfileLayout";
 import ResetLayout from "./Layouts/ResetLayout/ResetLayout";
 import { AuthContext } from "./context/AuthContext";
 import axios from "axios";
-import Charts from "./pages/Charts";
 import Budget from "./pages/Budget";
 import Overview from "./pages/Overview/Overview";
 import Transactions from "./pages/Transactions"
 import Profile from "./components/Profile/Profile";
-import BudgetSummary from "./pages/BudgetSummary";
 import Streaks from "./pages/Streaks";
 import StreaksNavbar from "./pages/StreaksNavbar"
 import Points from "./pages/Points";
@@ -53,7 +51,7 @@ function App() {
     }
   }, [dispatch, token]);
 
-  
+
 
   return (
     <Router>
@@ -61,9 +59,9 @@ function App() {
         <Route
           path="/"
           exact
-          element={isLoggedIn ? 
-          <ProfileLayout />
-           : <AuthLayout />}
+          element={isLoggedIn ?
+            <ProfileLayout />
+            : <AuthLayout />}
         />
         <Route
           path="/auth/reset-password/:token"
@@ -73,10 +71,8 @@ function App() {
           exact element={<ActivateLayout />} />
         <Route path="/overview" exact element={isLoggedIn ? <Overview /> : <AuthLayout />} />
         <Route path="/budget" exact element={isLoggedIn ? <Budget /> : <AuthLayout />} />
-        <Route path="/charts" exact element={isLoggedIn ? <Charts /> : <AuthLayout />} />
         <Route path="/transactions" exact element={isLoggedIn ? <Transactions /> : <AuthLayout />} />
         <Route path="/profile" exact element={isLoggedIn ? <Profile /> : <AuthLayout />} />
-        <Route path="/budget-summary" exact element={isLoggedIn ? <BudgetSummary /> : <AuthLayout />} />
         <Route path="/progress" exact element={isLoggedIn ? <Streaks /> : <AuthLayout />} />
         <Route path="/streaks" exact element={isLoggedIn ? <StreaksNavbar /> : <AuthLayout />} />
         <Route path="/points" exact element={isLoggedIn ? <Points /> : <AuthLayout />} />

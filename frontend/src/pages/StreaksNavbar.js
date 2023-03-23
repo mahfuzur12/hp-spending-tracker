@@ -16,7 +16,7 @@ function StreaksNavbar({streak}) {
     return (
         <div className="blank-screen">
           {fireIcons.map((_, index) => (
-            <FontAwesomeIcon key={index} icon={faFire} size="lg" style={{ color: "#96d35f" }} />
+            <FontAwesomeIcon key={index} icon={faFire} size="lg" style={{ color: "#96d35f" }}  data-testid={`fire-icon-${index}`}/>
           ))}
         </div>
       );

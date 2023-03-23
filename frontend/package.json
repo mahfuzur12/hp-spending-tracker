@@ -23,9 +23,11 @@
     "dayjs": "^1.11.7",
     "googleapis": "^111.0.0",
     "mern-app": "file:..",
+    "history": "^5.3.0",
     "moment": "^2.29.4",
     "ng2-charts": "^4.1.1",
     "nodemailer": "^6.9.1",
+    "p-try": "^2.0.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-bootstrap": "^2.7.2",
@@ -85,7 +87,8 @@
     "moduleNameMapper": {
       "axios": "axios/dist/node/axios.cjs",
       "^axios$": "require.resolve('axios')",
-      "\\.(css)$": "<rootDir>/__mocks__/styleMock.js"
+      "\\.(css)$": "<rootDir>/__mocks__/styleMock.js",
+      "^@/(.*)": "<rootDir>/src/$1"
     }
   }
 }
