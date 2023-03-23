@@ -48,7 +48,7 @@ const Signin = () => {
         bodyClassName: "toast-failed",
       });
     try {
-      await axios.post("/signin", { email: data.email, password: data.password });
+      await axios.post("https://spending-tracker-server.onrender.com/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
       dispatch({ type: "SIGNING" });
       setIsSignedIn(true); // Add this line
