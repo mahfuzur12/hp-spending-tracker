@@ -173,7 +173,7 @@ const Overview = () => {
       getBudgetSpent();
       getStreak()
     });
-  }, [dataFetched]);
+  }, [user._id, dataFetched]);
 
 
 
