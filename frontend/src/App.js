@@ -19,6 +19,8 @@ import NavComp from "./components/Navbar/Navbar";
 import theme from "./pages/Overview/theme";
 import styled from "styled-components";
 
+axios.defaults.baseURL = 'https://spending-tracker-server.onrender.com'
+
 const Container = styled.div`
   background-color: ${theme.colors.background};
   padding: 4vh 14vw;
