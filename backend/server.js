@@ -153,13 +153,17 @@ const client = new MongoClient(process.env.MONGO_URI, { useNewUrlParser: true, u
 client.connect(err => {
   const collection = client.db("test").collection("transactions");
   // Update all documents in the collection
+  
   collection.updateMany({}, { $set: { "budget": 0 } }, (err, result) => {
     if (err) throw err;
     console.log(`${result.modifiedCount} documents updated`);
     client.close();
   });
+  
+  //collection.deleteMany({})
 });
 */
+
 
 
 require('./models/userModel')
