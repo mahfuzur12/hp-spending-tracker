@@ -36,7 +36,7 @@ const Streak = ({ streak }) => {
       {streak === 0 ? (
         <Description>You have no streak!</Description>
       ) : (
-        <Description>Great! You have a streak </Description>
+        <Description>Great! You have a streak :)</Description>
       )}
       <StreaksNavbar streak={streak} />
     </Container>
