@@ -44,7 +44,7 @@ function Points() {
     fetchData();
   }, []);
 
-  return <>{points} points</>;
+  return <div data-testid="points-display">{points} points</div>;
 }
 
 export default Points;
