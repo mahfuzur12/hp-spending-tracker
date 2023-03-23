@@ -1,26 +1,23 @@
 const { Configuration, PlaidApi, PlaidEnvironments } = require('plaid');
 const request = require('supertest');
-const { response } = require('../server');
 const app = require('../server');
 
 
-describe('PlaidApi', () => {
-  describe('constructor', () => {
-    it('should create a new PlaidApi instance with the correct configuration', () => {
-      const configuration = new Configuration({
-        basePath: PlaidEnvironments.sandbox,
-        baseOptions: {
-          headers: {
-            'PLAID-CLIENT-ID': '63e42502d85c2e001297b65d',
-            'PLAID-SECRET': 'f94671db90523240c5f39d8ba53283',
-          },
+describe ('PlaidApi', () => {
+  it('should create a new PlaidApi instance with the correct configuration', () => {
+    const configuration = new Configuration({
+      basePath: PlaidEnvironments.sandbox,
+      baseOptions: {
+        headers: {
+          'PLAID-CLIENT-ID': '63e42502d85c2e001297b65d',
+          'PLAID-SECRET': 'f94671db90523240c5f39d8ba53283',
         },
-      });
-
-      const plaidClient = new PlaidApi(configuration);
-
-      expect(plaidClient.configuration).toEqual(configuration);
+      },
     });
+
+    const plaidClient = new PlaidApi(configuration);
+
+    expect(plaidClient.configuration).toEqual(configuration);
   });
 });
 
@@ -61,6 +58,7 @@ describe('POST /create_link_token', () => {
 describe('POST /auth', () => {
   let server; // declare a variable to hold your server instance
   let accessToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b389"
+  let wrongToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b000"
   
   beforeAll((done) => {
     server = app.listen(3000, () => {
@@ -82,6 +80,15 @@ describe('POST /auth', () => {
       .expect(200);
 
     expect(response.body.accounts).toBeDefined();
+  });
+
+  it('should return 500 when given the wrong accessToken', async () => {
+    const response = await request(app)
+      .post('/auth')
+      .send({
+        access_token: wrongToken,
+      })
+      .expect(500);
   });
 });
 
@@ -111,11 +118,23 @@ describe('POST /institution', () => {
 
     expect(response.body.institution).toBeDefined();
   });
+
+  it('should return 500 when given the wront institutionId', async () => {
+    const response = await request(app)
+      .post('/institution')
+      .send({
+        institution_id: "ins_00000",
+        country_codes: ['GB'],
+      })
+      .expect(500);
+
+  });
 });
 
 describe('POST /transactions', () => {
   let server; // declare a variable to hold your server instance
   let accessToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b389"
+  let wrongToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b000"
 
   beforeAll((done) => {
     server = app.listen(3000, () => {
@@ -143,6 +162,57 @@ describe('POST /transactions', () => {
       .expect(200);
 
     expect(response.body.transactions).toBeDefined();
+  });
+
+  it('should return 500 when given the wront accessToken', async () => {
+    const response = await request(app)
+      .post('/transactions')
+      .send({
+        access_token: "wrongToken",
+        start_date: '2019-01-01',
+        end_date: '2019-01-31',
+        Options: {
+          count: 250,
+          offset: 0,
+        },
+      })
+      .expect(500);
+
+  });
+
+});
+
+describe('POST /exchange_public_token', () => {
+  const publicToken = "public-sandbox-adbc1d6a-bf93-4a0b-86e2-f9879c54d6ed" 
+  let server;
+
+  beforeAll((done) => {
+    server = app.listen(3000, () => {
+      console.log('Server started');
+      done();
+    });
+  });
+
+  afterAll((done) => {
+    server.close(done);
+  });
+
+  describe('when valid public token is provided', () => {
+    let response;
+
+    beforeAll(async () => {
+      response = await request(app)
+        .post('/exchange_public_token')
+        .send({ public_token: publicToken });
+    });
+
+    it('should return a 200 status code', () => {
+      expect(response.status).toBe(200);
+    });
+
+    it('should return an access token', () => {
+      expect(response.body.accessToken).toBeDefined();
+    });
   });
 });
 
