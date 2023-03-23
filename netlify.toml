@@ -1,2 +1,2 @@
 [build]
-command = "npm run install_dependencies && npm run dev"
+command = "npm run install-dependencies && npm run dev"
