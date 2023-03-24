@@ -39,7 +39,7 @@ exports.signupUser = async (req, res) => {
         const newUser = { name, email, password: hashPassword};
         const activation_token = createToken.activation(newUser);
 
-        const url = `http://localhost:3000/api/auth/activate/${activation_token}`;
+        const url = `http://hp-spending-tracker-production.up.railway.app/api/auth/activate/${activation_token}`;
         sendMail.sendEmailRegister(email, url, "Verify your email");
 
         res.status(200).json({ msg: "Welcome! Please check your email." });
