@@ -133,7 +133,7 @@ exports.forgotPassword = async (req, res) => {
 
         const ac_token = createToken.access({ id: user.id });
 
-        const url = `http://localhost:3000/auth/reset-password/${ac_token}`;
+        const url = `http://hp-spending-tracker-production.up.railway.app/auth/reset-password/${ac_token}`;
         const name = user.name;
         sendMail.sendEmailReset(email, url, "Reset your password", name);
 

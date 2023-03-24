@@ -48,7 +48,7 @@ app.post('/create_link_token', async function (request, response) {
     client_name: 'Plaid Test App',
     products: ['auth', 'transactions'],
     language: 'en',
-    redirect_uri: 'http://localhost:3000',
+    redirect_uri: 'http://hp-spending-tracker-production.up.railway.app',
     country_codes: ['GB'],
   };
   try {
@@ -174,7 +174,7 @@ app.use(cookieParser());
 
 
 app.use('/api/transactions', transactionsRouter);
-app.use('/api/user', userRouter);
+//app.use('/api/user', userRouter);
 app.use(userRouter)
 
 module.exports = app;
