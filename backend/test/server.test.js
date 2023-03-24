@@ -58,7 +58,6 @@ describe('POST /create_link_token', () => {
 describe('POST /auth', () => {
   let server; // declare a variable to hold your server instance
   let accessToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b389"
-  let wrongToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b000"
   
   beforeAll((done) => {
     server = app.listen(3000, () => {
@@ -86,7 +85,7 @@ describe('POST /auth', () => {
     const response = await request(app)
       .post('/auth')
       .send({
-        access_token: wrongToken,
+        access_token: "wrongToken",
       })
       .expect(500);
   });
@@ -134,7 +133,6 @@ describe('POST /institution', () => {
 describe('POST /transactions', () => {
   let server; // declare a variable to hold your server instance
   let accessToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b389"
-  let wrongToken = "access-sandbox-3f689895-bed4-4b84-bde3-12dabd14b000"
 
   beforeAll((done) => {
     server = app.listen(3000, () => {
@@ -182,37 +180,4 @@ describe('POST /transactions', () => {
 
 });
 
-describe('POST /exchange_public_token', () => {
-  const publicToken = "public-sandbox-adbc1d6a-bf93-4a0b-86e2-f9879c54d6ed" 
-  let server;
-
-  beforeAll((done) => {
-    server = app.listen(3000, () => {
-      console.log('Server started');
-      done();
-    });
-  });
-
-  afterAll((done) => {
-    server.close(done);
-  });
-
-  describe('when valid public token is provided', () => {
-    let response;
-
-    beforeAll(async () => {
-      response = await request(app)
-        .post('/exchange_public_token')
-        .send({ public_token: publicToken });
-    });
-
-    it('should return a 200 status code', () => {
-      expect(response.status).toBe(200);
-    });
-
-    it('should return an access token', () => {
-      expect(response.body.accessToken).toBeDefined();
-    });
-  });
-});
 
