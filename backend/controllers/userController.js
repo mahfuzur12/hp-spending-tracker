@@ -97,6 +97,8 @@ exports.signinUser = async (req, res) => {
             path: "/access",
             maxAage: 24 * 60 * 60 * 1000,
             sameSite: 'none',
+            secure: true,
+            domain: 'https://production--hp-spending-tracker.netlify.app/',
         });
 
         res.status(200).json({ msg: "Signin success" });
