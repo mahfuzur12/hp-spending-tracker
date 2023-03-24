@@ -65,6 +65,7 @@ exports.activateUser = async (req, res) => {
             name,
             email,
             password,
+            budget: 100,
         });
         await newUser.save();
 
