@@ -19,7 +19,7 @@ import NavComp from "./components/Navbar/Navbar";
 import theme from "./pages/Overview/theme";
 import styled from "styled-components";
 
-axios.defaults.baseURL = 'https://spending-tracker-server.onrender.com'
+axios.defaults.baseURL = 'https://hp-spending-tracker-production.up.railway.app'
 
 const Container = styled.div`
   background-color: ${theme.colors.background};
