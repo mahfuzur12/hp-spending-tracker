@@ -82,7 +82,9 @@ const processData = (transactions) => {
 };
 
 
-const SpendingLine = ({ transactions }) => {
+
+
+const SpendingLine = ({transactions}) => {
 
     const lineGraphData = processData(transactions);
 

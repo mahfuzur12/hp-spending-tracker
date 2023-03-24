@@ -19,15 +19,16 @@ export default function Spending() {
     }
 
     function decBudget() {
-        const budget = document.getElementById("budget-num-id");
-        const newBudget = parseInt(budget.innerText) - 10;
-        budget.innerText = newBudget;
-        setBudget(budget.innerText);
-
-        if (newBudget < 100) {
-            budget.innerText = 100
-            setBudget(budget.innerText);
-        }
+    const budget = document.getElementById("budget-num-id");
+    const newBudget = parseInt(budget.innerText) - 10;
+  
+    if (newBudget < 100) {
+    budget.innerText = 100;
+    setBudget(100);
+    } else {
+    budget.innerText = newBudget;
+    setBudget(newBudget);
+    }
     }
 
     async function open() {
@@ -54,7 +55,7 @@ export default function Spending() {
 
             <h1 className="budget-title" data-testid="budget-title">Set up your monthly budget </h1>
             <button onClick={decBudget} id="budget-btn-minus" data-testid="budget-btn-minus"> - </button>
-            <span className="budget-signal">£</span><span className="budget-num" data-testid="budget-num">{displayBudget}</span>
+            <span className="budget-signal">£</span><span id="budget-num-id" className="budget-num" data-testid="budget-num">{displayBudget}</span>
             <button onClick={incBudget} id="budget-btn-plus" data-testid="budget-btn-plus"> + </button>
             <div>
                 <button onClick={() => open()} className="budget-done" data-testid="budget-done"> Done </button>
