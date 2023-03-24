@@ -185,7 +185,7 @@ const Overview = () => {
 
   const fetchUserData = async () => {
 
-    const currUser = await axios.get('/' + user._id);
+    const currUser = await axios.get('/' + "641d917b7fb6cc4596225f14");
     const transactionIds = currUser.data.data.transactions;
     const budget = currUser.data.data.budget;
     let today = new Date();
