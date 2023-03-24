@@ -97,7 +97,6 @@ exports.signinUser = async (req, res) => {
             path: "/access",
             maxAage: 24 * 60 * 60 * 1000,
             sameSite: 'none',
-            secure: true
         });
 
         res.status(200).json({ msg: "Signin success" });
