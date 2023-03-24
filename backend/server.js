@@ -48,7 +48,7 @@ app.post('/create_link_token', async function (request, response) {
     client_name: 'Plaid Test App',
     products: ['auth', 'transactions'],
     language: 'en',
-    redirect_uri: 'https://production--hp-spending-tracker.netlify.app/',
+    redirect_uri: 'http://localhost:3000',
     country_codes: ['GB'],
   };
   try {
