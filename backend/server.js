@@ -177,6 +177,6 @@ app.use('/api/transactions', transactionsRouter);
 //app.use('/api/user', userRouter);
 app.use(userRouter)
 
-//app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 
 module.exports = app;

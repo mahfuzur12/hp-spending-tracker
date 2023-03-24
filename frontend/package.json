@@ -1,5 +1,5 @@
 {
-  "proxy": "https://spending-tracker-server.onrender.com",
+  "proxy": "https://hp-spending-tracker-production.up.railway.app",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
