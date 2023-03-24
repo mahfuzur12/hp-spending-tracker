@@ -48,7 +48,7 @@ const Signin = () => {
         bodyClassName: "toast-failed",
       });
     try {
-      await axios.post("/signin", { email: data.email, password: data.password }, { withCredentials: true, crossDomain: true });
+      await axios.post("/signin", { email: data.email, password: data.password }, { crossDomain: true });
       localStorage.setItem("_appSigning", true);
       dispatch({ type: "SIGNING" });
       setIsSignedIn(true); // Add this line
