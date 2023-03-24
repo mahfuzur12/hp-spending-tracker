@@ -39,7 +39,7 @@ exports.signupUser = async (req, res) => {
         const newUser = { name, email, password: hashPassword};
         const activation_token = createToken.activation(newUser);
 
-        const url = `https://production--hp-spending-tracker.netlify.app//api/auth/activate/${activation_token}`;
+        const url = `https://production--hp-spending-tracker.netlify.app/api/auth/activate/${activation_token}`;
         sendMail.sendEmailRegister(email, url, "Verify your email");
 
         res.status(200).json({ msg: "Welcome! Please check your email." });
@@ -133,7 +133,7 @@ exports.forgotPassword = async (req, res) => {
 
         const ac_token = createToken.access({ id: user.id });
 
-        const url = `https://production--hp-spending-tracker.netlify.app//auth/reset-password/${ac_token}`;
+        const url = `https://production--hp-spending-tracker.netlify.app/auth/reset-password/${ac_token}`;
         const name = user.name;
         sendMail.sendEmailReset(email, url, "Reset your password", name);
 
