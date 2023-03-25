@@ -50,7 +50,7 @@ const Signin = () => {
     try {
       let res = await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
-      localStorage.setItem("_apprftoken", res.data._apprftoken, {
+      document.cookie("_apprftoken", res.data._apprftoken, {
         httpOnly: true,
         path: "/access",
         maxAage: 24 * 60 * 60 * 1000,
