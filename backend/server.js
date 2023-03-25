@@ -14,7 +14,13 @@ const userRouter = require('./routes/userRouter');
 // Load environment variables from .env file
 dotenv.config();
 
-//app.use(cors());
+app.use(cors(
+  {
+    origin: '*',
+    credentials: true,            
+    optionSuccessStatus: 200,
+  }
+));
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method)
