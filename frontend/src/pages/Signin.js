@@ -67,7 +67,7 @@ const Signin = () => {
 
       document.cookie = `_apprftoken=${res.data._apprftoken}; path=/access; max-age=86400; sameSite=none; secure;`
       //localStorage.setItem("_apprftoken", res.data._apprftoken);
-      let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
+      //let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
       //console.log(res2)
       //dispatch({ type: "GET_TOKEN", payload: res2.data.ac_token });
       setIsSignedIn(true); // Add this line
