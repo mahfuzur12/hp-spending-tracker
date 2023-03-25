@@ -96,7 +96,7 @@ exports.signinUser = async (req, res) => {
             _apprftoken: rf_token,
             httpOnly: true,
             path: "/access",
-            maxAage: 24 * 60 * 60 * 1000,
+            maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'none',
             secure: true,
             

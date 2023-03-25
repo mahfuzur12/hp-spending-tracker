@@ -55,8 +55,19 @@ const Signin = () => {
       dispatch({ type: "GET_USER", payload: res.data.user });
       console.log("res")
       console.log(res)
+
+      /*
+      _apprftoken: rf_token,
+            httpOnly: true,
+            path: "/access",
+            maxAge: 24 * 60 * 60 * 1000,
+            sameSite: 'none',
+            secure: true,
+            */
+
+      document.cookie = `_apprftoken=${res.data._apprftoken}; path=/access; max-age=86400; sameSite=none; secure;`
       //localStorage.setItem("_apprftoken", res.data._apprftoken);
-      //let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
+      let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
       //console.log(res2)
       //dispatch({ type: "GET_TOKEN", payload: res2.data.ac_token });
       setIsSignedIn(true); // Add this line
