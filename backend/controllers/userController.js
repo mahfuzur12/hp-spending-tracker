@@ -119,6 +119,8 @@ exports.access = async (req, res) => {
 
             const ac_token = createToken.access({ id: user.id });
 
+            res.header('Access-Control-Allow-Origin', '*')
+
             return res.status(200).json({ ac_token });
         });
     } catch (err) {
