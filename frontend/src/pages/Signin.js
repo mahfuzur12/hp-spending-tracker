@@ -50,8 +50,13 @@ const Signin = () => {
     try {
       let res = await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
-      localStorage.setItem("_apprftoken", res.data._apprftoken);
+      
       dispatch({ type: "SIGNING" });
+      localStorage.setItem("_apprftoken", res.data._apprftoken);
+      let res2 = await axios.post("/access", localStorage.getItem("_apprftoken"));
+      console.log(res2)
+      dispatch({ type: "GET_TOKEN", payload: res2.data.ac_token });
+      dispatch({ type: "GET_USER", payload: res2.data.user });
       setIsSignedIn(true); // Add this line
       
     } catch (err) {
