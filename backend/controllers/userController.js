@@ -92,13 +92,15 @@ exports.signinUser = async (req, res) => {
             return res.status(400).json({ msg: "This password is incorrect." });
 
         const rf_token = createToken.refresh({ id: user._id });
-        res.json("_apprftoken", rf_token, {
+        res.json({
             _apprftoken: rf_token,
             httpOnly: true,
             path: "/access",
             maxAage: 24 * 60 * 60 * 1000,
             sameSite: 'none',
             secure: true,
+            
+            user: user,
         });
 
         res.status(200).json({ msg: "Signin success" });
@@ -109,7 +111,7 @@ exports.signinUser = async (req, res) => {
 
 exports.access = async (req, res) => {
     try {
-        const rf_token = req.data._apprftoken;
+        const rf_token = req.cookie._apprftoken;
         if (!rf_token) return res.status(400).json({ msg: "Please sign in." });
 
         jwt.verify(rf_token, process.env.REFRESH_TOKEN, (err, user) => {
