@@ -92,13 +92,13 @@ exports.signinUser = async (req, res) => {
             return res.status(400).json({ msg: "This password is incorrect." });
 
         const rf_token = createToken.refresh({ id: user._id });
-        res.cookie("_apprftoken", rf_token, {
+        res.json("_apprftoken", rf_token, {
+            _apprftoken: rf_token,
             httpOnly: true,
             path: "/access",
             maxAage: 24 * 60 * 60 * 1000,
             sameSite: 'none',
             secure: true,
-            domain: 'https://production--hp-spending-tracker.netlify.app/',
         });
 
         res.status(200).json({ msg: "Signin success" });
