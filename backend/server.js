@@ -19,7 +19,6 @@ app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   req.user = { id: "63e208865bf1447790d7e32b" };
-  req.header('Access-Control-Allow-Origin', 'https://hp-spending-tracker.netlify.app')
   next()
 })
 
