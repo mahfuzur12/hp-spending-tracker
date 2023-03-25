@@ -111,7 +111,7 @@ exports.signinUser = async (req, res) => {
 
 exports.access = async (req, res) => {
     try {
-        const rf_token = req.cookie._apprftoken;
+        const rf_token = req.cookies._apprftoken;
         if (!rf_token) return res.status(400).json({ msg: "Please sign in." });
 
         jwt.verify(rf_token, process.env.REFRESH_TOKEN, (err, user) => {
