@@ -55,9 +55,9 @@ const Signin = () => {
       dispatch({ type: "GET_USER", payload: res.data.user });
       console.log(res)
       //localStorage.setItem("_apprftoken", res.data._apprftoken);
-      let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
-      console.log(res2)
-      dispatch({ type: "GET_TOKEN", payload: res2.data.ac_token });
+      //let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
+      //console.log(res2)
+      //dispatch({ type: "GET_TOKEN", payload: res2.data.ac_token });
       setIsSignedIn(true); // Add this line
       
     } catch (err) {
