@@ -50,15 +50,16 @@ const Signin = () => {
     try {
       let res = await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
-      dispatch({ type: "SIGNING" });
-      setIsSignedIn(true); // Add this line
-      cookies.set("_apprftoken", res.data._apprftoken, {
+      localStorage.setItem("_apprftoken", res.data._apprftoken, {
         httpOnly: true,
         path: "/access",
         maxAage: 24 * 60 * 60 * 1000,
         sameSite: 'none',
         secure: true,
     });
+      dispatch({ type: "SIGNING" });
+      setIsSignedIn(true); // Add this line
+      
     } catch (err) {
       // toast(err.response.data.msg, {
       //   className: "toast-failed",
