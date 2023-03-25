@@ -53,6 +53,7 @@ const Signin = () => {
       
       dispatch({ type: "SIGNING" });
       dispatch({ type: "GET_USER", payload: res.data.user });
+      console.log("res")
       console.log(res)
       //localStorage.setItem("_apprftoken", res.data._apprftoken);
       //let res2 = await axios.post("/access", { _apprftoken: res.data._apprftoken });
