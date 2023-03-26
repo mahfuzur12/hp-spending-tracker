@@ -14,17 +14,11 @@ const userRouter = require('./routes/userRouter');
 // Load environment variables from .env file
 dotenv.config();
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "https://hp-spending-tracker.netlify.app"],
-    credentials: true,
-  })
-);
-
-app.options('*', cors({
-  origin: 'https://hp-spending-tracker.netlify.app',
+app.use(cors({
+  origin: 'https://hp-spending-tracker.netlify.app', // Replace this with your client's origin
   credentials: true,
-  AccessControlAllowOrigin: 'https://hp-spending-tracker.netlify.app'
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 
@@ -181,7 +175,7 @@ client.connect(err => {
 
 require('./models/userModel')
 
-app.use(express.json())
+//app.use(express.json())
 express.urlencoded({ extended: true });
 app.use(cookieParser());
 
