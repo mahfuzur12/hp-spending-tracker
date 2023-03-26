@@ -9,6 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
 import "./Signin.css"
 
+axios.defaults.baseURL = 'https://hp-spending-tracker-production.up.railway.app'
+axios.defaults.withCredentials = true
+
 const initialState = {
   name: '',
   password: '',
