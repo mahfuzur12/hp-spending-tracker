@@ -74,7 +74,7 @@ function App() {
         <Route
           path="/api/auth/activate/:activation_token"
           exact element={<ActivateLayout />} />
-        <Route path="/" exact element={isLoggedIn ? <Overview /> : <AuthLayout />} />
+        <Route path="/overview" exact element={isLoggedIn ? <Overview /> : <AuthLayout />} />
         <Route path="/budget" exact element={isLoggedIn ? <Budget /> : <AuthLayout />} />
         <Route path="/charts" exact element={isLoggedIn ? <Charts /> : <AuthLayout />} />
         <Route path="/transactions" exact element={isLoggedIn ? <Transactions /> : <AuthLayout />} />
