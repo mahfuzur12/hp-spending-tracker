@@ -220,7 +220,7 @@ function PlaidAuth({ publicToken }) {
     }, []);
     return (
         <Container>
-            <RefreshButton href="/">Refresh</RefreshButton>
+            <RefreshButton href="/overview">Refresh</RefreshButton>
         </Container>
     );
 }
