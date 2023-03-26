@@ -54,7 +54,7 @@ const Signin = () => {
       let res = await axios.post("/signin", { email: data.email, password: data.password });
       localStorage.setItem("_appSigning", true);
       
-      dispatch({ type: "SIGNING" });
+      dispatch({ type: "SIGNING", payload: true});
       dispatch({ type: "GET_USER", payload: res.data.user });
       console.log("res")
       console.log(res)
