@@ -22,6 +22,14 @@ app.use(cors(
     AccessControlAllowOrigin: 'https://hp-spending-tracker.netlify.app'
   }
 ));
+
+app.options('*', cors({
+  origin: 'https://hp-spending-tracker.netlify.app',
+  credentials: true,
+  AccessControlAllowOrigin: 'https://hp-spending-tracker.netlify.app'
+}));
+
+
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method)

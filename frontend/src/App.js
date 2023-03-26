@@ -20,6 +20,7 @@ import theme from "./pages/Overview/theme";
 import styled from "styled-components";
 
 axios.defaults.baseURL = 'https://hp-spending-tracker-production.up.railway.app'
+axios.defaults.withCredentials = true
 
 const Container = styled.div`
   background-color: ${theme.colors.background};
