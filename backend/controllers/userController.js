@@ -92,18 +92,16 @@ exports.signinUser = async (req, res) => {
             return res.status(400).json({ msg: "This password is incorrect." });
 
         const rf_token = createToken.refresh({ id: user._id });
-        res.json({
+        res.status(200).json({
+            msg: "Signin success",
             _apprftoken: rf_token,
             httpOnly: true,
             path: "/access",
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'none',
             secure: true,
-            
-            user: user,
-        });
 
-        res.status(200).json({ msg: "Signin success" });
+            user: user, });
     } catch (err) {
         res.status(500).json({ msg: err.message });
     }
