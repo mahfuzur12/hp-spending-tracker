@@ -14,14 +14,12 @@ const userRouter = require('./routes/userRouter');
 // Load environment variables from .env file
 dotenv.config();
 
-app.use(cors(
-  {
-    origin: 'https://hp-spending-tracker.netlify.app',
-    credentials: true,            
-    optionSuccessStatus: 200,
-    AccessControlAllowOrigin: 'https://hp-spending-tracker.netlify.app'
-  }
-));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://hp-spending-tracker.netlify.app"],
+    credentials: true,
+  })
+);
 
 app.options('*', cors({
   origin: 'https://hp-spending-tracker.netlify.app',

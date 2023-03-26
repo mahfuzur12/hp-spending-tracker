@@ -78,7 +78,6 @@ exports.activateUser = async (req, res) => {
 };
 
 exports.signinUser = async (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'https://hp-spending-tracker.netlify.app')
     try {
         const { email, password } = req.body;
 
@@ -111,7 +110,6 @@ exports.signinUser = async (req, res) => {
 };
 
 exports.access = async (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'https://hp-spending-tracker.netlify.app')
     try {
         const rf_token = req.cookies._apprftoken;
         if (!rf_token) return res.status(400).json({ msg: "Please sign in." });
