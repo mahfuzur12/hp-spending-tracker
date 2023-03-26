@@ -17,7 +17,7 @@ dotenv.config();
 app.use(cors({
   origin: 'https://hp-spending-tracker.netlify.app', // Replace this with your client's origin
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
