@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        dispatch({ type: "SIGNING" });
+        dispatch({ type: "SIGNING", payload: _appSigning });
         const res = await axios.get("/user", {
           headers: { Authorization: token },
         });
