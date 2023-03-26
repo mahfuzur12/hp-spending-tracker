@@ -19,6 +19,7 @@ app.use(cors(
     origin: 'https://hp-spending-tracker.netlify.app',
     credentials: true,            
     optionSuccessStatus: 200,
+    AccessControlAllowOrigin: 'https://hp-spending-tracker.netlify.app'
   }
 ));
 app.use(express.json());
